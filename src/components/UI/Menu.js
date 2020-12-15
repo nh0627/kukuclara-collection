@@ -1,5 +1,5 @@
 import React from 'react';
-import Filter from './Filter'
+import SearchDropdown from './SearchDropdown'
 
 const Menu = () => {
     return (
@@ -12,7 +12,7 @@ const Menu = () => {
             <div className="right menu">
                     <div className="ui item icon top right pointing dropdown button">
                         <i className="search icon"></i>
-                        <Filter />
+                        <SearchDropdown />
                     </div>
                 </div>
             </div>
