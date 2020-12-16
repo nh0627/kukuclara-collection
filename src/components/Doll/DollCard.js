@@ -5,7 +5,7 @@ const DollCard = prop => {
     const { doll } = prop;
 
     const putSpecialRibbon = (specialYn) => {
-        const specialCorner = <div class="ui yellow ribbon label">Special</div>;
+        const specialCorner = <div className="ui yellow ribbon label">Special</div>;
         return (specialYn === "Y") ? specialCorner : "";
     };
 
@@ -21,8 +21,8 @@ const DollCard = prop => {
                     <div className="group">{doll.series}</div>
                 </div>
             </div>
-            <div class="extra content">
-                <span class="right floated">{doll.date}</span>
+            <div className="extra content">
+                <span className="right floated">{doll.date}</span>
             </div>
         </div>
     );

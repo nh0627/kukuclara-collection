@@ -1,8 +1,8 @@
 {
     "type": [
-        "Kuku",
-        "Clara",
-        "Popping Kuku",
-        "Popping Clara"
+        {"code": "k", "name": "Kuku"},
+        {"code": "c", "name": "Clara"},
+        {"code": "pk", "name": "Popping Kuku"},
+        {"code": "pc", "name": "Popping Clara"}
     ]
 }

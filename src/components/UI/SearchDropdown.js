@@ -8,23 +8,25 @@ const SearchDropdown = (props) => {
     const tagColors = ["yellow", "olive", "teal", "blue"];
 
     const typeTags = (type, i) => {
+        const { code, name } = type;
+
         return (
-            <div className="item">
+            <div className="item" key={code}>
                 <div className={`ui empty circular label ${tagColors[i]}`}></div>
-                { type }
+                { name }
             </div>
         );
     };
 
     return (
-        <div class="menu">
-            <div class="ui search icon input">
-                <i class="search icon"></i>
+        <div className="menu">
+            <div className="ui search icon input">
+                <i className="search icon"></i>
                 <input type="text" name="search" placeholder="Search issues..." />
             </div>
-            <div class="divider"></div>
-            <div class="header">
-                <i class="tags icon"></i>
+            <div className="divider"></div>
+            <div className="header">
+                <i className="tags icon"></i>
                 Filter by type
             </div>
             { types.map((type, i) => typeTags(type, i)) }
