@@ -1,6 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const SearchDropdown = () => {
+const SearchDropdown = (props) => {
+
+    const { types } = props;
+
+    const typeTags = (type) => {
+        return (
+            <div class="item">
+                <div class="ui grey empty circular label"></div>
+                { type }
+            </div>
+        );
+    };
+
     return (
         <div class="menu">
             <div class="ui search icon input">
@@ -12,13 +25,13 @@ const SearchDropdown = () => {
                 <i class="tags icon"></i>
                 Filter by type
             </div>
-            <div class="item">
-                <div class="ui grey empty circular label"></div>
-                Kuku
-            </div>
-
+            { types.map(type => typeTags(type)) }
         </div>
     );
 };
 
-export default SearchDropdown;
+const mapStateToProps = state => {
+    return { types: state.types };
+}
+
+export default connect(mapStateToProps)(SearchDropdown);

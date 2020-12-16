@@ -5,7 +5,7 @@ import DollCard from './DollCard';
 
 class DollList extends Component {
     renderList() {
-        return this.props.dolls.map(doll => { return <DollCard doll={doll} />; });
+        return this.props.dolls.map(doll => { return <DollCard doll={doll} key={doll.kcId} />; });
     }
 
     render() {
@@ -22,6 +22,5 @@ class DollList extends Component {
 const mapStateToProps = state => {
     return { dolls: state.dolls };
 }
-
 
 export default connect(mapStateToProps, { selectDoll })(DollList);

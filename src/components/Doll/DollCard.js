@@ -10,7 +10,7 @@ const DollCard = prop => {
     };
 
     return (
-        <div className="card" key={doll.kcId}>
+        <div className="card">
             <div className="ui fluid image">
                 { putSpecialRibbon(doll.specialYn) }
                 <img src={doll.img} alt="kukuclara" />
