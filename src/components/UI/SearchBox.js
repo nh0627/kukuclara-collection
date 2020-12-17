@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import getColors from'../../data/colors';
-import { searchDoll } from '../../actions';
+import { searchDolls } from '../../actions';
 
 let SearchBox = (props) => {
     const { handleSubmit, types } = props;
@@ -17,7 +17,7 @@ let SearchBox = (props) => {
         );
     };
 
-    const onSubmit = (val) => props.searchDoll(val);
+    const onSubmit = (val) => props.searchDolls(val);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -42,7 +42,7 @@ const mapStateToProps = state => {
 }
 SearchBox = reduxForm({form: 'searchForm'})(SearchBox)
 
-SearchBox = connect(mapStateToProps, { searchDoll })(SearchBox)
+SearchBox = connect(mapStateToProps, { searchDolls })(SearchBox)
 
 export default SearchBox;
 
