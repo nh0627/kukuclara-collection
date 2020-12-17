@@ -2,23 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import getColors from'../../data/colors';
+import { searchDoll } from '../../actions';
 
 let SearchBox = (props) => {
-
     const { handleSubmit, types } = props;
 
     const typeTags = (type, i) => {
         const { code, name } = type;
-
         return (
             <div className="item" key={code}>
                 <div className={`ui empty circular label ${getColors(i)}`}></div>
-                { name}
+                {name}
             </div>
         );
     };
 
-    const onSubmit = (val) => console.log(1, val);
+    const onSubmit = (val) => props.searchDoll(val);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -39,13 +38,11 @@ let SearchBox = (props) => {
 };
 
 const mapStateToProps = state => {
-    return { types: state.types };
+    return { types: state.type };
 }
+SearchBox = reduxForm({form: 'searchForm'})(SearchBox)
 
-// Decorate with reduxForm(). It will read the initialValues prop provided by connect()
-SearchBox = reduxForm({form: 'initializeFromState'})(SearchBox)
-
-SearchBox = connect(mapStateToProps)(SearchBox)
+SearchBox = connect(mapStateToProps, { searchDoll })(SearchBox)
 
 export default SearchBox;
 

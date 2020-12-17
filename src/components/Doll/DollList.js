@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectDoll } from '../../actions';
+import { fetchDolls } from '../../actions';
 import DollCard from './DollCard';
 
 class DollList extends Component {
+
+    componentDidMount() {
+        this.props.fetchDolls();
+    }
+
     renderList() {
         return this.props.dolls.map(doll => { return <DollCard doll={doll} key={doll.kcId} />; });
     }
@@ -20,7 +25,7 @@ class DollList extends Component {
 }
 
 const mapStateToProps = state => {
-    return { dolls: state.dolls };
+    return { dolls: Object.values(state.doll) };
 }
 
-export default connect(mapStateToProps, { selectDoll })(DollList);
+export default connect(mapStateToProps, { fetchDolls })(DollList);

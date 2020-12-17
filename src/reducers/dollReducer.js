@@ -1,10 +1,23 @@
-import dollData from '../data/kukuclara.json';
+import {
+    FETCH_DOLLS,
+    FETCH_DOLL
+} from '../actions/types';
 
-export const dollsReducer = () => JSON.parse(JSON.stringify(dollData));
+export default (state={}, action) => {
+    switch(action.type) {
+        case FETCH_DOLLS:
+            // const dolls = {...state, ..._.mapKeys(action.payload, 'kcId') };
+            const _dolls = action.payload;
+            const dolls = _dolls.map(doll => {
+                const obj = {};
+                return obj[doll.kcId] = doll;
+            });
+            debugger;
 
-export const selectedDollReducer = (selectedDoll = null, action) => {
-    if (action.type === 'DOLL_SELECTED') {
-        return action.payload;
+            return dolls;
+        case FETCH_DOLL:
+            return { ...state, [action.payload.kcId]: action.payload };
+        default:
+            return state;
     }
-    return selectedDoll;
 };
