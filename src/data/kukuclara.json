@@ -1,6 +1,6 @@
 [
   {
-    "kcId": "KC000001",
+    "id": "KC000001",
     "typeCode": "K",
     "type": "KuKu",
     "seriesCode": "K_FOR",
@@ -19,7 +19,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000002",
+    "id": "KC000002",
     "typeCode": "K",
     "type": "KuKu",
     "seriesCode": "K_FOR",
@@ -38,7 +38,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000003",
+    "id": "KC000003",
     "typeCode": "K",
     "type": "KuKu",
     "seriesCode": "K_FOR",
@@ -57,7 +57,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000004",
+    "id": "KC000004",
     "typeCode": "K",
     "type": "KuKu",
     "seriesCode": "K_COT",
@@ -76,7 +76,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000005",
+    "id": "KC000005",
     "typeCode": "K",
     "type": "KuKu",
     "seriesCode": "K_COT",
@@ -95,7 +95,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000006",
+    "id": "KC000006",
     "typeCode": "K",
     "type": "KuKu",
     "seriesCode": "K_HUG",
@@ -114,7 +114,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000007",
+    "id": "KC000007",
     "typeCode": "K",
     "type": "KuKu",
     "seriesCode": "K_HUG",
@@ -133,7 +133,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000008",
+    "id": "KC000008",
     "typeCode": "K",
     "type": "KuKu",
     "seriesCode": "K_PET",
@@ -152,7 +152,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000009",
+    "id": "KC000009",
     "typeCode": "K",
     "type": "KuKu",
     "seriesCode": "K_PET",
@@ -171,7 +171,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000010",
+    "id": "KC000010",
     "typeCode": "K",
     "type": "KuKu",
     "seriesCode": "K_PET",
@@ -190,7 +190,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000011",
+    "id": "KC000011",
     "typeCode": "C",
     "type": "Clara",
     "seriesCode": "C_MAR",
@@ -209,7 +209,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000012",
+    "id": "KC000012",
     "typeCode": "C",
     "type": "Clara",
     "seriesCode": "C_MAR",
@@ -228,7 +228,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000013",
+    "id": "KC000013",
     "typeCode": "C",
     "type": "Clara",
     "seriesCode": "C_MAR_S",
@@ -247,7 +247,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000014",
+    "id": "KC000014",
     "typeCode": "C",
     "type": "Clara",
     "seriesCode": "C_MAR_S",
@@ -266,7 +266,7 @@
     "remarks": ""
   },
   {
-    "kcId": "KC000015",
+    "id": "KC000015",
     "typeCode": "C",
     "type": "Clara",
     "seriesCode": "C_DES",
