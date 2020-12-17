@@ -1,19 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import getColors from'../../data/colors';
 
 let SearchBox = (props) => {
 
     const { handleSubmit, types } = props;
-
-    const tagColors = ["yellow", "olive", "teal", "blue"];
 
     const typeTags = (type, i) => {
         const { code, name } = type;
 
         return (
             <div className="item" key={code}>
-                <div className={`ui empty circular label ${tagColors[i]}`}></div>
+                <div className={`ui empty circular label ${getColors(i)}`}></div>
                 { name}
             </div>
         );
