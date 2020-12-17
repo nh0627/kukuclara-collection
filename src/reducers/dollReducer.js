@@ -10,7 +10,7 @@ export default (state={}, action) => {
             action.payload.forEach( doll => dolls[doll.id] = doll);
             return dolls;
         case FETCH_DOLL:
-            return { ...state, [action.payload.kcId]: action.payload };
+            return { ...state, [action.payload.id]: action.payload };
         default:
             return state;
     }
