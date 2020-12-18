@@ -6,7 +6,7 @@ import {
 
 let dolls = [];
 const getDolls = () => {
-    // keep the json file from being read again => fix it later if there is a better way
+    // Todo: keep the json file from being read again => fix it later if there is a better way
     dolls = (dolls.length > 0) ? dolls : JSON.parse(JSON.stringify(dollData));
     return dolls;
 };
