@@ -23,7 +23,7 @@ let SearchBox = (props) => {
             <div className="menu">
                 <div className="ui search icon input">
                     <i className="search icon"></i>
-                    <Field component="input" type="text" name="search" placeholder="Search item..." />
+                    <Field component="input" type="text" name="term" placeholder="Search item..." />
                 </div>
                 <div className="divider"></div>
                 <div className="header">
