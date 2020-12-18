@@ -28,7 +28,6 @@ export const searchDolls = formValue => {
         const fullname = `${series} ${name} ${type}`;
         return fullname.toLowerCase().indexOf(term.toLowerCase()) > -1;
     })
-    debugger;
     // 페이징 처리
     return {
         type: FETCH_DOLLS,

@@ -23,7 +23,6 @@ const DollCard = prop => {
                 </div>
             </div>
             <div className="extra content">
-                <i className="heart outline icon"></i>
                 <span className="right floated">{date}</span>
             </div>
         </div>

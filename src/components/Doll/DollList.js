@@ -14,6 +14,7 @@ class DollList extends Component {
     }
 
     render() {
+        // Todo: 화면 너비에 맞는 카드 갯수
         return (
             <div className="ui main container">
                 <div className="ui four cards">
