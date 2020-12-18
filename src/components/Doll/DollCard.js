@@ -22,9 +22,6 @@ const DollCard = prop => {
                     <div className="group">{series}</div>
                 </div>
             </div>
-            <div className="extra content">
-                <span className="right floated">{date}</span>
-            </div>
         </div>
     );
 };
