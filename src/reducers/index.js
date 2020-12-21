@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import dollReducer from './dollReducer';
-import { typeReducer } from './filterReducer';
+import dollsReducer from './dollsReducer';
+import { typesReducer } from './filtersReducer';
 
 export default combineReducers({
-    doll: dollReducer,
-    type: typeReducer,
+    dolls: dollsReducer,
+    types: typesReducer,
     form: formReducer
 });

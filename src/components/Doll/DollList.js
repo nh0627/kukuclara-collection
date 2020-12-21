@@ -14,7 +14,7 @@ class DollList extends Component {
     }
 
     render() {
-        // Todo: 화면 너비에 맞는 카드 갯수
+        // Todo: 화면 너비에 맞게 자동 조정
         return (
             <div className="ui main container">
                 <div className="ui four cards">
@@ -26,7 +26,7 @@ class DollList extends Component {
 }
 
 const mapStateToProps = state => {
-    return { dolls: Object.values(state.doll) };
+    return { dolls: Object.values(state.dolls) };
 }
 
 export default connect(mapStateToProps, { fetchDolls })(DollList);

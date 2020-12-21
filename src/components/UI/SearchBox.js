@@ -37,7 +37,7 @@ let SearchBox = (props) => {
 };
 
 const mapStateToProps = state => {
-    return { types: state.type };
+    return { types: state.types };
 }
 SearchBox = reduxForm({form: 'searchForm'})(SearchBox)
 

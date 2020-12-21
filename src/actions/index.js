@@ -1,30 +1,24 @@
-import dollData from '../data/kukuclara.json';
 import {
     FETCH_DOLLS,
-    FETCH_DOLL
+    SEARCH_DOLLS
 } from '../actions/types';
 
-const dolls = JSON.parse(JSON.stringify(dollData));
- 
+// Fetch doll list
 export const fetchDolls = () => {
-    const dollList = dolls;
-    // 페이징 처리
     return {
-        type: FETCH_DOLLS,
-        payload: dollList
+        type: FETCH_DOLLS
     };
 };
 
-export const searchDolls = formValue => {
-    const { term } = formValue;
-    const dollList = dolls.filter(doll => {
-        const { type, series, name } = doll;
-        const fullname = `${series} ${name} ${type}`;
-        return fullname.toLowerCase().indexOf(term.toLowerCase()) > -1;
-    })
-    // 페이징 처리
+// Search dolls with keyword
+export const searchDolls = payload => {
     return {
-        type: FETCH_DOLLS,
-        payload: dollList
+        type: SEARCH_DOLLS,
+        payload
     };
 }
+
+// Filter dolls with type
+export const filterDollsByType = () => {
+
+};
