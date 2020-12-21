@@ -1,16 +1,17 @@
 import {
     FETCH_DOLLS,
-    SEARCH_DOLLS
+    SEARCH_DOLLS,
+    FILTER_DOLLS
 } from '../actions/types';
 
-// Fetch doll list
+// Fetch list
 export const fetchDolls = () => {
     return {
         type: FETCH_DOLLS
     };
 };
 
-// Search dolls with keyword
+// Search with keyword
 export const searchDolls = payload => {
     return {
         type: SEARCH_DOLLS,
@@ -18,7 +19,10 @@ export const searchDolls = payload => {
     };
 }
 
-// Filter dolls with type
-export const filterDollsByType = () => {
-
+// Filter
+export const filterDolls = payload => {
+    return {
+        type: FILTER_DOLLS,
+        payload
+    };
 };

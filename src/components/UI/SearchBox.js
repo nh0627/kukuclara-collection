@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { searchDolls } from '../../actions';
+import { searchDolls, filterDolls } from '../../actions';
 
 let SearchBox = (props) => {
     const { handleSubmit, types } = props;
 
     const filterList = (code) => {
-        console.log(code);
+        props.filterDolls({ type: { codes: [code] } });
     };
 
     const typeTags = (type) => {
         const { code, name, color } = type;
         return (
-            <div className="item" key={code} onClick={ () => filterList(code)}>
+            <div className="item" key={code} onClick={() => filterList(code)}>
                 <div className={`ui empty circular label ${color}`}></div>
                 {name}
             </div>
@@ -44,9 +44,9 @@ const mapStateToProps = state => {
     return { types: state.types };
 }
 
-SearchBox = reduxForm({form: 'searchForm'})(SearchBox)
+SearchBox = reduxForm({ form: 'searchForm' })(SearchBox)
 
-SearchBox = connect(mapStateToProps, { searchDolls })(SearchBox)
+SearchBox = connect(mapStateToProps, { searchDolls, filterDolls })(SearchBox)
 
 export default SearchBox;
 
