@@ -4,15 +4,10 @@ import {
     FETCH_DOLL
 } from '../actions/types';
 
-let dolls = [];
-const getDolls = () => {
-    // Todo: keep the json file from being read again => fix it later if there is a better way
-    dolls = (dolls.length > 0) ? dolls : JSON.parse(JSON.stringify(dollData));
-    return dolls;
-};
+const dolls = JSON.parse(JSON.stringify(dollData));
  
 export const fetchDolls = () => {
-    const dollList = getDolls();
+    const dollList = dolls;
     // 페이징 처리
     return {
         type: FETCH_DOLLS,
@@ -21,9 +16,8 @@ export const fetchDolls = () => {
 };
 
 export const searchDolls = formValue => {
-    const _dollList = getDolls();
     const { term } = formValue;
-    const dollList = _dollList.filter(doll => {
+    const dollList = dolls.filter(doll => {
         const { type, series, name } = doll;
         const fullname = `${series} ${name} ${type}`;
         return fullname.toLowerCase().indexOf(term.toLowerCase()) > -1;

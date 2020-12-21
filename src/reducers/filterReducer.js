@@ -1,14 +1,12 @@
 import filterData from '../data/filter.json';
 import { getColor } from '../data/color';
 
-let filter = {};
-const getFilter = () => {
-    // Todo: 더 나은 방식 없을까?
-    filter = (Object.keys(filter).length === 0)? JSON.parse(JSON.stringify(filterData)) : filter;
-    return filter;
+const filter = JSON.parse(JSON.stringify(filterData));
+const getFilterByName = (name) => {
+    return filter[name];
 };
 
-export const typeReducer = () => {
-    const _filter = getFilter();
-    return _filter["type"].map((type, i) => { return { ...type, ...{ color: getColor(i) } } })
+export const typeReducer = (state = [], action) => {
+    if (state.length === 0) state = getFilterByName("type");
+    return state.map((type, i) => { return { ...type, ...{ color: getColor(i) } } });
 };
