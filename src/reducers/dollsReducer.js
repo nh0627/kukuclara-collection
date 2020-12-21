@@ -6,23 +6,27 @@ import {
 
 import data from '../data/kukuclara.json';
 
-const parsedData = JSON.parse(JSON.stringify(data));
+const loadedData = JSON.parse(JSON.stringify(data));
+
+const parseData = (dolls) => {
+    const dollObj = {};
+    dolls.forEach(doll => dollObj[doll.id] = doll);
+    return dollObj;
+}
 
 export default (state = [], action) => {
     switch (action.type) {
         case FETCH_DOLLS:
-            const fetchedDolls = {};
-            parsedData.forEach(doll => fetchedDolls[doll.id] = doll);
-            return { ...state, ...fetchedDolls };
+            const fetchedDolls = parseData(loadedData);
+            return { ...fetchedDolls };
         case SEARCH_DOLLS:
             const { term } = action.payload;
-            debugger;
-            const searchedDolls = state.filter(doll => {
+            const filteredDolls = Object.values(loadedData).filter(doll => {
                 const { type, series, name } = doll;
                 const fullname = `${series} ${name} ${type}`;
                 return fullname.toLowerCase().indexOf(term.toLowerCase()) > -1;
             });
-            return { ...searchedDolls };
+            return { ...parseData(filteredDolls) };
         case FETCH_DOLL:
             return { ...state, [action.payload.id]: action.payload };
         default:

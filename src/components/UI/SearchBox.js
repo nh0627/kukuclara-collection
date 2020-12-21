@@ -6,10 +6,14 @@ import { searchDolls } from '../../actions';
 let SearchBox = (props) => {
     const { handleSubmit, types } = props;
 
+    const filterList = (code) => {
+        console.log(code);
+    };
+
     const typeTags = (type) => {
         const { code, name, color } = type;
         return (
-            <div className="item" key={code}>
+            <div className="item" key={code} onClick={ () => filterList(code)}>
                 <div className={`ui empty circular label ${color}`}></div>
                 {name}
             </div>
@@ -39,6 +43,7 @@ let SearchBox = (props) => {
 const mapStateToProps = state => {
     return { types: state.types };
 }
+
 SearchBox = reduxForm({form: 'searchForm'})(SearchBox)
 
 SearchBox = connect(mapStateToProps, { searchDolls })(SearchBox)
