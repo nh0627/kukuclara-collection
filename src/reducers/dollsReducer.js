@@ -32,7 +32,7 @@ export default (state = [], action) => {
             // TODO: 모달 뜸과 동시에 수정
             const _typeCode = action.payload.type.codes[0];
             const filteredDolls = loadedData.filter(doll => {
-                return doll.typeCode === _typeCode;
+                return doll.typeCode.toLowerCase() === _typeCode.toLowerCase();
             });
             return { ...parseData(filteredDolls) };
         case FETCH_DOLL:
