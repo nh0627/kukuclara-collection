@@ -1,22 +1,18 @@
 import React from 'react';
-import SearchDropdown from './SearchDropdown';
+import FilterDropDown from './FilterDropdown';
+import { Menu, Container, Icon } from 'semantic-ui-react';
 
 const MenuBar = () => {
     return (
-        <div className="ui fixed inverted menu">
-            <div className="ui container">
-                <a className="icon item">
-                    <i className="content icon"></i>
-                </a>
-                <div className="header item">Kuku Clara</div>
-            <div className="right menu">
-                    <div className="ui item icon top right pointing dropdown button">
-                        <i className="search icon"></i>
-                        <SearchDropdown />
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Menu fixed='top'>
+            <Container>
+                <Menu.Item ><Icon name='content'/></Menu.Item>
+                <Menu.Item header>Kuku Clara</Menu.Item>
+                <FilterDropDown />
+            </Container>
+        </Menu>
+
+
     );
 };
 
