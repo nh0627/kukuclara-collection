@@ -29,7 +29,7 @@ let FilterDropDown = (props) => {
                         <Icon aria-hidden="true" name="search" />
                     </div>
                     <Dropdown.Divider />
-                    <Dropdown.Header>FILTER BY TAG</Dropdown.Header>
+                    <Dropdown.Header>FILTER BY TYPE</Dropdown.Header>
                     {types.map((type) => typeTags(type))}
                 </Dropdown.Menu>
             </Dropdown>

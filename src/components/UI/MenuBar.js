@@ -4,11 +4,16 @@ import { Menu, Container, Icon } from 'semantic-ui-react';
 
 const MenuBar = () => {
     return (
-        <Menu fixed='top'>
+        <Menu fixed='top' borderless>
             <Container>
-                <Menu.Item ><Icon name='content'/></Menu.Item>
+                <Menu.Item ><Icon name='content' /></Menu.Item>
                 <Menu.Item header>Kuku Clara</Menu.Item>
-                <FilterDropDown />
+                <Menu.Menu position='right'>
+                    <Menu.Item>
+                        <Icon name='filter' />
+                    </Menu.Item>
+                    <FilterDropDown />
+                </Menu.Menu>
             </Container>
         </Menu>
 
