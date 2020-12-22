@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBox from './SearchBox';
+import SearchDropdown from './SearchDropdown';
 
 const MenuBar = () => {
     return (
@@ -12,7 +12,7 @@ const MenuBar = () => {
             <div className="right menu">
                     <div className="ui item icon top right pointing dropdown button">
                         <i className="search icon"></i>
-                        <SearchBox />
+                        <SearchDropdown />
                     </div>
                 </div>
             </div>

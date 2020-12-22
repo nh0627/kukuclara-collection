@@ -7,8 +7,8 @@ import 'semantic-ui-css/semantic.min.css';
 const App = () => {
   return (
     <div>
+      <MenuBar />
       <Container>
-        <MenuBar />
         <DollList />
       </Container>
     </div>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { searchDolls, filterDolls } from '../../actions';
 
-let SearchBox = (props) => {
+let SearchDropdown = (props) => {
     const { handleSubmit, types } = props;
 
     const filterList = (code) => {
@@ -44,10 +44,10 @@ const mapStateToProps = state => {
     return { types: state.types };
 }
 
-SearchBox = reduxForm({ form: 'searchForm' })(SearchBox)
+SearchDropdown = reduxForm({ form: 'searchForm' })(SearchDropdown)
 
-SearchBox = connect(mapStateToProps, { searchDolls, filterDolls })(SearchBox)
+SearchDropdown = connect(mapStateToProps, { searchDolls, filterDolls })(SearchDropdown)
 
-export default SearchBox;
+export default SearchDropdown;
 
 

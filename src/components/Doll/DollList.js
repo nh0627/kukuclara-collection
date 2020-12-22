@@ -15,9 +15,8 @@ class DollList extends Component {
     }
 
     render() {
-        // Todo: 화면 너비에 맞게 자동 조정
         return (
-            <Card.Group itemsPerRow={4}>
+            <Card.Group itemsPerRow={4} doubling stackable>
                 {this.renderList()}
             </Card.Group>
         );
