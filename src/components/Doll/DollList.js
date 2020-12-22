@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchDolls } from '../../actions';
 import DollCard from './DollCard';
+import { Card } from 'semantic-ui-react';
 
 class DollList extends Component {
 
@@ -16,11 +17,9 @@ class DollList extends Component {
     render() {
         // Todo: 화면 너비에 맞게 자동 조정
         return (
-            <div className="ui main container">
-                <div className="ui four cards">
-                    { this.renderList() }
-                </div>
-            </div>
+            <Card.Group itemsPerRow={4}>
+                {this.renderList()}
+            </Card.Group>
         );
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchBox from './SearchBox'
+import SearchBox from './SearchBox';
 
-const Menu = () => {
+const MenuBar = () => {
     return (
         <div className="ui fixed inverted menu">
             <div className="ui container">
@@ -20,4 +20,4 @@ const Menu = () => {
     );
 };
 
-export default Menu;
+export default MenuBar;

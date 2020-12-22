@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card, Icon, Image } from 'semantic-ui-react';
 
 const DollCard = prop => {
 
@@ -6,24 +7,22 @@ const DollCard = prop => {
     const { specialYn, img, name, type, series, date } = doll;
 
     const showSpecialTag = (specialYn) => {
-        const specialCorner = <div class="ui yellow right corner label"><i class="star icon"></i></div>;
-        return (specialYn === "Y") ? specialCorner : "";
+        const specialCorner = { as: "a", corner: "left", icon: "star", color: "yellow" };
+        return (specialYn === "Y") ? specialCorner : false;
     };
 
     return (
-        <div className="card">
-            <div className="ui fluid image">
-                {showSpecialTag(specialYn)}
-                <img src={img} alt="kukuclara" />
-            </div>
-            <div className="content">
-                <div className="header">{name} {type}</div>
-                <div className="meta">
-                    <div className="group">{ series }</div>
-                </div>
-                <div class="description">released on {date}</div>
-            </div>
-        </div>
+        <Card>
+            <Image src={img} wrapped ui={false} fluid label={showSpecialTag(specialYn)} />
+            <Card.Content>
+                <Card.Header>{name} {type}</Card.Header>
+                <Card.Meta>{series}
+                </Card.Meta>
+                <Card.Description>
+                    <span className='date'>{date}</span>
+                </Card.Description>
+            </Card.Content>
+        </Card>
     );
 };
 

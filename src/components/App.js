@@ -1,15 +1,18 @@
 import React from 'react';
 import DollList from './Doll/DollList';
-import Menu from './UI/Menu';
-// import DollDetail from './DollDetail';
+import MenuBar from './UI/MenuBar';
+import { Container } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {
   return (
     <div>
-      <Menu />
-      <DollList />
+      <Container>
+        <MenuBar />
+        <DollList />
+      </Container>
     </div>
   );
-}; 
+};
 
 export default App;
