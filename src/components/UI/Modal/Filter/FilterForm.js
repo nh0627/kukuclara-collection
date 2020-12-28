@@ -47,10 +47,6 @@ class FilterForm extends Component {
                             onChange={this.handleChange}
                         />
                     </Form.Group>
-                    <Form.Group widths='equal'>
-                        <Form.Input fluid label='Date from' />
-                        <Form.Input fluid label='Date to' />
-                    </Form.Group>
                     <Form.Group inline>
                         <label>Skin</label>
                         <Form.Checkbox

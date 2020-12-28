@@ -1,4 +1,4 @@
-import filterData from '../data/filters.json';
+import filterData from '../data/filter.json';
 import { getColor } from '../data/color';
 const TYPES = "types";
 

@@ -1,0 +1,86 @@
+{
+    "types": [
+        {
+            "code": "K",
+            "name": "Kuku"
+        },
+        {
+            "code": "C",
+            "name": "Clara"
+        },
+        {
+            "code": "PK",
+            "name": "Popping Kuku"
+        },
+        {
+            "code": "PC",
+            "name": "Popping Clara"
+        }
+    ],
+    "hairColors": [
+        {
+            "code": "BL",
+            "type": "Blond"
+        },
+        {
+            "code": "BR",
+            "type": "Brown"
+        },
+        {
+            "code": "IV",
+            "type": "Ivory"
+        },
+        {
+            "code": "PI",
+            "type": "Pink"
+        },
+        {
+            "code": "GI",
+            "type": "Ginger"
+        }
+    ],
+    "eyeColors": [
+        {
+            "code": "RE",
+            "type": "red"
+        },
+        {
+            "code": "GR",
+            "type": "green"
+        },
+        {
+            "code": "BL",
+            "type": "blue"
+        },
+        {
+            "code": "YE",
+            "type": "yellow"
+        },
+        {
+            "code": "PU",
+            "type": "purple"
+        },
+        {
+            "code": "BR",
+            "type": "brown"
+        },
+        {
+            "code": "GE",
+            "type": "grey"
+        }
+    ],
+    "skinTypes": [
+        {
+            "code": "N",
+            "type": "Normal"
+        },
+        {
+            "code": "SP",
+            "type": "Sunny Peach"
+        },
+        {
+            "code": "CP",
+            "type": "Creamy Peach"
+        }
+    ]
+}

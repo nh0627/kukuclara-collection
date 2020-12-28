@@ -41,9 +41,9 @@ const mapStateToProps = state => {
     return { types: state.types };
 }
 
-FilterDropDown = reduxForm({ form: 'searchForm' })(FilterDropDown)
+FilterDropDown = reduxForm({ form: 'searchForm' })(FilterDropDown);
 
-FilterDropDown = connect(mapStateToProps, { searchDolls, filterDolls })(FilterDropDown)
+FilterDropDown = connect(mapStateToProps, { searchDolls, filterDolls })(FilterDropDown);
 
 export default FilterDropDown;
 
