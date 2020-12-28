@@ -21,6 +21,7 @@ export const searchDolls = payload => {
 
 // Filter
 export const filterDolls = payload => {
+    debugger;
     return {
         type: FILTER_DOLLS,
         payload

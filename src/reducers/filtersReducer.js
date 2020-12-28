@@ -1,6 +1,6 @@
 import filterData from '../data/filter.json';
 import { getColor } from '../data/color';
-const TYPES = "types";
+const TYPES = 'types';
 
 const filters = JSON.parse(JSON.stringify(filterData));
 const getFilterByName = (name) => filters[name];

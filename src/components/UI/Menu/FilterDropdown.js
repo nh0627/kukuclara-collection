@@ -21,11 +21,11 @@ let FilterDropDown = (props) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Dropdown item simple icon="search">
+            <Dropdown item simple icon='search'>
                 <Dropdown.Menu>
-                    <div className="ui icon input icon" >
-                        <Field component="input" type="text" name="term" placeholder="Search..." />
-                        <Icon aria-hidden="true" name="search" />
+                    <div className='ui icon input icon' >
+                        <Field component='input' type='text' name='term' placeholder='Search...' />
+                        <Icon aria-hidden='true' name='search' />
                     </div>
                     <Dropdown.Divider />
                     <Dropdown.Header>FILTER BY TYPE</Dropdown.Header>

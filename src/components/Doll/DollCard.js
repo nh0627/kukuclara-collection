@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, Icon, Image } from "semantic-ui-react";
+import React from 'react';
+import { Card, Icon, Image } from 'semantic-ui-react';
 
 const DollCard = prop => {
 
@@ -7,8 +7,8 @@ const DollCard = prop => {
     const { specialYn, img, name, type, series, date } = doll;
 
     const showSpecialTag = (specialYn) => {
-        const specialCorner = { as: "a", corner: "left", icon: "star", color: "yellow" };
-        return (specialYn === "Y") ? specialCorner : false;
+        const specialCorner = { as: 'a', corner: 'left', icon: 'star', color: 'yellow' };
+        return (specialYn === 'Y') ? specialCorner : false;
     };
 
     return (
@@ -19,7 +19,7 @@ const DollCard = prop => {
                 <Card.Meta>{series}
                 </Card.Meta>
                 <Card.Description>
-                    <span className="date">{date}</span>
+                    <span className='date'>{date}</span>
                 </Card.Description>
             </Card.Content>
         </Card>

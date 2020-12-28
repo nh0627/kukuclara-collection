@@ -22,7 +22,7 @@ export default (state = [], action) => {
             return { ...fetchedDolls };
         case SEARCH_DOLLS:
             const { term } = action.payload;
-            if (typeof term === "undefined") return parseObjWithKeys(loadedData);
+            if (typeof term === 'undefined') return parseObjWithKeys(loadedData);
             const searchedDolls = loadedData.filter(doll => {
                 const { type, series, name } = doll;
                 const fullname = `${series} ${name} ${type}`;
