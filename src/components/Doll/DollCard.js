@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import React from "react";
+import { Card, Icon, Image } from "semantic-ui-react";
 
 const DollCard = prop => {
 
@@ -19,7 +19,7 @@ const DollCard = prop => {
                 <Card.Meta>{series}
                 </Card.Meta>
                 <Card.Description>
-                    <span className='date'>{date}</span>
+                    <span className="date">{date}</span>
                 </Card.Description>
             </Card.Content>
         </Card>

@@ -20,67 +20,67 @@
     "hairColors": [
         {
             "code": "BL",
-            "type": "Blond"
+            "name": "Blond"
         },
         {
             "code": "BR",
-            "type": "Brown"
+            "name": "Brown"
         },
         {
             "code": "IV",
-            "type": "Ivory"
+            "name": "Ivory"
         },
         {
             "code": "PI",
-            "type": "Pink"
+            "name": "Pink"
         },
         {
             "code": "GI",
-            "type": "Ginger"
+            "name": "Ginger"
         }
     ],
     "eyeColors": [
         {
             "code": "RE",
-            "type": "red"
+            "name": "Red"
         },
         {
             "code": "GR",
-            "type": "green"
+            "name": "Green"
         },
         {
             "code": "BL",
-            "type": "blue"
+            "name": "Blue"
         },
         {
             "code": "YE",
-            "type": "yellow"
+            "name": "Yellow"
         },
         {
             "code": "PU",
-            "type": "purple"
+            "name": "Purple"
         },
         {
             "code": "BR",
-            "type": "brown"
+            "name": "Brown"
         },
         {
             "code": "GE",
-            "type": "grey"
+            "name": "Grey"
         }
     ],
     "skinTypes": [
         {
             "code": "N",
-            "type": "Normal"
+            "name": "Normal"
         },
         {
             "code": "SP",
-            "type": "Sunny Peach"
+            "name": "Sunny Peach"
         },
         {
             "code": "CP",
-            "type": "Creamy Peach"
+            "name": "Creamy Peach"
         }
     ]
 }

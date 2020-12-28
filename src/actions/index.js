@@ -2,7 +2,7 @@ import {
     FETCH_DOLLS,
     SEARCH_DOLLS,
     FILTER_DOLLS
-} from '../actions/types';
+} from "../actions/types";
 
 // Fetch list
 export const fetchDolls = () => {

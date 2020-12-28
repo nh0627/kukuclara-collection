@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { filterDolls, searchDolls } from '../../../actions';
-
 import { Dropdown, Icon } from 'semantic-ui-react';
 
 let FilterDropDown = (props) => {
@@ -39,7 +38,7 @@ let FilterDropDown = (props) => {
 
 const mapStateToProps = state => {
     return { types: state.types };
-}
+};
 
 FilterDropDown = reduxForm({ form: 'searchForm' })(FilterDropDown);
 
