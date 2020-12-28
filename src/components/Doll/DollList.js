@@ -11,7 +11,11 @@ class DollList extends Component {
     }
 
     renderList() {
-        return this.props.dolls.map(doll => { return <DollCard doll={doll} key={doll.id} />; });
+        return this.props.dolls.map(doll => {
+            return (
+                <DollCard doll={doll} key={doll.id} />
+            );
+        });
     }
 
     render() {

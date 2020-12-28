@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Header, Icon, Modal, Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { filterDolls } from '../../../../actions';
+import { filterDolls } from '../../actions';
 
 let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
@@ -21,6 +21,7 @@ let FilterModal = props => {
     // props.filterDolls(val);
   }
 
+  // TODO: FORM GROUP ARRAY로 돌리기
   return (
     <Modal
       closeIcon

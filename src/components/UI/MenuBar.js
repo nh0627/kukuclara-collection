@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FilterDropDown from './FilterDropdown';
-import FilterModal from '../Modal/Filter/FilterModal';
+import FilterModal from './FilterModal';
 import { Menu, Container, Icon } from 'semantic-ui-react';
 
 export default class MenuBar extends Component {

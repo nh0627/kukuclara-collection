@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { filterDolls, searchDolls } from '../../../actions';
+import { filterDolls, searchDolls } from '../../actions';
 import { Dropdown, Icon } from 'semantic-ui-react';
 
 let FilterDropDown = (props) => {

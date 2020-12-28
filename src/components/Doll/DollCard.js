@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
+import DollDetailModal from './DollDetailModal';
 
 const DollCard = prop => {
 
@@ -13,7 +14,9 @@ const DollCard = prop => {
 
     return (
         <Card>
-            <Image src={img} wrapped ui={false} fluid label={showSpecialTag(specialYn)} />
+            <DollDetailModal
+                trigger={<Image src={img} wrapped ui={false} fluid label={showSpecialTag(specialYn)} />}
+                doll={doll} />
             <Card.Content>
                 <Card.Header>{name} {type}</Card.Header>
                 <Card.Meta>{series}
