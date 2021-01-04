@@ -28,10 +28,11 @@ let FilterModal = props => {
 
   const onSubmit = (val) => {
     setOpen(false);
-
-    
-
-    // props.filterDolls(val);
+    const parsedFilter = {};
+    // TODO: 체크박스인 애들만 따로 선별
+    const _filterKeys = Object.keys(val);
+    _filterKeys.forEach(filter => { parsedFilter[filter] = Object.keys(val[filter]) });
+    props.filterDolls(parsedFilter);
   }
 
   // TODO: FORM GROUP ARRAY로 돌리기
