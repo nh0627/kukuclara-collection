@@ -9,7 +9,7 @@ let FilterDropDown = (props) => {
 
     const onSubmit = (val) => props.searchDolls(val);
 
-    const filterList = (code) => props.filterDolls({ type: { codes: [code] } });
+    const filterList = (code) => props.filterDolls({ types: [code] });
 
     const typeTags = (type) => {
         const { code, name, color } = type;

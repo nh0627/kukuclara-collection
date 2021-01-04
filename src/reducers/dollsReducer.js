@@ -30,12 +30,11 @@ export default (state = [], action) => {
             });
             return { ...parseObjWithKeys(searchedDolls) };
         case FILTER_DOLLS:
-            // TODO: 모달 뜸과 동시에 수정
-            const _typeCode = action.payload.type.codes[0];
-            const filteredDolls = loadedData.filter(doll => {
+            const _typeCode = action.payload.types[0];
+            const filteredByType = loadedData.filter(doll => {
                 return doll.typeCode.toLowerCase() === _typeCode.toLowerCase();
             });
-            return { ...parseObjWithKeys(filteredDolls) };
+            return { ...parseObjWithKeys(filteredByType) };
         case FETCH_DOLL:
             return { ...state, [action.payload.id]: action.payload };
         default:

@@ -9,18 +9,18 @@ let FilterModal = props => {
   const { trigger, filters, handleSubmit } = props;
   const { types, hairColors, eyeColors, skinTypes } = filters;
 
-  const loadCheckboxes = (type, index) => {
+  const loadCheckboxes = (type, index, filterKey) => {
     const { code, name } = type;
     return (
       <div className="field" key={index}>
         <div className="ui checkbox">
           <Field
-            name={code}
-            id={code}
             type="checkbox"
             component="input"
-          />
-            <label>{name}</label>
+            label={name}
+            name={`${filterKey}[${code}]`}
+            value={code} />
+          <label>{name}</label>
         </div>
       </div>
     );
@@ -28,7 +28,9 @@ let FilterModal = props => {
 
   const onSubmit = (val) => {
     setOpen(false);
-    debugger;
+
+    
+
     // props.filterDolls(val);
   }
 
@@ -47,19 +49,19 @@ let FilterModal = props => {
         <Form id='filterForm' onSubmit={handleSubmit(onSubmit)}>
           <Form.Group inline>
             <label>Type</label>
-            {types.map((filter, i) => loadCheckboxes(filter, i))}
+            {types.map((filter, i) => loadCheckboxes(filter, i, "types"))}
           </Form.Group>
           <Form.Group inline>
             <label>Hair Colors</label>
-            {hairColors.map((filter, i) => loadCheckboxes(filter, i))}
+            {hairColors.map((filter, i) => loadCheckboxes(filter, i, "hairColors"))}
           </Form.Group>
           <Form.Group inline>
             <label>Eye Colors</label>
-            {eyeColors.map((filter, i) => loadCheckboxes(filter, i))}
+            {eyeColors.map((filter, i) => loadCheckboxes(filter, i, "eyeColors"))}
           </Form.Group>
           <Form.Group inline>
             <label>Skin Types</label>
-            {skinTypes.map((filter, i) => loadCheckboxes(filter, i))}
+            {skinTypes.map((filter, i) => loadCheckboxes(filter, i, "skinTypes"))}
           </Form.Group>
         </Form>
       </Modal.Content>
