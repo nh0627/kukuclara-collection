@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Header, Icon, Modal, Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { filterDolls } from '../../actions';
 
 let FilterModal = props => {
@@ -9,15 +9,26 @@ let FilterModal = props => {
   const { trigger, filters, handleSubmit } = props;
   const { types, hairColors, eyeColors, skinTypes } = filters;
 
-  const loadCheckboxes = (type) => {
+  const loadCheckboxes = (type, index) => {
     const { code, name } = type;
     return (
-      <Form.Checkbox key={code} label={name} value={code} />
+      <div className="field" key={index}>
+        <div className="ui checkbox">
+          <Field
+            name={code}
+            id={code}
+            type="checkbox"
+            component="input"
+          />
+            <label>{name}</label>
+        </div>
+      </div>
     );
   };
 
   const onSubmit = (val) => {
     setOpen(false);
+    debugger;
     // props.filterDolls(val);
   }
 
@@ -36,19 +47,19 @@ let FilterModal = props => {
         <Form id='filterForm' onSubmit={handleSubmit(onSubmit)}>
           <Form.Group inline>
             <label>Type</label>
-            {types.map((type) => loadCheckboxes(type))}
+            {types.map((filter, i) => loadCheckboxes(filter, i))}
           </Form.Group>
           <Form.Group inline>
             <label>Hair Colors</label>
-            {hairColors.map((type) => loadCheckboxes(type))}
+            {hairColors.map((filter, i) => loadCheckboxes(filter, i))}
           </Form.Group>
           <Form.Group inline>
             <label>Eye Colors</label>
-            {eyeColors.map((type) => loadCheckboxes(type))}
+            {eyeColors.map((filter, i) => loadCheckboxes(filter, i))}
           </Form.Group>
           <Form.Group inline>
             <label>Skin Types</label>
-            {skinTypes.map((type) => loadCheckboxes(type))}
+            {skinTypes.map((filter, i) => loadCheckboxes(filter, i))}
           </Form.Group>
         </Form>
       </Modal.Content>
@@ -56,7 +67,7 @@ let FilterModal = props => {
         <Button color='red' onClick={() => setOpen(false)}>
           <Icon name='remove' /> Close
         </Button>
-        <Button color='green' form='filterForm' key='submit' htmlType='submit'>
+        <Button color='green' form='filterForm' key='submit' htmltype='submit'>
           <Icon name='checkmark' /> OK
         </Button>
       </Modal.Actions>

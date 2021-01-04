@@ -10,7 +10,7 @@ export default class MenuBar extends Component {
 
     render() {
         const { activeItem } = this.state;
-
+        // TODO: Active 처리
         return (
             <Menu fixed='top' borderless>
                 <Container>
