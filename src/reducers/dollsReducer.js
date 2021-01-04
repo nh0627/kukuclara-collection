@@ -23,20 +23,27 @@ export default (state = [], action) => {
         case SEARCH_DOLLS:
             const { term } = action.payload;
             if (typeof term === 'undefined') return parseObjWithKeys(loadedData);
-            const searchedDolls = loadedData.filter(doll => {
+            const foundDolls = loadedData.filter(doll => {
                 const { type, series, name } = doll;
                 const fullname = `${series} ${name} ${type}`;
                 return fullname.toLowerCase().indexOf(term.toLowerCase()) > -1;
             });
-            return { ...parseObjWithKeys(searchedDolls) };
+            return { ...parseObjWithKeys(foundDolls) };
         case FILTER_DOLLS:
-            const filterKeys = Object.keys(loadedData);
-             
-            const _typeCode = action.payload.types[0];
-            const filteredByType = loadedData.filter(doll => {
-                return doll.typeCode.toLowerCase() === _typeCode.toLowerCase();
+            const submitData = action.payload;
+            // ['types', 'hairColors']
+            const filterKeys = Object.keys(submitData);
+            const filteredDolls = loadedData.filter(doll => {
+                
+                const isFound = filterKeys.find(key => {
+                    const singularKeyName = key.substring(key.length-1, 0) + "Code";
+                    const loadedCode = doll[singularKeyName]; // string
+                    const submitCodes = submitData[key]; // array
+                    return submitCodes.indexOf(loadedCode) > -1;
+                })
+                return typeof isFound !== "undefined";
             });
-            return { ...parseObjWithKeys(filteredByType) };
+            return { ...parseObjWithKeys(filteredDolls) };
         case FETCH_DOLL:
             return { ...state, [action.payload.id]: action.payload };
         default:

@@ -7,7 +7,7 @@ import { filterDolls } from '../../actions';
 let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
   const { trigger, filters, handleSubmit } = props;
-  const { types, hairColors, eyeColors, skinTypes } = filters;
+  const { types, hairColorGroups, eyeColorGroups, skinTypes } = filters;
 
   const loadCheckboxes = (type, index, filterKey) => {
     const { code, name } = type;
@@ -28,11 +28,12 @@ let FilterModal = props => {
 
   const onSubmit = (val) => {
     setOpen(false);
-    const parsedFilter = {};
-    // TODO: 체크박스인 애들만 따로 선별
-    const _filterKeys = Object.keys(val);
-    _filterKeys.forEach(filter => { parsedFilter[filter] = Object.keys(val[filter]) });
-    props.filterDolls(parsedFilter);
+    debugger;
+    const parsedData = {};
+    // TODO: 체크박스 "TRUE"인 애들만 따로 선별
+    const checkedKeys = Object.keys(val);
+    checkedKeys.forEach(key => { parsedData[key] = Object.keys(val[key]) });
+    props.filterDolls(parsedData);
   }
 
   // TODO: FORM GROUP ARRAY로 돌리기
@@ -54,11 +55,11 @@ let FilterModal = props => {
           </Form.Group>
           <Form.Group inline>
             <label>Hair Colors</label>
-            {hairColors.map((filter, i) => loadCheckboxes(filter, i, "hairColors"))}
+            {hairColorGroups.map((filter, i) => loadCheckboxes(filter, i, "hairColorGroups"))}
           </Form.Group>
           <Form.Group inline>
             <label>Eye Colors</label>
-            {eyeColors.map((filter, i) => loadCheckboxes(filter, i, "eyeColors"))}
+            {eyeColorGroups.map((filter, i) => loadCheckboxes(filter, i, "eyeColorGroups"))}
           </Form.Group>
           <Form.Group inline>
             <label>Skin Types</label>
