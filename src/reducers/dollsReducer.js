@@ -38,9 +38,8 @@ export default (state = [], action) => {
             const filteredDolls = loadedData.filter(doll => {
 
                 const matchedFilterKeys = selectedFilterKeys.filter(keyName => {
-                    // Change/Match to the loaded object"s(dolls) property name(e.g. types => typeCode)
+                    // Change/Match to the loaded object's(dolls) property name(e.g. types => typeCode)
                     const parsedKeyName = `${(Pluralize.isSingular(keyName)) ? keyName: Pluralize.singular(keyName)}Code`;
-                    debugger;
                     const codeFromLoadedData = doll[parsedKeyName];
                     const codesFromSubmitData = submitData[keyName];
                     // Check if one is matching at least
