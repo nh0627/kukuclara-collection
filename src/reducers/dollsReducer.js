@@ -4,8 +4,8 @@ import {
     FETCH_DOLL,
     FILTER_DOLLS
 } from "../actions/types";
-
 import data from "../data/kukuclara.json";
+import Pluralize from 'pluralize';
 
 const loadedData = JSON.parse(JSON.stringify(data));
 
@@ -39,7 +39,8 @@ export default (state = [], action) => {
 
                 const matchedFilterKeys = selectedFilterKeys.filter(keyName => {
                     // Change/Match to the loaded object"s(dolls) property name(e.g. types => typeCode)
-                    const parsedKeyName = `${keyName.substring(keyName.length - 1, 0)}Code`;
+                    const parsedKeyName = `${Pluralize.singular(keyName)}Code`;
+                    debugger;
                     const codeFromLoadedData = doll[parsedKeyName];
                     const codesFromSubmitData = submitData[keyName];
                     // Check if one is matching at least

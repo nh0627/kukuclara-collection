@@ -3,23 +3,25 @@ import { Button, Header, Icon, Modal, Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { filterDolls } from '../../actions';
-import { FILTERS as checkboxGroups } from '../../common/util';
+import Pluralize from 'pluralize';
 
 let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
   const { trigger, filters, handleSubmit } = props;
 
-  const loadCheckboxGroups = (checkboxGroup, index) => {
+  const checkboxGroupKeys = Object.keys(filters);
+
+  const loadCheckboxGroup = (keyName, index) => {
 
     const setLabelName = (name) => {
       // insert a space before all caps
       let newName = name.replace(/([A-Z])/g, ' $1')
         // uppercase the first character
         .replace(/^./, str => str.toUpperCase());
-      return newName.substring(newName.length - 1, 0);
+      return Pluralize.singular(newName);
     };
 
-    const loadCheckboxField = ({ filter, i }) => {
+    const loadField = ({ filter, i }) => {
       const { code, name } = filter;
 
       return (
@@ -28,19 +30,17 @@ let FilterModal = props => {
             <Field
               type="checkbox"
               component="input"
-              label={name}
-              name={`${checkboxGroup}[${code}]`}
-              value={code} />
+              name={`${keyName}[${code}]`} />
             <label>{name}</label>
           </div>
         </div>
       )
     };
-
+    
     return (
       <Form.Group inline key={index}>
-        <label>{setLabelName(checkboxGroup)}</label>
-        {filters[checkboxGroup].map((filter, i) => loadCheckboxField({ filter, i }))}
+        <label>{setLabelName(keyName)}</label>
+        {filters[keyName].map((filter, i) => loadField({ filter, i }))}
       </Form.Group>
     );
   };
@@ -50,11 +50,11 @@ let FilterModal = props => {
 
     const returnObj = {};
     const submitDataKeys = Object.keys(data);
-
+    debugger;
     submitDataKeys.forEach(key => {
       const submitValue = data[key];
       // If a value from checkboxes
-      if (checkboxGroups.indexOf(key) > -1) {
+      if (checkboxGroupKeys.indexOf(key) > -1) {
         // Filter true value
         const checkboxValues = Object.keys(submitValue).filter(field => submitValue[field]);
         // if there is any true value, then put it in obj for return
@@ -80,7 +80,7 @@ let FilterModal = props => {
       <Header icon='filter' content='Advanced filter' />
       <Modal.Content>
         <Form id='filterForm' onSubmit={handleSubmit(onSubmit)}>
-          {checkboxGroups.map((checkboxGroup, i) => loadCheckboxGroups(checkboxGroup, i))}
+          {checkboxGroupKeys.map((group, i) => loadCheckboxGroup(group, i))}
         </Form>
       </Modal.Content>
       <Modal.Actions>

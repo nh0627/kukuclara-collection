@@ -1,4 +1,14 @@
 {
+    "isSpecial": [
+        {
+            "code": "Y",
+            "name": "Yes"
+        },
+        {
+            "code": "N",
+            "name": "No"
+        }
+    ],
     "types": [
         {
             "code": "K",
