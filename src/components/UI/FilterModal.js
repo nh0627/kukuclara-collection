@@ -26,13 +26,19 @@ let FilterModal = props => {
     );
   };
 
-  const onSubmit = (val) => {
+  const onSubmit = value => {
     setOpen(false);
-    debugger;
+
     const parsedData = {};
-    // TODO: 체크박스 "TRUE"인 애들만 따로 선별
-    const checkedKeys = Object.keys(val);
-    checkedKeys.forEach(key => { parsedData[key] = Object.keys(val[key]) });
+    const checkboxGroups = Object.keys(value);
+
+    checkboxGroups.forEach(groupName => {
+      const checkboxes = value[groupName];
+      // Filter checkboxes' value only if it is true
+      const selectedValues = Object.keys(checkboxes).filter(box => checkboxes[box]);
+      if (selectedValues.length > 0) parsedData[groupName] = selectedValues;
+    });
+    
     props.filterDolls(parsedData);
   }
 

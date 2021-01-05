@@ -24,6 +24,7 @@ export default class MenuBar extends Component {
                     </Menu.Item>
                     <Menu.Item header>Kuku Clara</Menu.Item>
                     <Menu.Menu position='right'>
+                        <FilterDropDown />
                         <FilterModal trigger={
                             <Menu.Item
                                 link
@@ -33,7 +34,6 @@ export default class MenuBar extends Component {
                             >
                                 <Icon name='filter' />
                             </Menu.Item>} />
-                        <FilterDropDown />
                     </Menu.Menu>
                 </Container>
             </Menu>

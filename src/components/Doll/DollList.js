@@ -20,7 +20,7 @@ class DollList extends Component {
 
     render() {
         return (
-            <Card.Group itemsPerRow={4} doubling stackable>
+            <Card.Group itemsPerRow={6} doubling stackable>
                 {this.renderList()}
             </Card.Group>
         );

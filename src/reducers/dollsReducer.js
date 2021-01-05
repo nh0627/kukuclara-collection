@@ -9,6 +9,7 @@ import data from '../data/kukuclara.json';
 
 const loadedData = JSON.parse(JSON.stringify(data));
 
+// Function to set primary key(id) to OBJ key
 const parseObjWithKeys = (dolls) => {
     const dollObj = {};
     dolls.forEach(doll => dollObj[doll.id] = doll);
@@ -31,18 +32,26 @@ export default (state = [], action) => {
             return { ...parseObjWithKeys(foundDolls) };
         case FILTER_DOLLS:
             const submitData = action.payload;
-            // ['types', 'hairColors']
-            const filterKeys = Object.keys(submitData);
+            const selectedFilterKeys = Object.keys(submitData);
+            // TODO: Make it less complecated
             const filteredDolls = loadedData.filter(doll => {
-                
-                const isFound = filterKeys.find(key => {
-                    const singularKeyName = key.substring(key.length-1, 0) + "Code";
-                    const loadedCode = doll[singularKeyName]; // string
-                    const submitCodes = submitData[key]; // array
-                    return submitCodes.indexOf(loadedCode) > -1;
-                })
-                return typeof isFound !== "undefined";
+
+                const foundKeys = selectedFilterKeys.filter(key => {
+                    // Change "key" to a right property name
+                    const singularCodeName = key.substring(key.length - 1, 0) + "Code";
+                    const loadedCode = doll[singularCodeName];
+                    const selectedCodes = submitData[key];
+                    // Check if one is matching at least
+                    // In other words, within one category(e.g. skin, hair color) it is OR(union)
+                    return selectedCodes.indexOf(loadedCode) > -1;
+                });
+
+
+                // It is AND(intersection) between different categories
+                // TODO: Find a better way to compare two arrays
+                return foundKeys.sort().join(',') === selectedFilterKeys.sort().join(',');
             });
+
             return { ...parseObjWithKeys(filteredDolls) };
         case FETCH_DOLL:
             return { ...state, [action.payload.id]: action.payload };
