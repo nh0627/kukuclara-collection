@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import FilterDropDown from './FilterDropdown';
-import FilterModal from './FilterModal';
-import { Menu, Container, Icon } from 'semantic-ui-react';
+import React, { Component } from "react";
+import FilterDropDown from "./FilterDropdown";
+import FilterModal from "./FilterModal";
+import { Menu, Container, Icon } from "semantic-ui-react";
 
 export default class MenuBar extends Component {
-    state = { activeItem: '' };
+    state = { activeItem: "" };
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
@@ -12,33 +12,31 @@ export default class MenuBar extends Component {
         const { activeItem } = this.state;
         // TODO: Active 처리
         return (
-            <Menu fixed='top' borderless>
+            <Menu fixed="top" borderless>
                 <Container>
                     <Menu.Item
                         link
-                        name='sidemenu'
-                        active={activeItem === 'sidemenu'}
+                        name="sidemenu"
+                        active={activeItem === "sidemenu"}
                         onClick={this.handleItemClick}
                     >
-                        <Icon name='content' />
+                        <Icon name="content" />
                     </Menu.Item>
                     <Menu.Item header>Kuku Clara</Menu.Item>
-                    <Menu.Menu position='right'>
+                    <Menu.Menu position="right">
                         <FilterDropDown />
                         <FilterModal trigger={
                             <Menu.Item
                                 link
-                                name='filter'
-                                active={activeItem === 'filter'}
+                                name="filter"
+                                active={activeItem === "filter"}
                                 onClick={this.handleItemClick}
                             >
-                                <Icon name='filter' />
+                                <Icon name="filter" />
                             </Menu.Item>} />
                     </Menu.Menu>
                 </Container>
             </Menu>
-
-
         );
     };
 };

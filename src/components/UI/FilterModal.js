@@ -3,46 +3,59 @@ import { Button, Header, Icon, Modal, Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { filterDolls } from '../../actions';
+import { FILTERS as checkboxGroups } from '../../common/util';
 
 let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
   const { trigger, filters, handleSubmit } = props;
-  const { types, hairColorGroups, eyeColorGroups, skinTypes } = filters;
 
-  const loadCheckboxes = (type, index, filterKey) => {
-    const { code, name } = type;
-    return (
-      <div className="field" key={index}>
-        <div className="ui checkbox">
-          <Field
-            type="checkbox"
-            component="input"
-            label={name}
-            name={`${filterKey}[${code}]`}
-            value={code} />
-          <label>{name}</label>
+  const loadCheckboxes = (checkboxGroup, index) => {
+    const loadCheckboxField = ({ filter, i }) => {
+      const { code, name } = filter;
+      return (
+        <div className="field" key={i}>
+          <div className="ui checkbox">
+            <Field
+              type="checkbox"
+              component="input"
+              label={name}
+              name={`${checkboxGroup}[${code}]`}
+              value={code} />
+            <label>{name}</label>
+          </div>
         </div>
-      </div>
+      )
+    };
+
+    return (
+      <Form.Group inline key={index}>
+        <label>{checkboxGroup}</label>
+        {filters[checkboxGroup].map((filter, i) => loadCheckboxField({ filter, i }))}
+      </Form.Group>
     );
   };
 
-  const onSubmit = value => {
+  const onSubmit = data => {
     setOpen(false);
 
     const parsedData = {};
-    const checkboxGroups = Object.keys(value);
+    const submitDataKeys = Object.keys(data);
 
-    checkboxGroups.forEach(groupName => {
-      const checkboxes = value[groupName];
-      // Filter checkboxes' value only if it is true
-      const selectedValues = Object.keys(checkboxes).filter(box => checkboxes[box]);
-      if (selectedValues.length > 0) parsedData[groupName] = selectedValues;
+    submitDataKeys.forEach(key => {
+      const submitValue = data[key];
+      // If the fields are checkboxes
+      if (checkboxGroups.indexOf(key) > -1) {
+        // Filter checkboxes' value only if it is true
+        const checkboxValues = Object.keys(submitValue).filter(box => submitValue[box]);
+        if (checkboxValues.length > 0) parsedData[key] = checkboxValues;
+      } else {
+        parsedData[key] = submitValue;
+      }
     });
-    
+
     props.filterDolls(parsedData);
   }
 
-  // TODO: FORM GROUP ARRAY로 돌리기
   return (
     <Modal
       closeIcon
@@ -55,22 +68,7 @@ let FilterModal = props => {
       <Header icon='filter' content='Advanced filter' />
       <Modal.Content>
         <Form id='filterForm' onSubmit={handleSubmit(onSubmit)}>
-          <Form.Group inline>
-            <label>Type</label>
-            {types.map((filter, i) => loadCheckboxes(filter, i, "types"))}
-          </Form.Group>
-          <Form.Group inline>
-            <label>Hair Colors</label>
-            {hairColorGroups.map((filter, i) => loadCheckboxes(filter, i, "hairColorGroups"))}
-          </Form.Group>
-          <Form.Group inline>
-            <label>Eye Colors</label>
-            {eyeColorGroups.map((filter, i) => loadCheckboxes(filter, i, "eyeColorGroups"))}
-          </Form.Group>
-          <Form.Group inline>
-            <label>Skin Types</label>
-            {skinTypes.map((filter, i) => loadCheckboxes(filter, i, "skinTypes"))}
-          </Form.Group>
+          {checkboxGroups.map((checkboxGroup, i) => loadCheckboxes(checkboxGroup, i))}
         </Form>
       </Modal.Content>
       <Modal.Actions>

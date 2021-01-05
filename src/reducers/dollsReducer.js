@@ -3,9 +3,9 @@ import {
     SEARCH_DOLLS,
     FETCH_DOLL,
     FILTER_DOLLS
-} from '../actions/types';
+} from "../actions/types";
 
-import data from '../data/kukuclara.json';
+import data from "../data/kukuclara.json";
 
 const loadedData = JSON.parse(JSON.stringify(data));
 
@@ -23,7 +23,7 @@ export default (state = [], action) => {
             return { ...fetchedDolls };
         case SEARCH_DOLLS:
             const { term } = action.payload;
-            if (typeof term === 'undefined') return parseObjWithKeys(loadedData);
+            if (typeof term === "undefined") return parseObjWithKeys(loadedData);
             const foundDolls = loadedData.filter(doll => {
                 const { type, series, name } = doll;
                 const fullname = `${series} ${name} ${type}`;
@@ -31,28 +31,28 @@ export default (state = [], action) => {
             });
             return { ...parseObjWithKeys(foundDolls) };
         case FILTER_DOLLS:
-            const submitData = action.payload;
-            const selectedFilterKeys = Object.keys(submitData);
-            // TODO: Make it less complecated
+            const { payload } = action;
+            const selectedFilterGroup = Object.keys(payload);
+            // TODO: Make it less complecated(if possible😭)
             const filteredDolls = loadedData.filter(doll => {
 
-                const foundKeys = selectedFilterKeys.filter(key => {
-                    // Change "key" to a right property name
-                    const singularCodeName = key.substring(key.length - 1, 0) + "Code";
-                    const loadedCode = doll[singularCodeName];
-                    const selectedCodes = submitData[key];
+                const matchedFilterGroups = selectedFilterGroup.filter(groupName => {
+                    // Change/Match to the loaded object"s(dolls) property name(e.g. types => typeCode)
+                    const keyName = `${groupName.substring(groupName.length - 1, 0)}Code`;
+                    const loadedCode = doll[keyName];
+                    const selectedCodes = payload[groupName];
                     // Check if one is matching at least
                     // In other words, within one category(e.g. skin, hair color) it is OR(union)
                     return selectedCodes.indexOf(loadedCode) > -1;
                 });
 
-
                 // It is AND(intersection) between different categories
                 // TODO: Find a better way to compare two arrays
-                return foundKeys.sort().join(',') === selectedFilterKeys.sort().join(',');
+                return matchedFilterGroups.sort().join(",") === selectedFilterGroup.sort().join(",");
             });
 
             return { ...parseObjWithKeys(filteredDolls) };
+
         case FETCH_DOLL:
             return { ...state, [action.payload.id]: action.payload };
         default:
