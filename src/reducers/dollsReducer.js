@@ -31,24 +31,24 @@ export default (state = [], action) => {
             });
             return { ...parseObjWithKeys(foundDolls) };
         case FILTER_DOLLS:
-            const { payload } = action;
-            const selectedFilterGroup = Object.keys(payload);
+            const submitData = action.payload;
+            const selectedFilterKeys = Object.keys(submitData);
             // TODO: Make it less complecated(if possible😭)
+            // Retrieve the loaded doll data to filter it
             const filteredDolls = loadedData.filter(doll => {
 
-                const matchedFilterGroups = selectedFilterGroup.filter(groupName => {
+                const matchedFilterKeys = selectedFilterKeys.filter(keyName => {
                     // Change/Match to the loaded object"s(dolls) property name(e.g. types => typeCode)
-                    const keyName = `${groupName.substring(groupName.length - 1, 0)}Code`;
-                    const loadedCode = doll[keyName];
-                    const selectedCodes = payload[groupName];
+                    const parsedKeyName = `${keyName.substring(keyName.length - 1, 0)}Code`;
+                    const codeFromLoadedData = doll[parsedKeyName];
+                    const codesFromSubmitData = submitData[keyName];
                     // Check if one is matching at least
                     // In other words, within one category(e.g. skin, hair color) it is OR(union)
-                    return selectedCodes.indexOf(loadedCode) > -1;
+                    return codesFromSubmitData.indexOf(codeFromLoadedData) > -1;
                 });
 
                 // It is AND(intersection) between different categories
-                // TODO: Find a better way to compare two arrays
-                return matchedFilterGroups.sort().join(",") === selectedFilterGroup.sort().join(",");
+                return matchedFilterKeys.sort().join(",") === selectedFilterKeys.sort().join(",");
             });
 
             return { ...parseObjWithKeys(filteredDolls) };

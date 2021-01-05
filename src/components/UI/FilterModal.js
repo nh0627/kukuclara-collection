@@ -9,9 +9,19 @@ let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
   const { trigger, filters, handleSubmit } = props;
 
-  const loadCheckboxes = (checkboxGroup, index) => {
+  const loadCheckboxGroups = (checkboxGroup, index) => {
+
+    const setLabelName = (name) => {
+      // insert a space before all caps
+      let newName = name.replace(/([A-Z])/g, ' $1')
+        // uppercase the first character
+        .replace(/^./, str => str.toUpperCase());
+      return newName.substring(newName.length - 1, 0);
+    };
+
     const loadCheckboxField = ({ filter, i }) => {
       const { code, name } = filter;
+
       return (
         <div className="field" key={i}>
           <div className="ui checkbox">
@@ -29,7 +39,7 @@ let FilterModal = props => {
 
     return (
       <Form.Group inline key={index}>
-        <label>{checkboxGroup}</label>
+        <label>{setLabelName(checkboxGroup)}</label>
         {filters[checkboxGroup].map((filter, i) => loadCheckboxField({ filter, i }))}
       </Form.Group>
     );
@@ -38,22 +48,24 @@ let FilterModal = props => {
   const onSubmit = data => {
     setOpen(false);
 
-    const parsedData = {};
+    const returnObj = {};
     const submitDataKeys = Object.keys(data);
 
     submitDataKeys.forEach(key => {
       const submitValue = data[key];
-      // If the fields are checkboxes
+      // If a value from checkboxes
       if (checkboxGroups.indexOf(key) > -1) {
-        // Filter checkboxes' value only if it is true
-        const checkboxValues = Object.keys(submitValue).filter(box => submitValue[box]);
-        if (checkboxValues.length > 0) parsedData[key] = checkboxValues;
+        // Filter true value
+        const checkboxValues = Object.keys(submitValue).filter(field => submitValue[field]);
+        // if there is any true value, then put it in obj for return
+        if (checkboxValues.length > 0) returnObj[key] = checkboxValues;
       } else {
-        parsedData[key] = submitValue;
+        // when it is not from checkboxes, no need the upper process
+        returnObj[key] = submitValue;
       }
     });
 
-    props.filterDolls(parsedData);
+    props.filterDolls(returnObj);
   }
 
   return (
@@ -68,7 +80,7 @@ let FilterModal = props => {
       <Header icon='filter' content='Advanced filter' />
       <Modal.Content>
         <Form id='filterForm' onSubmit={handleSubmit(onSubmit)}>
-          {checkboxGroups.map((checkboxGroup, i) => loadCheckboxes(checkboxGroup, i))}
+          {checkboxGroups.map((checkboxGroup, i) => loadCheckboxGroups(checkboxGroup, i))}
         </Form>
       </Modal.Content>
       <Modal.Actions>
