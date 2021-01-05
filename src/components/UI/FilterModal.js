@@ -18,7 +18,7 @@ let FilterModal = props => {
       let newName = name.replace(/([A-Z])/g, ' $1')
         // uppercase the first character
         .replace(/^./, str => str.toUpperCase());
-      return Pluralize.singular(newName);
+      return (Pluralize.isSingular(newName)) ? newName : Pluralize.singular(newName);
     };
 
     const loadField = ({ filter, i }) => {
@@ -50,7 +50,7 @@ let FilterModal = props => {
 
     const returnObj = {};
     const submitDataKeys = Object.keys(data);
-    debugger;
+
     submitDataKeys.forEach(key => {
       const submitValue = data[key];
       // If a value from checkboxes
