@@ -1,14 +1,14 @@
 import React from 'react';
 import { Button, Header, Icon, Modal, Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, change } from 'redux-form';
+import { Field, reduxForm, change, formValueSelector  } from 'redux-form';
 import { filterDolls } from '../../actions';
 import Pluralize from 'pluralize';
 
+// TODO: Checkbox component 생성
 let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
-  const { trigger, filters, handleSubmit, change } = props;
-
+  const { trigger, filters, selectAllFieldValues, handleSubmit, change } = props;
   const checkboxGroupKeys = Object.keys(filters);
 
   const renderCheckboxGroup = (keyName, index) => {
@@ -29,7 +29,6 @@ let FilterModal = props => {
       const { code, name } = filter;
 
       return (
-        // TODO: Checkbox component 생성
         <div className="field" key={i}>
           <div className="ui checkbox">
             <Field
@@ -45,7 +44,8 @@ let FilterModal = props => {
     const renderSelectAllField = () => {
       const changeAllValues = () => {
         const codes = currentGroup.map(field => field.code);
-        codes.forEach(code => change(`${groupName}.${code}`, true));
+        const currentValue = selectAllFieldValues[groupName]?.all;
+        codes.forEach(code => change(`${groupName}.${code}`, !currentValue));
       };
 
       return (
@@ -122,11 +122,15 @@ let FilterModal = props => {
   )
 }
 
+const FORM_NAME = 'filterForm';
+const selector = formValueSelector(FORM_NAME);
+
 const mapStateToProps = state => {
-  return { filters: state.filters };
+  const selectAllFieldNames = Object.keys(state.filters).map( key => `${key}[all]`);
+  return { filters: state.filters, selectAllFieldValues: selector(state, ...selectAllFieldNames ) };
 };
 
-FilterModal = reduxForm({ form: 'filterForm' })(FilterModal);
+FilterModal = reduxForm({ form: FORM_NAME })(FilterModal);
 
 FilterModal = connect(mapStateToProps, { filterDolls, change })(FilterModal);
 
