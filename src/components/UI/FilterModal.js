@@ -5,12 +5,13 @@ import { Field, reduxForm, change, formValueSelector  } from 'redux-form';
 import { filterDolls } from '../../actions';
 import Pluralize from 'pluralize';
 
-// TODO: Checkbox component 생성
+
 let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
   const { trigger, filters, selectAllFieldValues, handleSubmit, change } = props;
   const checkboxGroupKeys = Object.keys(filters);
 
+  // TODO: Checkboxgroup component 생성
   const renderCheckboxGroup = (keyName, index) => {
 
     const groupName = keyName;
