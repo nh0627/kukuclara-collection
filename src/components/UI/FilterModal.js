@@ -13,6 +13,9 @@ let FilterModal = props => {
 
   const loadCheckboxGroup = (keyName, index) => {
 
+    const groupName = keyName;
+    const groupIndex = index;
+
     const setLabelName = (name) => {
       // insert a space before all caps
       let newName = name.replace(/([A-Z])/g, ' $1')
@@ -30,7 +33,7 @@ let FilterModal = props => {
             <Field
               type="checkbox"
               component="input"
-              name={`${keyName}[${code}]`} />
+              name={`${groupName}[${code}]`} />
             <label>{name}</label>
           </div>
         </div>
@@ -38,9 +41,9 @@ let FilterModal = props => {
     };
     
     return (
-      <Form.Group inline key={index}>
-        <label>{setLabelName(keyName)}</label>
-        {filters[keyName].map((filter, i) => loadField({ filter, i }))}
+      <Form.Group inline key={groupIndex}>
+        <label>{setLabelName(groupName)}</label>
+        {filters[groupName].map((filter, i) => loadField({ filter, i }))}
       </Form.Group>
     );
   };
