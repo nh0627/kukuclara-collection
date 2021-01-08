@@ -1,12 +1,13 @@
 import React from 'react';
-import { Button, Header, Icon, Modal, Form } from 'semantic-ui-react';
+import Pluralize from 'pluralize';
 import { connect } from 'react-redux';
 import { Field, reduxForm, change, formValueSelector } from 'redux-form';
+import { Button, Header, Icon, Modal, Form, Grid, Segment } from 'semantic-ui-react';
+import { CheckboxField, InputField, SelectField } from 'react-semantic-redux-form';
 import { filterDolls } from '../../actions';
-import Pluralize from 'pluralize';
-import { CheckboxField } from 'react-semantic-redux-form';
 
 const ALL = 'all';
+const FORM_NAME = 'filterForm';
 
 let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
@@ -92,7 +93,16 @@ let FilterModal = props => {
       <Header icon='filter' content='Advanced filter' />
       <Modal.Content>
         <Form id='filterForm' onSubmit={handleSubmit(onSubmit)}>
+          <Field name='term' component={InputField} label='Search term' placeholder='Search..' />
           {checkboxGroupKeys.map((group, i) => renderCheckboxGroup(group, i))}
+          <Grid columns={2} doubling stackable>
+            <Grid.Column>
+              <Field name='dateFrom' component={SelectField} label='Released from' />
+            </Grid.Column>
+            <Grid.Column>
+              <Field name='dateTo' component={SelectField} label='Released to' />
+            </Grid.Column>
+          </Grid>
         </Form>
       </Modal.Content>
       <Modal.Actions>
@@ -107,7 +117,6 @@ let FilterModal = props => {
   )
 }
 
-const FORM_NAME = 'filterForm';
 const selector = formValueSelector(FORM_NAME);
 
 const mapStateToProps = state => {
