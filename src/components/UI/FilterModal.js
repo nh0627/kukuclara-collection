@@ -13,8 +13,6 @@ let FilterModal = props => {
   const { trigger, filters, selectAllFieldValues, handleSubmit, change } = props;
   const checkboxGroupKeys = Object.keys(filters);
 
-
-  // TODO: Checkboxgroup component 생성
   const renderCheckboxGroup = (keyName, index) => {
 
     const groupName = keyName;
@@ -22,25 +20,15 @@ let FilterModal = props => {
     const currentGroup = filters[groupName];
 
     const renderLabelName = (name) => {
-      // insert a space before all caps
-      let newName = name.replace(/([A-Z])/g, ' $1')
-        // uppercase the first character
-        .replace(/^./, str => str.toUpperCase());
+      let newName = name.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
       return (Pluralize.isSingular(newName)) ? newName : Pluralize.singular(newName);
     };
 
-    const renderField = ({ filter, i }) => {
-      const { code, name } = filter;
-
-      return (
-        <Field name={`${groupName}[${code}]`} component={CheckboxField} label={name} key={i} />
-      )
-    };
+    const renderField = ({ filter: { code, name }, i }) => <Field name={`${groupName}[${code}]`} component={CheckboxField} label={name} key={i} />;
 
     const renderSelectAllField = () => {
       const changeAllValues = () => {
         const codes = currentGroup.map(field => field.code);
-        debugger;
         const currentValue = selectAllFieldValues[groupName]?.all;
         codes.forEach(code => change(`${groupName}.${code}`, !currentValue));
       };
@@ -51,7 +39,7 @@ let FilterModal = props => {
             <Field
               type="checkbox"
               component="input"
-              name={`${groupName}[all]`}
+              name={`${groupName}[${ALL}]`}
               onClick={() => changeAllValues()}
             />
             <label>All</label>
