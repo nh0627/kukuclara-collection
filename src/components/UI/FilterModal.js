@@ -1,15 +1,18 @@
 import React from 'react';
 import { Button, Header, Icon, Modal, Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, change, formValueSelector  } from 'redux-form';
+import { Field, reduxForm, change, formValueSelector } from 'redux-form';
 import { filterDolls } from '../../actions';
 import Pluralize from 'pluralize';
+import { CheckboxField } from 'react-semantic-redux-form';
 
+const ALL = 'all';
 
 let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
   const { trigger, filters, selectAllFieldValues, handleSubmit, change } = props;
   const checkboxGroupKeys = Object.keys(filters);
+
 
   // TODO: Checkboxgroup component 생성
   const renderCheckboxGroup = (keyName, index) => {
@@ -30,21 +33,14 @@ let FilterModal = props => {
       const { code, name } = filter;
 
       return (
-        <div className="field" key={i}>
-          <div className="ui checkbox">
-            <Field
-              type="checkbox"
-              component="input"
-              name={`${groupName}[${code}]`} />
-            <label>{name}</label>
-          </div>
-        </div>
+        <Field name={`${groupName}[${code}]`} component={CheckboxField} label={name} key={i} />
       )
     };
 
     const renderSelectAllField = () => {
       const changeAllValues = () => {
         const codes = currentGroup.map(field => field.code);
+        debugger;
         const currentValue = selectAllFieldValues[groupName]?.all;
         codes.forEach(code => change(`${groupName}.${code}`, !currentValue));
       };
@@ -127,8 +123,8 @@ const FORM_NAME = 'filterForm';
 const selector = formValueSelector(FORM_NAME);
 
 const mapStateToProps = state => {
-  const selectAllFieldNames = Object.keys(state.filters).map( key => `${key}[all]`);
-  return { filters: state.filters, selectAllFieldValues: selector(state, ...selectAllFieldNames ) };
+  const selectAllFieldNames = Object.keys(state.filters).map(key => `${key}[${ALL}]`);
+  return { filters: state.filters, selectAllFieldValues: selector(state, ...selectAllFieldNames) };
 };
 
 FilterModal = reduxForm({ form: FORM_NAME })(FilterModal);
