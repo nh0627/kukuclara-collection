@@ -2,7 +2,7 @@ import React from 'react';
 import Pluralize from 'pluralize';
 import { connect } from 'react-redux';
 import { Field, reduxForm, change, formValueSelector } from 'redux-form';
-import { Button, Header, Icon, Modal, Form, Grid, Segment } from 'semantic-ui-react';
+import { Button, Header, Icon, Modal, Form, Grid, Divider } from 'semantic-ui-react';
 import { CheckboxField, InputField, SelectField } from 'react-semantic-redux-form';
 import { filterDolls } from '../../actions';
 
@@ -13,6 +13,15 @@ let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
   const { trigger, filters, selectAllFieldValues, handleSubmit, change } = props;
   const checkboxGroupKeys = Object.keys(filters);
+
+  const renderDateDropdown = () => {
+    const dropdownItems = [];
+    for (let i = 0; i < 9; i++) {
+      let year = i + 2013;
+      dropdownItems.push({ key: year, text: year, value: year });
+    }
+    return dropdownItems;
+  };
 
   const renderCheckboxGroup = (keyName, index) => {
 
@@ -78,6 +87,8 @@ let FilterModal = props => {
       }
     });
 
+    returnObj.checkboxGroupKeys = checkboxGroupKeys;
+
     props.filterDolls(returnObj);
   }
 
@@ -93,16 +104,16 @@ let FilterModal = props => {
       <Header icon='filter' content='Advanced filter' />
       <Modal.Content>
         <Form id='filterForm' onSubmit={handleSubmit(onSubmit)}>
-          <Field name='term' component={InputField} label='Search term' placeholder='Search..' />
-          {checkboxGroupKeys.map((group, i) => renderCheckboxGroup(group, i))}
+          <Field name='term' component={InputField} label='Search' placeholder='Search..' />
           <Grid columns={2} doubling stackable>
             <Grid.Column>
-              <Field name='dateFrom' component={SelectField} label='Released from' />
+              <Field name='dateFrom' component={SelectField} options={renderDateDropdown()} label='Released from' />
             </Grid.Column>
             <Grid.Column>
-              <Field name='dateTo' component={SelectField} label='Released to' />
+              <Field name='dateTo' component={SelectField} options={renderDateDropdown()} label='Released to' />
             </Grid.Column>
           </Grid>
+          {checkboxGroupKeys.map((group, i) => renderCheckboxGroup(group, i))}
         </Form>
       </Modal.Content>
       <Modal.Actions>
