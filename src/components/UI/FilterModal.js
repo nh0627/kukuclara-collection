@@ -107,10 +107,10 @@ let FilterModal = props => {
           <Field name='term' component={InputField} label='Search' placeholder='Search..' />
           <Grid columns={2} doubling stackable>
             <Grid.Column>
-              <Field name='dateFrom' component={SelectField} options={renderDateDropdown()} label='Released from' />
+              <Field name='yearFrom' component={SelectField} options={renderDateDropdown()} label='Released from' />
             </Grid.Column>
             <Grid.Column>
-              <Field name='dateTo' component={SelectField} options={renderDateDropdown()} label='Released to' />
+              <Field name='yearTo' component={SelectField} options={renderDateDropdown()} label='Released to' />
             </Grid.Column>
           </Grid>
           {checkboxGroupKeys.map((group, i) => renderCheckboxGroup(group, i))}

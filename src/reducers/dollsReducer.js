@@ -9,6 +9,9 @@ import Pluralize from 'pluralize';
 
 const loadedData = JSON.parse(JSON.stringify(data));
 const CHECKBOX_GROUPS = "checkboxGroupKeys";
+const TERM = "term";
+const YEAR_TO = "yearTo";
+const YEAR_FROM = "yearFrom";
 
 // Function to set primary key(id) to OBJ key
 const parseObjWithKeys = (dolls) => {
@@ -43,7 +46,7 @@ export default (state = [], action) => {
                 // Get data from checkbox groups
                 if (filterKeys.indexOf(key) > -1) {
                     selectedFilterGroups.push(key);
-                    // data from not checkboxe fields, but without the "checkbox group names"
+                    // data from not checkbox fields, but without the "checkbox group names"
                 } else if (key !== CHECKBOX_GROUPS) {
                     selectcedFilters.push(key);
                 }
@@ -53,7 +56,19 @@ export default (state = [], action) => {
             // Retrieve the loaded doll data to filter it
             const filteredDolls = loadedData.filter(doll => {
 
-                // Data from checkbox groups
+                // Data from normal fields
+                const matchedKeysFromFilters = [];
+                
+                if (selectcedFilters.includes(TERM) && !searchDollWithTerm(doll, submitData[TERM])) matchedKeysFromFilters.push(TERM) ;
+
+                if (selectcedFilters.includes(YEAR_FROM) || selectcedFilters.includes(YEAR_TO)) {
+                    const currYear = new Date().getFullYear();
+                    const yearFrom = submitData[YEAR_FROM] || currYear;
+                    const yearTo = submitData[YEAR_TO] || currYear;
+                    debugger;
+                }
+
+                // Data from filter(checkbox) groups
                 const matchedKeysFromFilterGroups = selectedFilterGroups.filter(keyName => {
                     // Change/Match to the loaded object's(dolls) property name(e.g. types => typeCode)
                     const parsedKeyName = `${(Pluralize.isSingular(keyName)) ? keyName : Pluralize.singular(keyName)}Code`;
@@ -64,11 +79,7 @@ export default (state = [], action) => {
                     return codesFromSubmitData.indexOf(codeFromLoadedData) > -1;
                 });
 
-                const matchedKeysFromFilters = selectcedFilters.filter(keyName => {
-                    if (keyName === 'term') return !searchDollWithTerm(doll, submitData[keyName]);
-                });
-
-                const matchedKeys = [...matchedKeysFromFilterGroups, ...matchedKeysFromFilters];
+                const matchedKeys = [...matchedKeysFromFilters, ...matchedKeysFromFilterGroups];
                 // It is AND(intersection) between different categories
                 return matchedKeys.sort().join(",") === selectedFilterGroups.sort().join(",");
             });
