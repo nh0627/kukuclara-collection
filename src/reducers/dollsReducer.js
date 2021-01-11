@@ -6,13 +6,9 @@ import {
 } from "../actions/types";
 import data from "../data/kukuclara.json";
 import Pluralize from 'pluralize';
-import { FILTER_GROUP_NAMES as filterGroupNames } from '../common/util';
+import { START_YEAR as startYear, END_YEAR as endYear } from '../common/util';
 
 const loadedData = JSON.parse(JSON.stringify(data));
-
-const TERM = "term";
-const YEAR_TO = "yearTo";
-const YEAR_FROM = "yearFrom";
 
 // Function to set primary key(id) to OBJ key
 const parseObjWithKeys = (dolls) => {
@@ -39,13 +35,13 @@ export default (state = [], action) => {
             return { ...parseObjWithKeys(foundDolls) };
         case FILTER_DOLLS:
             const submitData = action.payload;
-            // const filterKeys = submitData[CHECKBOX_GROUPS]; // Get the name(label) of checkbox (group) fields from submit data
+            const { filterGroups } = submitData; // Get the name(label) of checkbox (group) fields from submit data
             const selectedFilterGroups = []; // data from checkboxes
             const selectcedFilters = []; // data from other fields
 
             for (const key in submitData) {
                 // Get data from filter(checkbox) groups
-                if (filterGroupNames.indexOf(key) > -1) {
+                if (filterGroups.indexOf(key) > -1) {
                     selectedFilterGroups.push(key);
                 } else {
                     selectcedFilters.push(key);
@@ -59,16 +55,16 @@ export default (state = [], action) => {
                 // Data from normal fields
                 const matchedKeysFromFilters = [];
 
-                if (selectcedFilters.includes(TERM) && !searchDollWithTerm(doll, submitData[TERM])) matchedKeysFromFilters.push(TERM);
+                if (selectcedFilters.includes("term") && !searchDollWithTerm(doll, submitData.term)) matchedKeysFromFilters.push("term");
 
-                if (selectcedFilters.includes(YEAR_FROM) || selectcedFilters.includes(YEAR_TO)) {
-                    const yearFrom = submitData[YEAR_FROM];
-                    const yearTo = submitData[YEAR_TO];
+                if (selectcedFilters.includes("yearFrom") || selectcedFilters.includes("yearTo")) {
+                    const { yearFrom = startYear } = submitData;
+                    const { yearTo = endYear } = submitData;
                     // Filter data by year
                     const { date } = doll;
                     const releasedYear = parseInt(date);
                     if (yearFrom > releasedYear || yearTo < releasedYear) {
-                        matchedKeysFromFilters.push(YEAR_FROM, YEAR_TO);
+                        matchedKeysFromFilters.push("yearFrom", "yearTo");
                     }
                 }
 

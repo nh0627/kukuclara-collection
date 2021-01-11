@@ -5,6 +5,7 @@ import { Field, reduxForm, change, formValueSelector } from 'redux-form';
 import { Button, Header, Icon, Modal, Form, Grid, Divider } from 'semantic-ui-react';
 import { CheckboxField, InputField, SelectField } from 'react-semantic-redux-form';
 import { filterDolls } from '../../actions';
+import { START_YEAR as startYear, END_YEAR as endYear } from '../../common/util';
 
 const ALL = 'all';
 const FORM_NAME = 'filterForm';
@@ -12,21 +13,19 @@ const FORM_NAME = 'filterForm';
 let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
   const { trigger, filters, selectAllFieldValues, handleSubmit, change } = props;
-  const checkboxGroupKeys = Object.keys(filters);
+  const checkboxGroups = Object.keys(filters);
 
   const renderDateDropdown = () => {
     const dropdownItems = [];
-    const startYear = 2013;
-    const endYear = new Date().getFullYear();
     for (let year = startYear; year <= endYear; year++) {
       dropdownItems.push({ key: year, text: year, value: year });
     }
     return dropdownItems;
   };
 
-  const renderCheckboxGroup = (keyName, index) => {
+  const renderCheckboxGroup = (name, index) => {
 
-    const groupName = keyName;
+    const groupName = name;
     const groupIndex = index;
     const currentGroup = filters[groupName];
 
@@ -77,7 +76,7 @@ let FilterModal = props => {
     submitDataKeys.forEach(key => {
       const submitValue = data[key];
       // If a value from checkboxes
-      if (checkboxGroupKeys.indexOf(key) > -1) {
+      if (checkboxGroups.indexOf(key) > -1) {
         // Filter true value
         const checkboxValues = Object.keys(submitValue).filter(field => submitValue[field]);
         // if there is any true value, then put it in obj for return
@@ -87,8 +86,8 @@ let FilterModal = props => {
         returnObj[key] = submitValue;
       }
     });
- 
-    returnObj.checkboxGroupKeys = checkboxGroupKeys;
+
+    returnObj.filterGroups = checkboxGroups;
 
     props.filterDolls(returnObj);
   }
@@ -114,7 +113,7 @@ let FilterModal = props => {
               <Field name='yearTo' component={SelectField} options={renderDateDropdown()} label='Released to' />
             </Grid.Column>
           </Grid>
-          {checkboxGroupKeys.map((group, i) => renderCheckboxGroup(group, i))}
+          {checkboxGroups.map((group, i) => renderCheckboxGroup(group, i))}
         </Form>
       </Modal.Content>
       <Modal.Actions>
