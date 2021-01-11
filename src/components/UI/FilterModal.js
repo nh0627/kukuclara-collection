@@ -16,8 +16,9 @@ let FilterModal = props => {
 
   const renderDateDropdown = () => {
     const dropdownItems = [];
-    for (let i = 0; i < 9; i++) {
-      let year = i + 2013;
+    const startYear = 2013;
+    const endYear = new Date().getFullYear();
+    for (let year = startYear; year <= endYear; year++) {
       dropdownItems.push({ key: year, text: year, value: year });
     }
     return dropdownItems;
@@ -86,7 +87,7 @@ let FilterModal = props => {
         returnObj[key] = submitValue;
       }
     });
-
+ 
     returnObj.checkboxGroupKeys = checkboxGroupKeys;
 
     props.filterDolls(returnObj);

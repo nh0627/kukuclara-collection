@@ -11,7 +11,7 @@ let FilterDropDown = (props) => {
 
     const filterList = (code) => props.filterDolls({ types: [code] });
 
-    const typeTags = (type) => {
+    const renderTypeTags = (type) => {
         const { code, name, color } = type;
         const options = { text: name, label: { color, empty: true, circular: true } };
         return (
@@ -29,7 +29,7 @@ let FilterDropDown = (props) => {
                     </div>
                     <Dropdown.Divider />
                     <Dropdown.Header>FILTER BY TYPE</Dropdown.Header>
-                    {types.map((type) => typeTags(type))}
+                    {types.map((type) => renderTypeTags(type))}
                 </Dropdown.Menu>
             </Dropdown>
         </form >

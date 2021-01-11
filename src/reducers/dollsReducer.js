@@ -6,9 +6,10 @@ import {
 } from "../actions/types";
 import data from "../data/kukuclara.json";
 import Pluralize from 'pluralize';
+import { FILTER_GROUP_NAMES as filterGroupNames } from '../common/util';
 
 const loadedData = JSON.parse(JSON.stringify(data));
-const CHECKBOX_GROUPS = "checkboxGroupKeys";
+
 const TERM = "term";
 const YEAR_TO = "yearTo";
 const YEAR_FROM = "yearFrom";
@@ -38,16 +39,15 @@ export default (state = [], action) => {
             return { ...parseObjWithKeys(foundDolls) };
         case FILTER_DOLLS:
             const submitData = action.payload;
-            const filterKeys = submitData[CHECKBOX_GROUPS]; // Get the name(label) of checkbox (group) fields from submit data
+            // const filterKeys = submitData[CHECKBOX_GROUPS]; // Get the name(label) of checkbox (group) fields from submit data
             const selectedFilterGroups = []; // data from checkboxes
             const selectcedFilters = []; // data from other fields
 
             for (const key in submitData) {
-                // Get data from checkbox groups
-                if (filterKeys.indexOf(key) > -1) {
+                // Get data from filter(checkbox) groups
+                if (filterGroupNames.indexOf(key) > -1) {
                     selectedFilterGroups.push(key);
-                    // data from not checkbox fields, but without the "checkbox group names"
-                } else if (key !== CHECKBOX_GROUPS) {
+                } else {
                     selectcedFilters.push(key);
                 }
             }
@@ -58,14 +58,18 @@ export default (state = [], action) => {
 
                 // Data from normal fields
                 const matchedKeysFromFilters = [];
-                
-                if (selectcedFilters.includes(TERM) && !searchDollWithTerm(doll, submitData[TERM])) matchedKeysFromFilters.push(TERM) ;
+
+                if (selectcedFilters.includes(TERM) && !searchDollWithTerm(doll, submitData[TERM])) matchedKeysFromFilters.push(TERM);
 
                 if (selectcedFilters.includes(YEAR_FROM) || selectcedFilters.includes(YEAR_TO)) {
-                    const currYear = new Date().getFullYear();
-                    const yearFrom = submitData[YEAR_FROM] || currYear;
-                    const yearTo = submitData[YEAR_TO] || currYear;
-                    debugger;
+                    const yearFrom = submitData[YEAR_FROM];
+                    const yearTo = submitData[YEAR_TO];
+                    // Filter data by year
+                    const { date } = doll;
+                    const releasedYear = parseInt(date);
+                    if (yearFrom > releasedYear || yearTo < releasedYear) {
+                        matchedKeysFromFilters.push(YEAR_FROM, YEAR_TO);
+                    }
                 }
 
                 // Data from filter(checkbox) groups
