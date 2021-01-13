@@ -2,7 +2,7 @@ import React from "react";
 import Pluralize from "pluralize";
 import { connect } from "react-redux";
 import { Field, reduxForm, change, formValueSelector } from "redux-form";
-import { Button, Header, Icon, Modal, Form, Grid } from "semantic-ui-react";
+import { Button, Header, Icon, Modal, Form, Grid, Divider } from "semantic-ui-react";
 import { filterDolls } from "../../actions";
 import { START_YEAR as startYear, END_YEAR as endYear } from "../../common/util";
 import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkbox } from "../UI/SemanticField";
@@ -109,14 +109,20 @@ let FilterModal = props => {
       <Modal.Content>
         <Form id="filterForm" onSubmit={handleSubmit(onSubmit)}>
           <Field component={Input} name="term" label="Search" placeholder="Search..." />
-          <Grid columns={2} doubling stackable>
-            <Grid.Column>
-              <Field name="yearFrom" component={Dropdown} options={getYearOptions()} label="Released from" />
-            </Grid.Column>
-            <Grid.Column>
-              <Field name="yearTo" component={Dropdown} options={getYearOptions()} label="Released to" />
-            </Grid.Column>
-          </Grid>
+          <Form.Group widths='equal'>
+            <Field
+              name="yearFrom"
+              component={Dropdown}
+              options={getYearOptions()}
+              label="Released from"
+            />
+            <Field
+              name="yearTo"
+              component={Dropdown}
+              options={getYearOptions()}
+              label="Released to"
+            />
+          </Form.Group>
           {checkboxGroups.map((group, i) => renderCheckboxGroup(group, i))}
         </Form>
       </Modal.Content>
