@@ -1,21 +1,31 @@
-import { Dropdown, Form, Input } from 'semantic-ui-react';
+import { Form } from "semantic-ui-react";
 
 export const DropdownField = props => (
-    <Form.Field>
-        <Dropdown selection {...props.input}
-            value={props.input.value}
-            onChange={(param, data) => props.input.onChange(data.value)}
-            placeholder={props.label}
-            options={props.options}
-        />
-    </Form.Field>
+    <Form.Dropdown selection {...props.input}
+        value={props.input.value}
+        onChange={(param, data) => props.input.onChange(data.value)}
+        placeholder={props.placeholder || "Choose an option"}
+        label={props.label}
+        defaultValue={props.defaultValue}
+        options={props.options} />
 );
 
-
 export const InputField = props => (
-    <Input {...props.input}
+    <Form.Input {...props.input}
         value={props.input.value}
         onChange={(param, data) => props.input.onChange(data.value)}
         placeholder={props.placeholder}
+        label={props.label}
+    />
+);
+
+export const CheckboxField = props => (
+    <Form.Checkbox {...props.input}
+        checked={props.input.value ? true : false}
+        onChange={(param, { checked }) => props.input.onChange(checked)}
+        onClick={props.onClick}
+        placeholder={props.placeholder}
+        label={props.label}
+        value={props.input.value ? true : false}
     />
 );

@@ -1,14 +1,14 @@
-import React from 'react';
-import Pluralize from 'pluralize';
-import { connect } from 'react-redux';
-import { Field, reduxForm, change, formValueSelector } from 'redux-form';
-import { Button, Header, Icon, Modal, Form, Grid } from 'semantic-ui-react';
-import { filterDolls } from '../../actions';
-import { START_YEAR as startYear, END_YEAR as endYear } from '../../common/util';
-import { DropdownField as Dropdown, InputField as Input } from '../UI/SemanticField';
+import React from "react";
+import Pluralize from "pluralize";
+import { connect } from "react-redux";
+import { Field, reduxForm, change, formValueSelector } from "redux-form";
+import { Button, Header, Icon, Modal, Form, Grid } from "semantic-ui-react";
+import { filterDolls } from "../../actions";
+import { START_YEAR as startYear, END_YEAR as endYear } from "../../common/util";
+import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkbox } from "../UI/SemanticField";
 
-const ALL = 'all';
-const FORM_NAME = 'filterForm';
+const ALL = "all";
+const FORM_NAME = "filterForm";
 
 let FilterModal = props => {
   const [open, setOpen] = React.useState(false);
@@ -30,23 +30,18 @@ let FilterModal = props => {
     const currentGroup = filters[groupName];
 
     const renderLabelName = (name) => {
-      let newName = name.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+      let newName = name.replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase());
       return (Pluralize.isSingular(newName)) ? newName : Pluralize.singular(newName);
     };
 
     const renderField = ({ filter: { code, name }, i }) => {
       return (
-        <div className="field" key={i}>
-          <div className="ui checkbox">
-            <Field
-              type="checkbox"
-              label={name}
-              component="input"
-              name={`${groupName}[${code}]`}
-            />
-            <label>{name}</label>
-          </div>
-        </div>
+        <Field
+          key={i}
+          label={name}
+          component={Checkbox}
+          name={`${groupName}[${code}]`}
+        />
       );
     };
 
@@ -58,17 +53,12 @@ let FilterModal = props => {
       };
 
       return (
-        <div className="field" >
-          <div className="ui checkbox">
-            <Field
-              type="checkbox"
-              component="input"
-              name={`${groupName}[${ALL}]`}
-              onClick={() => changeAllValues()}
-            />
-            <label>All</label>
-          </div>
-        </div>
+        <Field
+          label="All"
+          component={Checkbox}
+          name={`${groupName}[${ALL}]`}
+          onClick={() => changeAllValues()}
+        />
       );
     };
 
@@ -113,15 +103,15 @@ let FilterModal = props => {
       trigger={trigger}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
-      size='small'
+      size="small"
     >
-      <Header icon='filter' content='Advanced filter' />
+      <Header icon="filter" content="Advanced filter" />
       <Modal.Content>
-        <Form id='filterForm' onSubmit={handleSubmit(onSubmit)}>
-          <Field component={Input} name="term" label="Search" placeholder='Search...' />
+        <Form id="filterForm" onSubmit={handleSubmit(onSubmit)}>
+          <Field component={Input} name="term" label="Search" placeholder="Search..." />
           <Grid columns={2} doubling stackable>
             <Grid.Column>
-              <Field name="yearFrom" component={Dropdown} options={getYearOptions()} label='Released from' />
+              <Field name="yearFrom" component={Dropdown} options={getYearOptions()} label="Released from" />
             </Grid.Column>
             <Grid.Column>
               <Field name="yearTo" component={Dropdown} options={getYearOptions()} label="Released to" />
@@ -131,11 +121,11 @@ let FilterModal = props => {
         </Form>
       </Modal.Content>
       <Modal.Actions>
-        <Button color='red' onClick={() => setOpen(false)}>
-          <Icon name='remove' /> Close
+        <Button color="red" onClick={() => setOpen(false)}>
+          <Icon name="remove" /> Close
         </Button>
-        <Button color='green' form='filterForm' key='submit' htmltype='submit'>
-          <Icon name='checkmark' /> OK
+        <Button color="green" form="filterForm" key="submit" htmltype="submit">
+          <Icon name="checkmark" /> OK
         </Button>
       </Modal.Actions>
     </Modal >
