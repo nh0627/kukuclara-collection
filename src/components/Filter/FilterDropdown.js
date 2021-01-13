@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { filterDolls, searchDolls } from "../../actions";
 import { Dropdown, Icon } from "semantic-ui-react";
+import { FILTER_GROUP_NAMES as filterGroupNames } from "../../common/util";
 
 let FilterDropDown = (props) => {
     const { types, handleSubmit } = props;
 
-    const onSubmit = (val) => props.searchDolls(val);
+    const onSubmit = val => props.searchDolls(val);
 
-    const filterList = (code) => props.filterDolls({ types: [code] });
+    const filterList = code => props.filterDolls({ types: [code], filterGroups: [filterGroupNames[0]] });
 
     const renderTypeTags = (type) => {
         const { code, name, color } = type;

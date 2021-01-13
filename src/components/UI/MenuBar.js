@@ -14,14 +14,6 @@ export default class MenuBar extends Component {
         return (
             <Menu fixed="top" borderless>
                 <Container>
-                    <Menu.Item
-                        link
-                        name="sidemenu"
-                        active={activeItem === "sidemenu"}
-                        onClick={this.handleItemClick}
-                    >
-                        <Icon name="content" />
-                    </Menu.Item>
                     <Menu.Item header>Kuku Clara</Menu.Item>
                     <Menu.Menu position="right">
                         <FilterDropDown />

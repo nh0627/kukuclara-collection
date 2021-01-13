@@ -109,7 +109,7 @@ let FilterModal = props => {
       <Modal.Content>
         <Form id="filterForm" onSubmit={handleSubmit(onSubmit)}>
           <Field component={Input} name="term" label="Search" placeholder="Search..." />
-          <Form.Group widths='equal'>
+          <Form.Group widths="equal">
             <Field
               name="yearFrom"
               component={Dropdown}
