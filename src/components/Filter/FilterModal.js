@@ -2,10 +2,10 @@ import React from 'react';
 import Pluralize from 'pluralize';
 import { connect } from 'react-redux';
 import { Field, reduxForm, change, formValueSelector } from 'redux-form';
-import { Button, Header, Icon, Modal, Form, Grid, Divider } from 'semantic-ui-react';
-import { CheckboxField, InputField, SelectField } from 'react-semantic-redux-form';
+import { Button, Header, Icon, Modal, Form, Grid } from 'semantic-ui-react';
 import { filterDolls } from '../../actions';
 import { START_YEAR as startYear, END_YEAR as endYear } from '../../common/util';
+import { DropdownField as Dropdown, InputField as Input } from '../UI/SemanticField';
 
 const ALL = 'all';
 const FORM_NAME = 'filterForm';
@@ -15,7 +15,7 @@ let FilterModal = props => {
   const { trigger, filters, selectAllFieldValues, handleSubmit, change } = props;
   const checkboxGroups = Object.keys(filters);
 
-  const renderDateDropdown = () => {
+  const getYearOptions = () => {
     const dropdownItems = [];
     for (let year = startYear; year <= endYear; year++) {
       dropdownItems.push({ key: year, text: year, value: year });
@@ -34,7 +34,21 @@ let FilterModal = props => {
       return (Pluralize.isSingular(newName)) ? newName : Pluralize.singular(newName);
     };
 
-    const renderField = ({ filter: { code, name }, i }) => <Field name={`${groupName}[${code}]`} component={CheckboxField} label={name} key={i} />;
+    const renderField = ({ filter: { code, name }, i }) => {
+      return (
+        <div className="field" key={i}>
+          <div className="ui checkbox">
+            <Field
+              type="checkbox"
+              label={name}
+              component="input"
+              name={`${groupName}[${code}]`}
+            />
+            <label>{name}</label>
+          </div>
+        </div>
+      );
+    };
 
     const renderSelectAllField = () => {
       const changeAllValues = () => {
@@ -104,13 +118,13 @@ let FilterModal = props => {
       <Header icon='filter' content='Advanced filter' />
       <Modal.Content>
         <Form id='filterForm' onSubmit={handleSubmit(onSubmit)}>
-          <Field name='term' component={InputField} label='Search' placeholder='Search..' />
+          <Field component={Input} name="term" label="Search" placeholder='Search...' />
           <Grid columns={2} doubling stackable>
             <Grid.Column>
-              <Field name='yearFrom' component={SelectField} options={renderDateDropdown()} label='Released from' />
+              <Field name="yearFrom" component={Dropdown} options={getYearOptions()} label='Released from' />
             </Grid.Column>
             <Grid.Column>
-              <Field name='yearTo' component={SelectField} options={renderDateDropdown()} label='Released to' />
+              <Field name="yearTo" component={Dropdown} options={getYearOptions()} label="Released to" />
             </Grid.Column>
           </Grid>
           {checkboxGroups.map((group, i) => renderCheckboxGroup(group, i))}
