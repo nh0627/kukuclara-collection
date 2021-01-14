@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchDolls } from '../../actions';
-import DollCard from './DollCard';
-import { Card } from 'semantic-ui-react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchDolls } from "../../actions";
+import DollCard from "./DollCard";
+import { Card } from "semantic-ui-react";
 
 class DollList extends Component {
 

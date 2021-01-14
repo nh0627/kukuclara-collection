@@ -2,14 +2,11 @@ import React from "react";
 import Pluralize from "pluralize";
 import { connect } from "react-redux";
 import { Field, reduxForm, change, formValueSelector } from "redux-form";
-import { Button, Header, Icon, Modal, Form, Grid, Divider } from "semantic-ui-react";
+import { Button, Icon, Modal, Form } from "semantic-ui-react";
 import { filterDolls } from "../../actions";
 import { START_YEAR as startYear, END_YEAR as endYear } from "../../common/util";
 import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkbox } from "../UI/SemanticField";
 import SemanticModal from "../UI/SemanticModal";
-
-const ALL = "all";
-const FORM_NAME = "filterForm";
 
 let FilterModal = props => {
   const { trigger, filters, selectAllFieldValues, handleSubmit, change } = props;
@@ -23,13 +20,10 @@ let FilterModal = props => {
     return dropdownItems;
   };
 
-  const renderCheckboxGroup = (name, index) => {
-
-    const groupName = name;
-    const groupIndex = index;
+  const renderCheckboxGroup = (groupName, groupIndex) => {
     const currentGroup = filters[groupName];
 
-    const renderLabelName = (name) => {
+    const renderLabelName = name => {
       let newName = name.replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase());
       return (Pluralize.isSingular(newName)) ? newName : Pluralize.singular(newName);
     };
@@ -56,7 +50,7 @@ let FilterModal = props => {
         <Field
           label="All"
           component={Checkbox}
-          name={`${groupName}[${ALL}]`}
+          name={`${groupName}.all`}
           onClick={() => changeAllValues()}
         />
       );
@@ -134,14 +128,14 @@ let FilterModal = props => {
   )
 }
 
-const selector = formValueSelector(FORM_NAME);
+const selector = formValueSelector("filterForm");
 
 const mapStateToProps = state => {
-  const selectAllFieldNames = Object.keys(state.filters).map(key => `${key}[${ALL}]`);
+  const selectAllFieldNames = Object.keys(state.filters).map(key => `${key}.all`);
   return { filters: state.filters, selectAllFieldValues: selector(state, ...selectAllFieldNames) };
 };
 
-FilterModal = reduxForm({ form: FORM_NAME })(FilterModal);
+FilterModal = reduxForm({ form: "filterForm" })(FilterModal);
 
 FilterModal = connect(mapStateToProps, { filterDolls, change })(FilterModal);
 

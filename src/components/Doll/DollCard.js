@@ -1,28 +1,26 @@
-import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react';
-import DollDetailModal from './DollDetailModal';
+import React from "react";
+import { Card, Image } from "semantic-ui-react";
+import DollDetailModal from "./DollDetailModal";
 
-const DollCard = prop => {
+const DollCard = ({ doll }) => {
+    const { isSpecialCode, img, name, type, series, date } = doll;
 
-    const { doll } = prop;
-    const { specialYn, img, name, type, series, date } = doll;
-
-    const showSpecialTag = (specialYn) => {
-        const specialCorner = { as: 'a', corner: 'left', icon: 'star', color: 'yellow' };
-        return (specialYn === 'Y') ? specialCorner : false;
+    const showSpecialTag = (isSpecial) => {
+        const specialCorner = { as: "a", corner: "left", icon: "star", color: "yellow" };
+        return (isSpecial === "Y") ? specialCorner : false;
     };
 
     return (
         <Card>
             <DollDetailModal
-                trigger={<Image src={img} wrapped ui={false} fluid label={showSpecialTag(specialYn)} />}
+                trigger={<Image src={img} wrapped ui={false} fluid label={showSpecialTag(isSpecialCode)} />}
                 doll={doll} />
             <Card.Content>
                 <Card.Header>{name} {type}</Card.Header>
                 <Card.Meta>{series}
                 </Card.Meta>
                 <Card.Description>
-                    <span className='date'>{date}</span>
+                    <span className="date">{date}</span>
                 </Card.Description>
             </Card.Content>
         </Card>

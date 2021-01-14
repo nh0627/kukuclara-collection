@@ -1,10 +1,10 @@
 import React from "react";
-import { Button, Header, Image, Modal, Icon } from "semantic-ui-react";
+import { Header, Image, Modal } from "semantic-ui-react";
 import SemanticModal from "../UI/SemanticModal";
 
 const DollDetailModal = ({doll, trigger}) => {
 
-  const { specialYn, img, name, type, series, date } = doll;
+  const { isSpecialCode, img, name, type, series, date } = doll;
 
   return (
     <SemanticModal header={{content: "Details", icon: null }} trigger={trigger}>

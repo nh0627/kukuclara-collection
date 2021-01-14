@@ -6,7 +6,7 @@ import {
 } from "../actions/types";
 import data from "../data/kukuclara.json";
 import Pluralize from "pluralize";
-import { START_YEAR as startYear, END_YEAR as endYear } from "../common/util";
+import { START_YEAR, END_YEAR } from "../common/util";
 
 const loadedData = JSON.parse(JSON.stringify(data));
 
@@ -58,8 +58,8 @@ export default (state = [], action) => {
                 if (selectcedFilters.includes("term") && !searchDollWithTerm(doll, submitData.term)) matchedKeysFromFilters.push("term");
 
                 if (selectcedFilters.includes("yearFrom") || selectcedFilters.includes("yearTo")) {
-                    const { yearFrom = startYear } = submitData;
-                    const { yearTo = endYear } = submitData;
+                    const { yearFrom = START_YEAR } = submitData;
+                    const { yearTo = END_YEAR } = submitData;
                     // Filter data by year
                     const { date } = doll;
                     const releasedYear = parseInt(date);
