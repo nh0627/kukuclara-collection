@@ -6,12 +6,12 @@ import { Button, Header, Icon, Modal, Form, Grid, Divider } from "semantic-ui-re
 import { filterDolls } from "../../actions";
 import { START_YEAR as startYear, END_YEAR as endYear } from "../../common/util";
 import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkbox } from "../UI/SemanticField";
+import SemanticModal from "../UI/SemanticModal";
 
 const ALL = "all";
 const FORM_NAME = "filterForm";
 
 let FilterModal = props => {
-  const [open, setOpen] = React.useState(false);
   const { trigger, filters, selectAllFieldValues, handleSubmit, change } = props;
   const checkboxGroups = Object.keys(filters);
 
@@ -72,8 +72,6 @@ let FilterModal = props => {
   };
 
   const onSubmit = data => {
-    setOpen(false);
-
     const returnObj = {};
     const submitDataKeys = Object.keys(data);
 
@@ -96,16 +94,22 @@ let FilterModal = props => {
     props.filterDolls(returnObj);
   }
 
+  const modalButtons = (
+    <div>
+      <Button color="red">
+        <Icon name="remove" /> Close
+      </Button>
+      <Button color="green" form="filterForm" key="submit" htmltype="submit">
+        <Icon name="checkmark" /> OK
+      </Button>
+    </div>
+  );
+
   return (
-    <Modal
-      closeIcon
-      open={open}
+    <SemanticModal
+      header={{ content: "Advanced filter", icon: "filter" }}
       trigger={trigger}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      size="small"
-    >
-      <Header icon="filter" content="Advanced filter" />
+      buttons={modalButtons}>
       <Modal.Content>
         <Form id="filterForm" onSubmit={handleSubmit(onSubmit)}>
           <Field component={Input} name="term" label="Search" placeholder="Search..." />
@@ -126,15 +130,7 @@ let FilterModal = props => {
           {checkboxGroups.map((group, i) => renderCheckboxGroup(group, i))}
         </Form>
       </Modal.Content>
-      <Modal.Actions>
-        <Button color="red" onClick={() => setOpen(false)}>
-          <Icon name="remove" /> Close
-        </Button>
-        <Button color="green" form="filterForm" key="submit" htmltype="submit">
-          <Icon name="checkmark" /> OK
-        </Button>
-      </Modal.Actions>
-    </Modal >
+    </SemanticModal >
   )
 }
 

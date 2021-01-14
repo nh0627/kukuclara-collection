@@ -1,13 +1,13 @@
 import React from "react";
 import { Button, Header, Image, Modal, Icon } from "semantic-ui-react";
-import DefaultModal from "../UI/DefaultModal";
+import SemanticModal from "../UI/SemanticModal";
 
-const DollDetailModal = ({ doll, ...rest }) => {
+const DollDetailModal = ({doll, trigger}) => {
 
   const { specialYn, img, name, type, series, date } = doll;
 
   return (
-    <DefaultModal header="Detail" {...rest}>
+    <SemanticModal header={{content: "Details", icon: null }} trigger={trigger}>
       <Modal.Content image>
         <Image size="medium" src={img} wrapped />
         <Modal.Description>
@@ -18,7 +18,7 @@ const DollDetailModal = ({ doll, ...rest }) => {
           <p>Is it okay to use this photo?</p>
         </Modal.Description>
       </Modal.Content>
-    </DefaultModal>
+    </SemanticModal>
 
   )
 }
