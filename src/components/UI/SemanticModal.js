@@ -2,16 +2,17 @@ import React from "react";
 import { Button, Header, Modal, Icon } from "semantic-ui-react";
 
 const SemanticModal = props => {
-  const [open, setOpen] = React.useState(false);
-  const { trigger, children, header: { icon, content }, buttons } = props;
+  const { trigger, children, header: { icon, content }, actions, open, setOpen } = props;
 
-  const renderActionButtons = () => {
+  const renderModalActions = () => {
     const defaultCloseButton = (
-      <Button color="black" onClick={() => setOpen(false)}>
-        <Icon name="remove" /> Close
+      <Modal.Actions>
+        <Button color="black" onClick={() => setOpen(false)}>
+          <Icon name="remove" /> Close
       </Button>
+      </Modal.Actions>
     );
-    return buttons || defaultCloseButton;
+    return actions || defaultCloseButton;
   };
 
   return (
@@ -25,9 +26,7 @@ const SemanticModal = props => {
     >
       <Header icon={icon} content={content} />
       {children}
-      <Modal.Actions>
-        {renderActionButtons()}
-      </Modal.Actions>
+      {renderModalActions()}
     </Modal>
   )
 }

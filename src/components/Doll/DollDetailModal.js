@@ -4,10 +4,11 @@ import SemanticModal from "../UI/SemanticModal";
 
 const DollDetailModal = ({doll, trigger}) => {
 
+  const [open, setOpen] = React.useState(false);
   const { isSpecialCode, img, name, type, series, date } = doll;
 
   return (
-    <SemanticModal header={{content: "Details", icon: null }} trigger={trigger}>
+    <SemanticModal header={{content: "Details", icon: null }} trigger={trigger} open={open} setOpen={setOpen}>
       <Modal.Content image>
         <Image size="medium" src={img} wrapped />
         <Modal.Description>
