@@ -9,7 +9,7 @@ import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkb
 import DefaultModal from "../UI/DefaultModal";
 
 let FilterModal = props => {
-  const { trigger, filters, selectAllFieldValues, handleSubmit, change, open, setOpen } = props;
+  const { trigger, filters, handleSubmit, change, open, setOpen } = props;
   // const [open, setOpen] = React.useState(false);
   const checkboxGroups = Object.keys(filters);
 
@@ -42,9 +42,9 @@ let FilterModal = props => {
     };
 
     const renderSelectAllField = () => {
-      const changeAllValues = () => {
+      const changeAllValues = e => {
         const codes = currentGroup.map(field => field.code);
-        const currentValue = selectAllFieldValues[groupName]?.all;
+        const currentValue = e.currentTarget.childNodes[0].checked;
         codes.forEach(code => change(`${groupName}.${code}`, !currentValue));
       };
 
@@ -53,7 +53,7 @@ let FilterModal = props => {
           label="All"
           component={Checkbox}
           name={`${groupName}["all"]`}
-          onClick={() => changeAllValues()}
+          onClick={changeAllValues}
         />
       );
     };
@@ -136,8 +136,7 @@ let FilterModal = props => {
 const selector = formValueSelector("filterForm");
 
 const mapStateToProps = state => {
-  const selectAllFieldNames = Object.keys(state.filters).map(key => `${key}["all"]`);
-  return { filters: state.filters, selectAllFieldValues: selector(state, ...selectAllFieldNames) };
+  return { filters: state.filters };
 };
 
 FilterModal = reduxForm({ form: "filterForm" })(FilterModal);
