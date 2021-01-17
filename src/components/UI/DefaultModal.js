@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Header, Modal, Icon } from "semantic-ui-react";
 
-const SemanticModal = props => {
+const DefaultModal = props => {
   const { trigger, children, header: { icon, content }, actions, open, setOpen } = props;
 
   const renderModalActions = () => {
@@ -31,4 +31,4 @@ const SemanticModal = props => {
   )
 }
 
-export default SemanticModal;
+export default DefaultModal;

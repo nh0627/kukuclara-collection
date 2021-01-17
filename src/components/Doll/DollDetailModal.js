@@ -1,6 +1,6 @@
 import React from "react";
 import { Header, Image, Modal } from "semantic-ui-react";
-import SemanticModal from "../UI/SemanticModal";
+import DefaultModal from "../UI/DefaultModal";
 
 const DollDetailModal = ({doll, trigger}) => {
 
@@ -8,7 +8,7 @@ const DollDetailModal = ({doll, trigger}) => {
   const { isSpecialCode, img, name, type, series, date } = doll;
 
   return (
-    <SemanticModal header={{content: "Details", icon: null }} trigger={trigger} open={open} setOpen={setOpen}>
+    <DefaultModal header={{content: "Details", icon: null }} trigger={trigger} open={open} setOpen={setOpen}>
       <Modal.Content image>
         <Image size="medium" src={img} wrapped />
         <Modal.Description>
@@ -19,7 +19,7 @@ const DollDetailModal = ({doll, trigger}) => {
           <p>Is it okay to use this photo?</p>
         </Modal.Description>
       </Modal.Content>
-    </SemanticModal>
+    </DefaultModal>
 
   )
 }

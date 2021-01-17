@@ -5,8 +5,8 @@ import { Field, reduxForm, change, formValueSelector } from "redux-form";
 import { Button, Icon, Modal, Form } from "semantic-ui-react";
 import { filterDolls } from "../../actions";
 import { START_YEAR as startYear, END_YEAR as endYear } from "../../common/util";
-import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkbox } from "../UI/SemanticField";
-import SemanticModal from "../UI/SemanticModal";
+import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkbox } from "../UI/Field";
+import DefaultModal from "../UI/DefaultModal";
 
 let FilterModal = props => {
   const { trigger, filters, selectAllFieldValues, handleSubmit, change } = props;
@@ -25,7 +25,8 @@ let FilterModal = props => {
     const currentGroup = filters[groupName];
 
     const renderLabelName = name => {
-      let newName = name.replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase());
+      const spacedName = name.replace(/([A-Z])/g, " $1");
+      let newName = `${spacedName.charAt(0).toUpperCase() + spacedName.slice(1).toLowerCase()}`.replace("groups", "");
       return (Pluralize.isSingular(newName)) ? newName : Pluralize.singular(newName);
     };
 
@@ -42,7 +43,6 @@ let FilterModal = props => {
 
     const renderSelectAllField = () => {
       const changeAllValues = () => {
-        debugger;
         const codes = currentGroup.map(field => field.code);
         const currentValue = selectAllFieldValues[groupName]?.all;
         codes.forEach(code => change(`${groupName}.${code}`, !currentValue));
@@ -104,7 +104,7 @@ let FilterModal = props => {
   );
 
   return (
-    <SemanticModal
+    <DefaultModal
       header={{ content: "Advanced filter", icon: "filter" }}
       trigger={trigger}
       actions={modalActions}
@@ -129,7 +129,7 @@ let FilterModal = props => {
           {checkboxGroups.map((group, i) => renderCheckboxGroup(group, i))}
         </Form>
       </Modal.Content>
-    </SemanticModal >
+    </DefaultModal >
   )
 }
 
