@@ -10,7 +10,6 @@ let FilterDropDown = (props) => {
     const onSubmit = val => props.searchDolls(val);
 
     const filterList = code => {
-        setActiveItem(code);
         props.filterDolls({ types: [code], filterGroups: ["types"] });
     };
 
