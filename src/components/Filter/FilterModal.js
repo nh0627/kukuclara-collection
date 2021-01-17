@@ -9,8 +9,8 @@ import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkb
 import DefaultModal from "../UI/DefaultModal";
 
 let FilterModal = props => {
-  const { trigger, filters, selectAllFieldValues, handleSubmit, change } = props;
-  const [open, setOpen] = React.useState(false);
+  const { trigger, filters, selectAllFieldValues, handleSubmit, change, open, setOpen } = props;
+  // const [open, setOpen] = React.useState(false);
   const checkboxGroups = Object.keys(filters);
 
   const getYearOptions = () => {
