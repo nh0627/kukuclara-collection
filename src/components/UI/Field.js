@@ -34,7 +34,7 @@ export const CheckboxField = ({
     <Form.Checkbox
         {...input}
         {...rest}
-        checked={value}
+        checked={value===true}
         onChange={(param, { checked }) => onChange(checked)}
         type="checkbox"
     />
