@@ -5,9 +5,6 @@ import { Menu, Container, Icon } from "semantic-ui-react";
 
 const MenuBar = props => {
     const [filterModalOpen, setFilterModalOpen] = React.useState(false);
-    const [activeItem, setActiveItem] = React.useState("");
-
-    const handleItemClick = (e, { name }) => setActiveItem(name);
 
     return (
         <Menu fixed="top" borderless>
@@ -21,9 +18,8 @@ const MenuBar = props => {
                         trigger={
                             <Menu.Item
                                 link
-                                name="filter"
-                                active={activeItem === "filter" && filterModalOpen === true}
-                                onClick={handleItemClick}
+                                name="filterModal"
+                                active={filterModalOpen === true}
                             >
                                 <Icon name="filter" />
                             </Menu.Item>} />
