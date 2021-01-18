@@ -1,7 +1,0 @@
-/* Mostly used to override existing Semantic UI with class name "customize" */
-
-@media only screen and (max-width: 767px) {
-    .customized.ui.six.doubling.cards {
-        margin-top: 1rem;
-    }
-}
