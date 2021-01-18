@@ -9,7 +9,6 @@ const MenuBar = props => {
     return (
         <Menu fixed="top" borderless>
             <Container>
-                <Menu.Item header>Kuku Clara</Menu.Item>
                 <Menu.Menu position="right">
                     <FilterDropDown />
                     <FilterModal

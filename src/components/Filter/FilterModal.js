@@ -1,7 +1,7 @@
 import React from "react";
 import Pluralize from "pluralize";
 import { connect } from "react-redux";
-import { Field, reduxForm, change, formValueSelector } from "redux-form";
+import { Field, reduxForm, change } from "redux-form";
 import { Button, Icon, Modal, Form } from "semantic-ui-react";
 import { filterDolls } from "../../actions";
 import { START_YEAR as startYear, END_YEAR as endYear } from "../../common/util";
@@ -132,8 +132,6 @@ let FilterModal = props => {
     </DefaultModal >
   )
 }
-
-const selector = formValueSelector("filterForm");
 
 const mapStateToProps = state => {
   return { filters: state.filters };

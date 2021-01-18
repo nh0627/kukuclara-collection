@@ -5,13 +5,12 @@ import "semantic-ui-css/semantic.min.css";
 import Loader from "./UI/Loader";
 
 const App = () => {
-  const mainListStyle = { "marginTop": "4.5rem" };
   const DollList = lazy(() => import("./Doll/DollList"));
 
   return (
     <div>
       <MenuBar />
-      <Container style={mainListStyle}>
+      <Container style={{ "marginTop": "5rem" }}>
         <Suspense fallback={<Loader />}>
           <DollList />
         </Suspense>

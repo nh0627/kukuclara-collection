@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchDolls } from "../../actions";
 import DollCard from "./DollCard";
-import { Card } from "semantic-ui-react";
+import { Card, Label, Divider } from "semantic-ui-react";
 
 class DollList extends Component {
 
@@ -10,19 +10,33 @@ class DollList extends Component {
         this.props.fetchDolls();
     }
 
-    renderList() {
-        return this.props.dolls.map(doll => {
-            return (
-                <DollCard doll={doll} key={doll.id} />
-            );
-        });
+    renderCard(doll) {
+        return (
+            <DollCard doll={doll} key={doll.id} />
+        );
+    }
+
+    renderTotalAndSort() {
+        return (
+            <div>
+                Total <Label basic circular>{this.props.dolls.length}</Label>
+                <div style={{ "float": "right" }}>
+                    <Label as="a"> Year </Label>
+                    <Label as="a"> Name </Label>
+                </div>
+                <Divider hidden />
+            </div>
+        );
     }
 
     render() {
         return (
-            <Card.Group itemsPerRow={6} doubling stackable>
-                {this.renderList()}
-            </Card.Group>
+            <div>
+                {this.renderTotalAndSort()}
+                <Card.Group itemsPerRow={6} doubling stackable>
+                    {this.props.dolls.map(doll => this.renderCard(doll))}
+                </Card.Group>
+            </div>
         );
     }
 }
