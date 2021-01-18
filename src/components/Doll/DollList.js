@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchDolls } from "../../actions";
 import DollCard from "./DollCard";
-import { Card, Label, Menu } from "semantic-ui-react";
+import { Card, Label, Menu, Button, Container } from "semantic-ui-react";
 
 class DollList extends Component {
 
@@ -18,7 +18,7 @@ class DollList extends Component {
 
     renderSecondaryButtons() {
         return (
-            <Menu secondary style={{ "marginBottom": "1rem" }}>
+            <Menu secondary>
                 <Menu.Item
                     name='home'
                     header>
@@ -39,12 +39,12 @@ class DollList extends Component {
 
     render() {
         return (
-            <div>
+            <Container>
                 {this.renderSecondaryButtons()}
                 <Card.Group itemsPerRow={6} doubling stackable className="customized">
                     {this.props.dolls.map(doll => this.renderCard(doll))}
                 </Card.Group>
-            </div>
+            </Container>
         );
     }
 }

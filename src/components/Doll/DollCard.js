@@ -3,15 +3,15 @@ import { Card, Image } from "semantic-ui-react";
 import DollDetailModal from "./DollDetailModal";
 
 const DollCard = ({ doll }) => {
-    const { isSpecialCode, img, name, type, series, date } = doll;
+    const { releaseCode, img, name, type, series, date } = doll;
 
-    const renderSpecialTag = (isSpecial) => {
+    const renderSpecialTag = (releaseCode) => {
         const specialCorner = { as: "a", corner: "left", icon: "star", color: "yellow" };
-        return (isSpecial === "Y") ? specialCorner : false;
+        return (releaseCode === "S") ? specialCorner : false;
     };
 
     const renderImage = () =>
-        <Image src={img} wrapped ui={false} fluid label={renderSpecialTag(isSpecialCode)} />;
+        <Image src={img} wrapped ui={false} fluid label={renderSpecialTag(releaseCode)} />;
 
     return (
         <Card>

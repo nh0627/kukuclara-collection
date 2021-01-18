@@ -10,11 +10,9 @@ const App = () => {
   return (
     <div>
       <MenuBar />
-      <Container>
         <Suspense fallback={<Loader />}>
           <DollList />
         </Suspense>
-      </Container>
     </div>
   );
 };

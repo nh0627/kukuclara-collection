@@ -10,7 +10,6 @@ import DefaultModal from "../UI/DefaultModal";
 
 let FilterModal = props => {
   const { trigger, filters, handleSubmit, change, open, setOpen } = props;
-  // const [open, setOpen] = React.useState(false);
   const checkboxGroups = Object.keys(filters);
 
   const getYearOptions = () => {

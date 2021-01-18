@@ -1,12 +1,12 @@
 {
-    "isSpecial": [
+    "release": [
         {
-            "code": "Y",
-            "name": "Yes"
+            "code": "S",
+            "name": "Special"
         },
         {
             "code": "N",
-            "name": "No"
+            "name": "Normal"
         }
     ],
     "types": [
