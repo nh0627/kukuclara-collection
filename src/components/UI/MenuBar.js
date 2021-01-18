@@ -7,7 +7,7 @@ const MenuBar = props => {
     const [filterModalOpen, setFilterModalOpen] = React.useState(false);
 
     return (
-        <Menu fixed="top" borderless>
+        <Menu borderless>
             <Container>
                 <Menu.Menu position="right">
                     <FilterDropDown />
