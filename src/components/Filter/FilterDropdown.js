@@ -1,18 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-import { filterDolls, searchDolls } from "../../actions";
+import { filterDolls } from "../../actions";
 import { Dropdown, Icon } from "semantic-ui-react";
 
 let FilterDropDown = (props) => {
     const { types, handleSubmit } = props;
     const [term, setTerm] = React.useState("");
-    const [activeItem, setActiveItem] = React.useState("");
+    const [activeTag, setActiveTag] = React.useState("");
 
-    const onSubmit = val => props.searchDolls(val);
+    const onSubmit = () => {
+        const filterGroups = (activeTag === "") ? [] : ["types"];
+        const returnObj = { term, types: [activeTag], filterGroups };
+        props.filterDolls(returnObj);
+    }
 
-    const filterList = code => {
-        const returnObj = { term, types: [code], filterGroups: ["types"] };
+    const filterList = (code) => {
+        (activeTag !== code) ? setActiveTag(code) : setActiveTag("");
+        const searchTag = (code === activeTag) ? "" : code;
+        const filterGroups = (searchTag === "") ? [] : ["types"];
+        const returnObj = { term, types: [searchTag], filterGroups };
         props.filterDolls(returnObj);
     };
 
@@ -22,9 +29,8 @@ let FilterDropDown = (props) => {
             <Dropdown.Item
                 key={code}
                 {...options}
-                active={activeItem === code}
+                active={activeTag === code}
                 onClick={() => {
-                    setActiveItem(code);
                     filterList(code);
                 }} />
         );
@@ -53,7 +59,7 @@ const mapStateToProps = state => {
 
 FilterDropDown = reduxForm({ form: "searchForm" })(FilterDropDown);
 
-FilterDropDown = connect(mapStateToProps, { searchDolls, filterDolls })(FilterDropDown);
+FilterDropDown = connect(mapStateToProps, { filterDolls })(FilterDropDown);
 
 export default FilterDropDown;
 
