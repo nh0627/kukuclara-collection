@@ -5,8 +5,8 @@ import DefaultModal from "../UI/DefaultModal";
 const DollDetailModal = ({ doll, trigger }) => {
 
   const [open, setOpen] = React.useState(false);
-  const { releaseCode, img, name, type, series, date, eyeColor, eyeColorHexCode, hairColor, hairColorHexCode, skinType, link, remarks } = doll;
-
+  const { releaseCode, img, name, type, series, date, eyeColor, eyeColorHexCode, hairColor, hairColorHexCode, skinTypeHexCode, skinType, link, remarks } = doll;
+  debugger;
   const colorLabel = (color) => <Label circular empty style={{ "backgroundColor": `#${color}`, "marginRight": "0.3rem" }} />;
 
   return (
@@ -29,7 +29,7 @@ const DollDetailModal = ({ doll, trigger }) => {
               <List.Header>Eye color</List.Header>{colorLabel(eyeColorHexCode)}{eyeColor}
             </List.Item>
             <List.Item>
-              <List.Header>Skin Type</List.Header>{skinType}
+              <List.Header>Skin Type</List.Header>{colorLabel(skinTypeHexCode)}{skinType}
             </List.Item>
             <List.Item>
               <List.Header>Outfit</List.Header>{remarks}
