@@ -1,11 +1,13 @@
 import React from "react";
-import { Header, Image, Modal, List, Divider } from "semantic-ui-react";
+import { Header, Image, Modal, List, Divider, Label } from "semantic-ui-react";
 import DefaultModal from "../UI/DefaultModal";
 
 const DollDetailModal = ({ doll, trigger }) => {
 
   const [open, setOpen] = React.useState(false);
-  const { releaseCode, img, name, type, series, date, eyeColor, hairColor, skinType, link, remarks } = doll;
+  const { releaseCode, img, name, type, series, date, eyeColor, eyeColorHexCode, hairColor, hairColorHexCode, skinType, link, remarks } = doll;
+
+  const colorLabel = (color) => <Label circular empty style={{ "backgroundColor": `#${color}`, "marginRight": "0.3rem" }} />;
 
   return (
     <DefaultModal header={{ content: "Details", icon: "paperclip" }} trigger={trigger} open={open} setOpen={setOpen}>
@@ -21,10 +23,10 @@ const DollDetailModal = ({ doll, trigger }) => {
               <List.Header>Date</List.Header>{date}
             </List.Item>
             <List.Item>
-              <List.Header>Hair color</List.Header>{hairColor}
+              <List.Header>Hair color</List.Header>{colorLabel(hairColorHexCode)}{hairColor}
             </List.Item>
             <List.Item>
-              <List.Header>Eye color</List.Header>{eyeColor}
+              <List.Header>Eye color</List.Header>{colorLabel(eyeColorHexCode)}{eyeColor}
             </List.Item>
             <List.Item>
               <List.Header>Skin Type</List.Header>{skinType}
@@ -33,7 +35,7 @@ const DollDetailModal = ({ doll, trigger }) => {
               <List.Header>Outfit</List.Header>{remarks}
             </List.Item>
           </List>
-          </Modal.Description>
+        </Modal.Description>
       </Modal.Content>
     </DefaultModal>
 
