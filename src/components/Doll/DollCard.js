@@ -14,7 +14,7 @@ const DollCard = ({ doll }) => {
         <Image src={img} wrapped ui={false} fluid label={renderSpecialTag(releaseCode)} />;
 
     return (
-        <Card>
+        <Card as ="a">
             <DollDetailModal
                 trigger={renderImage()}
                 doll={doll} />

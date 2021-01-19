@@ -28,9 +28,11 @@ class DollList extends Component {
                     <Menu.Item header>Sort By</Menu.Item>
                     <Menu.Item
                         name="Year"
+                        as="a"
                     />
                     <Menu.Item
                         name="Name"
+                        as="a"
                     />
                 </Menu.Menu>
             </Menu>
