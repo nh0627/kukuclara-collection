@@ -1,28 +1,32 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { fetchDolls } from "../../actions";
 import DollCard from "./DollCard";
-import { Card, Label, Menu, Button, Container } from "semantic-ui-react";
+import { Card, Label, Menu, Container } from "semantic-ui-react";
 
-class DollList extends Component {
+const DollList = props => {
+    const { dolls } = props;
 
-    componentDidMount() {
-        this.props.fetchDolls();
-    }
+    const [dollList, setDollList] = React.useState([]);
 
-    renderCard(doll) {
+    React.useEffect(() => {
+        props.fetchDolls();
+        setDollList(dolls);
+      }, []);
+
+    const renderCard = (doll) => {
         return (
             <DollCard doll={doll} key={doll.id} />
         );
-    }
+    };
 
-    renderSecondaryButtons() {
+    const renderSecondaryButtons = () => {
         return (
             <Menu secondary>
                 <Menu.Item
                     name='home'
                     header>
-                    Total <Label basic circular>{this.props.dolls.length}</Label>
+                    Total <Label basic circular>{dolls.length}</Label>
                 </Menu.Item>
                 <Menu.Menu position='right'>
                     <Menu.Item header>Sort By</Menu.Item>
@@ -37,19 +41,18 @@ class DollList extends Component {
                 </Menu.Menu>
             </Menu>
         );
-    }
+    };
 
-    render() {
-        return (
-            <Container>
-                {this.renderSecondaryButtons()}
-                <Card.Group itemsPerRow={6} doubling stackable className="customized">
-                    {this.props.dolls.map(doll => this.renderCard(doll))}
-                </Card.Group>
-            </Container>
-        );
-    }
-}
+    return (
+        <Container>
+            {renderSecondaryButtons()}
+            <Card.Group itemsPerRow={6} doubling stackable className="customized">
+                {dolls.map(doll => renderCard(doll))}
+            </Card.Group>
+        </Container>
+    );
+
+};
 
 const mapStateToProps = state => {
     return { dolls: Object.values(state.dolls) };

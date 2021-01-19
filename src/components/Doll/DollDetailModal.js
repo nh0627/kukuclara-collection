@@ -1,12 +1,12 @@
 import React from "react";
-import { Header, Image, Modal, List, Divider, Label } from "semantic-ui-react";
+import { Header, Image, Modal, List, Label } from "semantic-ui-react";
 import DefaultModal from "../UI/DefaultModal";
 
 const DollDetailModal = ({ doll, trigger }) => {
 
   const [open, setOpen] = React.useState(false);
   const { releaseCode, img, name, type, series, date, eyeColor, eyeColorHexCode, hairColor, hairColorHexCode, skinTypeHexCode, skinType, link, remarks } = doll;
-  debugger;
+
   const colorLabel = (color) => <Label circular empty style={{ "backgroundColor": `#${color}`, "marginRight": "0.3rem" }} />;
 
   return (

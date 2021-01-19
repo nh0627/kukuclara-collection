@@ -6,7 +6,7 @@ const DollCard = ({ doll }) => {
     const { releaseCode, img, name, type, series, date } = doll;
 
     const renderSpecialTag = (releaseCode) => {
-        const specialCorner = { as: "a", corner: "left", icon: "star", color: "yellow" };
+        const specialCorner = { corner: "left", icon: "star", color: "yellow" };
         return (releaseCode === "S") ? specialCorner : false;
     };
 
