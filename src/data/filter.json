@@ -29,31 +29,31 @@
     ],
     "hairColorGroups": [
         {
-            "code": "BL",
-            "name": "Blond"
+            "code": "RE",
+            "name": "Red"
+        },
+        {
+            "code": "YE",
+            "name": "Yellow"
         },
         {
             "code": "BR",
             "name": "Brown"
         },
         {
-            "code": "IV",
-            "name": "Ivory"
+            "code": "GE",
+            "name": "Grey"
         },
         {
             "code": "PI",
             "name": "Pink"
         },
         {
-            "code": "GI",
-            "name": "Ginger"
+            "code": "WH",
+            "name": "White"
         }
     ],
     "eyeColorGroups": [
-        {
-            "code": "RE",
-            "name": "Red"
-        },
         {
             "code": "GR",
             "name": "Green"
@@ -77,6 +77,10 @@
         {
             "code": "GE",
             "name": "Grey"
+        },
+        {
+            "code": "PI",
+            "name": "Pink"
         }
     ],
     "skinTypes": [

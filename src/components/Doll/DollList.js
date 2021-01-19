@@ -12,13 +12,29 @@ const DollList = props => {
     React.useEffect(() => {
         props.fetchDolls();
         setDollList(dolls);
-      }, []);
+    }, []);
 
-    const renderCard = (doll) => {
-        return (
-            <DollCard doll={doll} key={doll.id} />
-        );
+    React.useEffect(() => {
+        setDollList(dolls);
+    }, [dolls]);
+
+    const sortDolls = (dollList, propName) => {
+        const list = [...dollList];
+        list.sort((a, b) => {
+            var nameA = a[propName].toUpperCase();
+            var nameB = b[propName].toUpperCase();
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+            return 0;
+        });
+        setDollList(list);
     };
+
+    const renderCard = (doll) => <DollCard doll={doll} key={doll.id} />;
 
     const renderSecondaryButtons = () => {
         return (
@@ -31,12 +47,14 @@ const DollList = props => {
                 <Menu.Menu position='right'>
                     <Menu.Item header>Sort By</Menu.Item>
                     <Menu.Item
-                        name="Year"
+                        name="Date"
                         as="a"
+                        onClick={() => sortDolls(dollList, "date")}
                     />
                     <Menu.Item
                         name="Name"
                         as="a"
+                        onClick={() => sortDolls(dollList, "name")}
                     />
                 </Menu.Menu>
             </Menu>
@@ -47,7 +65,7 @@ const DollList = props => {
         <Container>
             {renderSecondaryButtons()}
             <Card.Group itemsPerRow={6} doubling stackable className="customized">
-                {dolls.map(doll => renderCard(doll))}
+                {dollList.map(doll => renderCard(doll))}
             </Card.Group>
         </Container>
     );
