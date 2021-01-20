@@ -21,20 +21,19 @@ const DollList = props => {
     const sortDolls = (dollList, propName) => {
         const list = [...dollList];
         list.sort((a, b) => {
-            var nameA = a[propName].toUpperCase();
-            var nameB = b[propName].toUpperCase();
-            if (nameA < nameB) {
-              return -1;
-            }
-            if (nameA > nameB) {
-              return 1;
-            }
+            var nameA = (propName === "name") ? a[propName].toUpperCase() : a[propName];
+            var nameB = (propName === "name") ? b[propName].toUpperCase() : b[propName];
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
             return 0;
         });
         setDollList(list);
     };
 
-    const renderCard = (doll) => <DollCard doll={doll} key={doll.id} />;
+    const renderList = () => {
+        const renderCard = (doll) => <DollCard doll={doll} key={doll.id} />;
+        return dollList.map(doll => renderCard(doll));
+    };
 
     const renderSecondaryButtons = () => {
         return (
@@ -65,7 +64,7 @@ const DollList = props => {
         <Container>
             {renderSecondaryButtons()}
             <Card.Group itemsPerRow={6} doubling stackable className="customized">
-                {dollList.map(doll => renderCard(doll))}
+                {renderList()}
             </Card.Group>
         </Container>
     );
