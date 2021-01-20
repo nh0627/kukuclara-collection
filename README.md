@@ -2,8 +2,8 @@
 Kukuclara Collection💕
 ======================
 
-This app is made with React.js and Redux to look up, filter and sort the overall series of Kukuclara dolls.
-> As a Kukuclara doll collector, I need a website where I can easily see the data on the collection. I hope that Kukuclara fans like me can get help for their collection but also have fun learning about it with my app❤
+This app is made with React.js/Redux to look up, filter and sort the overall series of Kukuclara dolls.
+> As a Kukuclara doll collector, I need a website where I can easily see the data on the collection. I hope that Kukuclara fans like me can get help for their collection but also have fun learning about the collection with my app❤
 
 (image)
 
