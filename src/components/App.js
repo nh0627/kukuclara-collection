@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
-import MenuBar from "./UI/MenuBar";
 import "semantic-ui-css/semantic.min.css";
+import MenuBar from "./UI/MenuBar";
+import Footer from "./UI/Footer";
 import Loader from "./UI/Loader";
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
         <Suspense fallback={<Loader />}>
           <DollList />
         </Suspense>
+      <Footer />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import FilterDropDown from "../Filter/FilterDropdown";
+import FilterInput from "../Filter/FilterInput";
 import FilterModal from "../Filter/FilterModal";
 import { Menu, Container, Icon } from "semantic-ui-react";
 
@@ -9,8 +9,9 @@ const MenuBar = props => {
     return (
         <Menu borderless>
             <Container>
+                <Menu.Item as="a" href={"/"} header>KC</Menu.Item>
                 <Menu.Menu position="right">
-                    <FilterDropDown />
+                    <FilterInput />
                     <FilterModal
                         open={filterModalOpen}
                         setOpen={setFilterModalOpen}
