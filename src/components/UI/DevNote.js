@@ -1,12 +1,11 @@
 import React from "react";
 import DefaultModal from "./DefaultModal";
 import { Modal, Header } from "semantic-ui-react";
+import { notes } from "../../data/notes";
 
 const DevNote = ({ trigger }) => {
 
     const [open, setOpen] = React.useState(false);
-
-    const notes = [{ header: "App Released🙇‍♀️", content: "" }]
 
     const renderNotes = ({ header, content }, i) =>
         <Modal.Content key={i}>
