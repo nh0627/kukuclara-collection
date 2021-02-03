@@ -1,11 +1,10 @@
+![Kukuclara Collection](https://github.com/nh0627/kukuclara-collection/blob/main/public/logo.png)
 
-Kukuclara Collection💕
+My Dear Kukuclara💕
 ======================
 
 This app is made with React.js/Redux to look up, filter and sort the overall series of Kukuclara dolls.
-> As a Kukuclara doll collector, I need a website where I can easily see the data on the collection. I hope that Kukuclara fans like me can get help for their collection but also have fun learning about the collection with my app❤
-
-(image)
+> As a Kukuclara doll collector, I need a website where I can easily see the data on the collection. I hope that Kukuclara fans like me can get help for their collection but also have fun around the collection with my app❤
 
 ---
 
@@ -20,5 +19,4 @@ This app is made with React.js/Redux to look up, filter and sort the overall ser
 
 ## Setup
 Clone this repo and run `yarn install` on its root directory to install the required dependencies.
-
 To start this app, run `yarn start`. You can access it at localhost:3000🎈
