@@ -7,9 +7,8 @@ const MenuBar = props => {
     const [filterModalOpen, setFilterModalOpen] = React.useState(false);
 
     return (
-        <Menu borderless>
-            <Container>
-                <Menu.Item as="a" href={"/"} header>KC</Menu.Item>
+        <Container style={{marginBottom: "1rem"}}>
+            <Menu borderless>
                 <Menu.Menu position="right">
                     <FilterInput />
                     <FilterModal
@@ -24,8 +23,8 @@ const MenuBar = props => {
                                 <Icon name="filter" />
                             </Menu.Item>} />
                 </Menu.Menu>
-            </Container>
-        </Menu>
+            </Menu>
+        </Container>
     );
 };
 
