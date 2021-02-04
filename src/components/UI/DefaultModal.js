@@ -36,8 +36,8 @@ DefaultModal.propTypes = {
   trigger: PropTypes.object,
   children: PropTypes.object,
   header: PropTypes.object,
-  actions: PropTypes.func,
-  open: PropTypes.object,
+  actions: PropTypes.object,
+  open: PropTypes.bool,
   setOpen: PropTypes.func
 };
 

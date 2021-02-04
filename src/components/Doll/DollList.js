@@ -77,7 +77,7 @@ const mapStateToProps = state => {
 }
 
 DollList.propTypes = {
-    dolls: PropTypes.object,
+    dolls: PropTypes.array,
     fetchDolls: PropTypes.func
 };
 

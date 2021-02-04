@@ -147,7 +147,7 @@ FilterModal.propTypes = {
   handleSubmit: PropTypes.func,
   filterDolls: PropTypes.func,
   change: PropTypes.func,
-  open: PropTypes.object,
+  open: PropTypes.bool,
   setOpen: PropTypes.func
 };
 
