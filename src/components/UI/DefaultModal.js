@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Button, Header, Modal, Icon } from "semantic-ui-react";
 
 const DefaultModal = props => {
@@ -30,5 +31,14 @@ const DefaultModal = props => {
     </Modal>
   )
 }
+
+DefaultModal.propTypes = {
+  trigger: PropTypes.object,
+  children: PropTypes.object,
+  header: PropTypes.object,
+  actions: PropTypes.func,
+  open: PropTypes.object,
+  setOpen: PropTypes.func
+};
 
 export default DefaultModal;

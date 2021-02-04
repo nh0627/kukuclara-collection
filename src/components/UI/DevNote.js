@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import DefaultModal from "./DefaultModal";
 import { Modal, Header } from "semantic-ui-react";
 import { notes } from "../../data/notes";
@@ -22,6 +23,10 @@ const DevNote = ({ trigger }) => {
             {notes.map((n, i) => renderNotes(n, i))}
         </DefaultModal>
     );
+};
+
+DevNote.propTypes = {
+    trigger: PropTypes.object
 };
 
 export default DevNote;

@@ -3,7 +3,7 @@ import FilterInput from "../Filter/FilterInput";
 import FilterModal from "../Filter/FilterModal";
 import { Menu, Container, Icon } from "semantic-ui-react";
 
-const MenuBar = props => {
+const MenuBar = () => {
     const [filterModalOpen, setFilterModalOpen] = React.useState(false);
 
     return (

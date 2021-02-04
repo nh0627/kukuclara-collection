@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Input } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { searchDolls } from "../../actions";
@@ -18,6 +19,10 @@ const FilterInput = props => {
 
 const mapStateToProps = state => {
     return { types: state.types };
+};
+
+FilterInput.propTypes = {
+    searchDolls: PropTypes.func
 };
 
 export default connect(mapStateToProps, { searchDolls })(FilterInput);

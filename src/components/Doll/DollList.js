@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { fetchDolls } from "../../actions";
 import DollCard from "./DollCard";
@@ -74,5 +75,10 @@ const DollList = props => {
 const mapStateToProps = state => {
     return { dolls: Object.values(state.dolls) };
 }
+
+DollList.propTypes = {
+    dolls: PropTypes.object,
+    fetchDolls: PropTypes.func
+};
 
 export default connect(mapStateToProps, { fetchDolls })(DollList);

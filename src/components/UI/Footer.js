@@ -2,7 +2,7 @@ import React from "react";
 import { Segment, Container, List } from "semantic-ui-react";
 import DevNote from "./DevNote";
 
-const Footer = props => {
+const Footer = () => {
 
     return (
         <Segment inverted style={{ margin: "4em 0em 0em", padding: "4em 0em" }} vertical>

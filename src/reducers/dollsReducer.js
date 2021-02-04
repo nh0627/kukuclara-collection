@@ -25,15 +25,17 @@ const searchDollWithTerm = (doll, term) => {
 
 export default (state = [], action) => {
     switch (action.type) {
-        case FETCH_DOLLS:
+        case FETCH_DOLLS: {
             const fetchedDolls = parseObjWithKeys(loadedData);
             return { ...fetchedDolls };
-        case SEARCH_DOLLS:
+        }
+        case SEARCH_DOLLS: {
             const { term } = action.payload;
             if (typeof term === "undefined") return parseObjWithKeys(loadedData);
             const foundDolls = loadedData.filter(doll => searchDollWithTerm(doll, term));
             return { ...parseObjWithKeys(foundDolls) };
-        case FILTER_DOLLS:
+        }
+        case FILTER_DOLLS: {
             const submitData = action.payload;
             const { filterGroups } = submitData; // Get the name(label) of checkbox (group) fields from submit data
             const selectedFilterGroups = []; // data from checkboxes
@@ -85,7 +87,7 @@ export default (state = [], action) => {
             });
 
             return { ...parseObjWithKeys(filteredDolls) };
-
+        }
         case FETCH_DOLL:
             return { ...state, [action.payload.id]: action.payload };
         default:

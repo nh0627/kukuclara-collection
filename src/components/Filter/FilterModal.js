@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import Pluralize from "pluralize";
 import { connect } from "react-redux";
 import { Field, reduxForm, change } from "redux-form";
@@ -139,5 +140,15 @@ const mapStateToProps = state => {
 FilterModal = reduxForm({ form: "filterForm" })(FilterModal);
 
 FilterModal = connect(mapStateToProps, { filterDolls, change })(FilterModal);
+
+FilterModal.propTypes = {
+  trigger: PropTypes.object,
+  filters: PropTypes.object,
+  handleSubmit: PropTypes.func,
+  filterDolls: PropTypes.func,
+  change: PropTypes.func,
+  open: PropTypes.object,
+  setOpen: PropTypes.func
+};
 
 export default FilterModal;
