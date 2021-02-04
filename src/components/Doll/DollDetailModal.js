@@ -10,12 +10,14 @@ const DollDetailModal = ({ doll, trigger }) => {
 
   const colorLabel = (color) => <Label circular empty style={{ "backgroundColor": `#${color}`, "marginRight": "0.3rem" }} />;
 
+  const header = (name === series) ? series : `${name} ${series}`;
+
   return (
     <DefaultModal header={{ content: "Details", icon: "paperclip" }} trigger={trigger} open={open} setOpen={setOpen}>
       <Modal.Content image>
         <Image size="medium" src={img} wrapped />
         <Modal.Description>
-          <Header>{name} {series} {type}</Header>
+          <Header>{header} {type}</Header>
           <List>
             <List.Item>
               <List.Header>Release</List.Header>{(releaseCode === "S") ? "Special" : "Normal"}
