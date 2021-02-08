@@ -95,6 +95,10 @@
         {
             "code": "CP",
             "name": "Creamy Peach"
+        },
+        {
+            "code": "VN",
+            "name": "Vintage Normal"
         }
     ]
 }

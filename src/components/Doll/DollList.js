@@ -6,39 +6,45 @@ import DollCard from "./DollCard";
 import { Card, Label, Menu, Container, Visibility } from "semantic-ui-react";
 
 const DollList = props => {
-    const { dolls, fetchDolls } = props;
-    const propDolls = dolls;
+    const propDolls = props.dolls;
 
-    const [dollList, setDollList] = React.useState([]);
+    const [dolls, setDolls] = React.useState([]);
     const [pageIndex, setPageIndex] = React.useState(0);
-    const maxSize = 24;
+    const [sortCondition, setSortCondition] = React.useState("date");
 
-    // When props dolls are first set
+    // When dolls in store are first set
     React.useEffect(() => {
-        fetchDolls();
-        setDollListWithPagination(true, propDolls);
+        props.fetchDolls();
+        setDollsWithPagination();
     }, []);
 
-    // When props dolls are changed
+    // When dolls in store are changed
     React.useEffect(() => {
-        setDollListWithPagination(true, propDolls);
+        setDollsWithPagination();
     }, [propDolls]);
 
-    const sortDolls = ({condition}) => {
+    // When sort condition is changed
+    React.useEffect(() => {
+        setDollsWithPagination();
+    }, [sortCondition]);
+
+    const sortDolls = () => {
         const sortedList = [...propDolls];
         sortedList.sort((a, b) => {
-            var nameA = (condition === "name") ? a[condition].toUpperCase() : a[condition];
-            var nameB = (condition === "name") ? b[condition].toUpperCase() : b[condition];
+            var nameA = (sortCondition === "name") ? a[sortCondition].toUpperCase() : a[sortCondition];
+            var nameB = (sortCondition === "name") ? b[sortCondition].toUpperCase() : b[sortCondition];
             if (nameA < nameB) return -1;
             if (nameA > nameB) return 1;
             return 0;
         });
-        setDollListWithPagination(true, sortedList);
+        return sortedList;
     };
 
-    const setDollListWithPagination = (isNewList, targetList) => {
-
+    const setDollsWithPagination = (isNewList = true) => {
+        const maxSize = 24;
         let currIndex = 0;
+        let sortedDolls = sortDolls();
+
         if (isNewList) {
             setPageIndex(1);
         } else {
@@ -50,18 +56,18 @@ const DollList = props => {
         let startNum = currIndex * maxSize;
         const lastNum = startNum + 24;
         for (startNum; startNum < lastNum; ++startNum) {
-            let doll = targetList[startNum];
+            let doll = sortedDolls[startNum];
             if (typeof doll !== "undefined") list.push(doll);
             else continue;
         }
 
-        const paginatedDolls = isNewList ? [...list] : [...dollList, ...list];
-        setDollList(paginatedDolls);
+        const paginatedDolls = isNewList ? [...list] : [...dolls, ...list];
+        setDolls(paginatedDolls);
     };
 
     const renderList = () => {
         const renderCard = (doll) => <DollCard doll={doll} key={doll.id} />;
-        return dollList.map(doll => renderCard(doll));
+        return dolls.map(doll => renderCard(doll));
     };
 
     const renderSecondaryButtons = () => {
@@ -70,19 +76,21 @@ const DollList = props => {
                 <Menu.Item
                     name='home'
                     header>
-                    Total <Label basic circular>{dolls.length}</Label>
+                    Total <Label basic circular>{propDolls.length}</Label>
                 </Menu.Item>
                 <Menu.Menu position='right'>
                     <Menu.Item header>Sort By</Menu.Item>
                     <Menu.Item
                         name="Date"
                         as="a"
-                        onClick={() => sortDolls({ condition: "date" })}
+                        active={sortCondition === "date"}
+                        onClick={() => setSortCondition("date")}
                     />
                     <Menu.Item
                         name="Name"
                         as="a"
-                        onClick={() => sortDolls({ condition: "name" })}
+                        active={sortCondition === "name"}
+                        onClick={() => setSortCondition("name")}
                     />
                 </Menu.Menu>
             </Menu>
@@ -95,9 +103,7 @@ const DollList = props => {
             <Card.Group itemsPerRow={6} doubling stackable className="customized">
                 {renderList()}
                 <Visibility
-                    onBottomVisible={() => {
-                        if (pageIndex * maxSize < propDolls.length) setDollListWithPagination(false, propDolls);
-                    }}
+                    onBottomVisible={() => setDollsWithPagination(false)}
                     once={false}
                 />
             </Card.Group>
