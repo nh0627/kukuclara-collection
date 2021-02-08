@@ -2,7 +2,8 @@ import {
     FETCH_DOLLS,
     SEARCH_DOLLS,
     FETCH_DOLL,
-    FILTER_DOLLS
+    FILTER_DOLLS,
+    SORT_DOLLS
 } from "../actions/types";
 import data from "../data/kukuclara.json";
 import Pluralize from "pluralize";
@@ -87,6 +88,18 @@ export default (state = [], action) => {
             });
 
             return { ...parseObjWithKeys(filteredDolls) };
+        }
+        case SORT_DOLLS: {
+            const { condition } = action.payload;
+            const sortedDolls = [...loadedData];
+            sortedDolls.sort((a, b) => {
+                var nameA = (condition === "name") ? a[condition].toUpperCase() : a[condition];
+                var nameB = (condition === "name") ? b[condition].toUpperCase() : b[condition];
+                if (nameA < nameB) return -1;
+                if (nameA > nameB) return 1;
+                return 0;
+            });
+            return { ...parseObjWithKeys(sortedDolls) };
         }
         case FETCH_DOLL:
             return { ...state, [action.payload.id]: action.payload };

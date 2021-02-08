@@ -1,7 +1,8 @@
 import {
     FETCH_DOLLS,
     SEARCH_DOLLS,
-    FILTER_DOLLS
+    FILTER_DOLLS,
+    SORT_DOLLS
 } from "../actions/types";
 
 // Fetch list
@@ -23,6 +24,14 @@ export const searchDolls = payload => {
 export const filterDolls = payload => {
     return {
         type: FILTER_DOLLS,
+        payload
+    };
+};
+
+// Sort
+export const sortDolls = payload => {
+    return {
+        type: SORT_DOLLS,
         payload
     };
 };
