@@ -9,10 +9,10 @@ const Footer = () => {
             <Container textAlign="center">
                 <List horizontal inverted divided link size="small">
                     <DevNote
-                        trigger={<List.Item as="a" >Dev Note👩‍💻</List.Item>} />
+                        trigger={<List.Item as="a" >Notice👩‍💻</List.Item>} />
                     <List.Item as="a" href="mailto:tyttonova@gmail.com">Email Me💖(tyttonova@gmail.com)</List.Item>
                 </List>
-                <p>My Dear KukuClara is a fan-made website and is in no way affiliated with <a href="http://kukuclara.com/" target="_blank" rel="noreferrer" >KUKUCLARA</a>.</p>
+                <p>My Dear KukuClara is a fan-made website and is in no way affiliated and has no intellectual property with <a href="http://kukuclara.com/" target="_blank" rel="noreferrer" >KUKUCLARA</a>.</p>
             </Container>
         </Segment>
     );

@@ -2,22 +2,31 @@ import React from "react";
 import PropTypes from 'prop-types';
 import DefaultModal from "./DefaultModal";
 import { Modal, Header } from "semantic-ui-react";
-import { notes } from "../../data/notes";
+import notes from "../../data/notes.json";
+
+const loadedNotes = JSON.parse(JSON.stringify(notes));
 
 const DevNote = ({ trigger }) => {
 
     const [open, setOpen] = React.useState(false);
-    const note = notes[0];
+
+    const renderContent = (note) => {
+        return (
+            <article>
+                <Header as='h3'>{note.header}</Header>
+                <p dangerouslySetInnerHTML={{ __html: note.content }}></p>
+            </article>
+        );
+    };
 
     return (
         <DefaultModal
-            header={{ content: "Dev Note", icon: "heart" }}
+            header={{ content: "Notice", icon: "heart" }}
             trigger={trigger}
             open={open}
             setOpen={setOpen}>
             <Modal.Content>
-                <Header as='h3'>{note.header}</Header>
-                <p>{note.content}</p>
+                {loadedNotes.map(note => renderContent(note))}
             </Modal.Content>
         </DefaultModal>
     );

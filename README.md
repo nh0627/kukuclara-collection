@@ -18,8 +18,10 @@ This app is made with React.js/Redux to look up, filter and sort the overall ser
 ---
 
 ## Data source
-- Kukulara Website
--
+- [KukuClara Website](http://kukuclara.com/) 
+- [Yvely (KukuClara Designer/Doll Maker)](https://www.instagram.com/kukuclara) 
+
+---
 
 ## Setup
 Clone this repo and run `yarn install` on its root directory to install the required dependencies.
