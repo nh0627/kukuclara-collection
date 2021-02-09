@@ -1,4 +1,4 @@
-![Kukuclara Collection](https://github.com/nh0627/kukuclara-collection/blob/main/public/logo.png)
+![Kukuclara Collection](https://github.com/nh0627/kukuclara-collection/blob/main/public/img/logo.png)
 
 My Dear Kukuclara💕
 ======================
