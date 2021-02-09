@@ -41,7 +41,7 @@ const DollList = props => {
     };
 
     const setDollsWithPagination = (isNewList = true) => {
-        const maxSize = 24;
+        const maxSize = 12;
         let currIndex = 0;
         let sortedDolls = sortDolls();
 
@@ -54,7 +54,7 @@ const DollList = props => {
 
         const list = [];
         let startNum = currIndex * maxSize;
-        const lastNum = startNum + 24;
+        const lastNum = startNum + maxSize;
         for (startNum; startNum < lastNum; ++startNum) {
             let doll = sortedDolls[startNum];
             if (typeof doll !== "undefined") list.push(doll);
