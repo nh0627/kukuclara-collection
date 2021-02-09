@@ -41,7 +41,7 @@ const DollList = props => {
     };
 
     const setDollsWithPagination = (isNewList = true) => {
-        const maxSize = 12;
+        const maxSize = 6;
         let currIndex = 0;
         let sortedDolls = sortDolls();
 
