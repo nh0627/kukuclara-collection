@@ -51,6 +51,14 @@
         {
             "code": "WH",
             "name": "White"
+        },
+        {
+            "code": "PU",
+            "name": "Purple"
+        },
+        {
+            "code": "BL",
+            "name": "Blue"
         }
     ],
     "eyeColorGroups": [
@@ -77,28 +85,38 @@
         {
             "code": "GE",
             "name": "Grey"
-        },
-        {
-            "code": "PI",
-            "name": "Pink"
         }
     ],
     "skinTypes": [
         {
             "code": "N",
-            "name": "Normal"
+            "name": "Normal",
+            "hex": "F0D6BC"
         },
         {
             "code": "SP",
-            "name": "Sunny Peach"
+            "name": "Sunny Peach",
+            "hex": "f3beaf"
         },
         {
             "code": "CP",
-            "name": "Creamy Peach"
+            "name": "Creamy Peach",
+            "hex": "faded6"
         },
         {
             "code": "VN",
-            "name": "Vintage Normal"
+            "name": "Vintage Normal",
+            "hex": "e7cf8a"
+        },
+        {
+            "code": "ST",
+            "name": "Sun Kissed Tan",
+            "hex": "#99713C"
+        },
+        {
+            "code": "IW",
+            "name": "Ivory White",
+            "hex": "FFFFF0"
         }
     ]
 }
