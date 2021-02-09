@@ -18,8 +18,9 @@ This app is made with React.js/Redux to look up, filter and sort the overall ser
 ---
 
 ## Data sources
-- [KukuClara Website](http://kukuclara.com/) 
-- [Yvely (KukuClara Designer/Doll Maker)](https://www.instagram.com/kukuclara) 
+- [KukuClara Website](kukuclara.com/) 
+- [Yvely (KukuClara Designer/Doll Maker)](instagram.com/kukuclara)
+- [Adimi Seouls's blog](blog.naver.com/a_lim23)
 
 ---
 
