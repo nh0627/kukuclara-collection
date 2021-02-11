@@ -20,9 +20,9 @@ This app is made with React.js/Redux to look up, filter and sort the overall ser
 ---
 
 ## Data sources
-- [KukuClara Website](kukuclara.com/) 
-- [Yvely (KukuClara Designer/Doll Maker)](instagram.com/kukuclara)
-- [Adimi Seoul's blog](blog.naver.com/a_lim23)
+- [KukuClara Website](http://kukuclara.com/) 
+- [Yvely (KukuClara Designer/Doll Maker)](http://instagram.com/kukuclara)
+- [Adimi Seoul's blog](http://blog.naver.com/a_lim23)
 
 ---
 
