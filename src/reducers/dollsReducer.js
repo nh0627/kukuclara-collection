@@ -38,12 +38,11 @@ export default (state = [], action) => {
         }
         case FILTER_DOLLS: {
             const submitData = action.payload;
-            const { filterGroups } = submitData; // Get the name(label) of checkbox (group) fields from submit data
-            const selectedFilterGroups = []; // data from checkboxes
-            const selectcedFilters = []; // data from other fields
+            const { filterGroups } = submitData; // Get the name of "grouped" filters from submit data
+            const selectedFilterGroups = []; // Data from grouped filters
+            const selectcedFilters = []; // Data from normal(non-grouped) filters
 
             for (const key in submitData) {
-                // Get data from filter(checkbox) groups
                 if (filterGroups.indexOf(key) > -1) {
                     selectedFilterGroups.push(key);
                 } else {
@@ -52,10 +51,10 @@ export default (state = [], action) => {
             }
 
             // TODO: Make it less complecated(if possible😭)
-            // Retrieve the loaded doll data to filter it
+            // Retrieve the loaded dolls to filter it
             const filteredDolls = loadedData.filter(doll => {
 
-                // Data from normal fields
+                // Data from normal(non-grouped) filters
                 const matchedKeysFromFilters = [];
 
                 if (selectcedFilters.includes("term") && !searchDollWithTerm(doll, submitData.term)) matchedKeysFromFilters.push("term");
@@ -71,19 +70,18 @@ export default (state = [], action) => {
                     }
                 }
 
-                // Data from filter(checkbox) groups
+                // Data from grouped filters
                 const matchedKeysFromFilterGroups = selectedFilterGroups.filter(keyName => {
-                    // Change/Match to the loaded object"s(dolls) property name(e.g. types => typeCode)
+                    // Change property name format(e.g. types => typeCode)
                     const parsedKeyName = `${(Pluralize.isSingular(keyName)) ? keyName : Pluralize.singular(keyName)}Code`;
                     const codeFromLoadedData = doll[parsedKeyName];
                     const codesFromSubmitData = submitData[keyName];
-                    // Check if one is matching at least
-                    // In other words, within one category(e.g. skin, hair color) it is OR(union)
+                    // If one haircolor is matching in selected hair colors, then it is considered "matched"
                     return codesFromSubmitData.indexOf(codeFromLoadedData) > -1;
                 });
 
                 const matchedKeys = [...matchedKeysFromFilters, ...matchedKeysFromFilterGroups];
-                // It is AND(intersection) between different categories
+                // If "haircolor" and "eyecolor" are selected, conditions need to be included in the matched key array.
                 return matchedKeys.sort().join(",") === selectedFilterGroups.sort().join(",");
             });
 

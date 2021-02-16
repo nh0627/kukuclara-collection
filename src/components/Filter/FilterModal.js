@@ -75,14 +75,14 @@ let FilterModal = props => {
 
     submitDataKeys.forEach(key => {
       const submitValue = data[key];
-      // If a value from checkboxes
+      // If there is a value from checkboxes
       if (checkboxGroups.indexOf(key) > -1) {
-        // Filter true value
+        // Filter true value from checkboxes
         const checkboxValues = Object.keys(submitValue).filter(field => submitValue[field]);
-        // if there is any true value, then put it in obj for return
+        // if there is any true value, then put it in return object
         if (checkboxValues.length > 0) returnObj[key] = checkboxValues;
       } else {
-        // when it is not from checkboxes, no need the upper process
+        // when it is not from checkboxes, no need this process
         returnObj[key] = submitValue;
       }
     });

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { filterDolls } from "../../actions";
 import { Dropdown, Icon, Input } from "semantic-ui-react";
 
-let FilterDropdown = (props) => {
+let FilterDropdownMenu = (props) => {
     const { types } = props;
     const [term, setTerm] = React.useState("");
     const [activeTag, setActiveTag] = React.useState("");
@@ -56,11 +56,11 @@ const mapStateToProps = state => {
     return { types: state.types };
 };
 
-FilterDropdown = connect(mapStateToProps, { filterDolls })(FilterDropdown);
+FilterDropdownMenu = connect(mapStateToProps, { filterDolls })(FilterDropdownMenu);
 
-FilterDropdown.propTypes = {
+FilterDropdownMenu.propTypes = {
     types: PropTypes.object,
     filterDolls: PropTypes.func
 };
 
-export default FilterDropdown;
+export default FilterDropdownMenu;

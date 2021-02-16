@@ -12,7 +12,7 @@ const Footer = () => {
                         trigger={<List.Item as="a" >Notice👩‍💻</List.Item>} />
                     <List.Item as="a" href="mailto:tyttonova@gmail.com">Email Me💖(tyttonova@gmail.com)</List.Item>
                 </List>
-                <p>My Dear KukuClara is a non-profit fan-made website and is in no way officially affiliated with <a href="http://kukuclara.com/" target="_blank" rel="noreferrer" >KUKUCLARA</a>.</p>
+                <p>My Dear KukuClara is a non profit fan-made website and is in no way officially affiliated with <a href="http://kukuclara.com/" target="_blank" rel="noreferrer" >KUKUCLARA</a>.</p>
             </Container>
         </Segment>
     );
