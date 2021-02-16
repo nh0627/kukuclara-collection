@@ -39,7 +39,7 @@ let FilterDropdown = (props) => {
 
     return (
         <Dropdown item simple icon="search">
-            <Dropdown.Menu style={{ "left": "-10.5rem" }}>
+            <Dropdown.Menu style={{ "left": "-10rem" }}>
                 <div className="ui input icon" >
                     <Input type="text" name="term" onChange={e => filterByTerm(e.target.value)} placeholder="Search..." />
                     <Icon aria-hidden="true" name="search" />
