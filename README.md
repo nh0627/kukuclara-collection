@@ -3,6 +3,8 @@
 My Dear KukuClara💕
 ======================
 
+[➡️ Visit the website](http://my-dear-kukuclara.netlify.com)
+
 This app is made with React.js/Redux to look up, filter and sort the overall series of KukuClara dolls.
 > As a KukuClara doll collector, I need a website where I can easily see the data on the collection. I hope that KukuClara fans like me can get help for their collection but also have fun around the collection with my app❤
 
@@ -18,9 +20,9 @@ This app is made with React.js/Redux to look up, filter and sort the overall ser
 ---
 
 ## Data sources
-- [KukuClara Website](kukuclara.com/) 
-- [Yvely (KukuClara Designer/Doll Maker)](instagram.com/kukuclara)
-- [Adimi Seouls's blog](blog.naver.com/a_lim23)
+- [KukuClara Website](http://kukuclara.com/) 
+- [Yvely (KukuClara Designer/Doll Maker)](http://instagram.com/kukuclara)
+- [Adimi Seoul's blog](http://blog.naver.com/a_lim23)
 
 ---
 
