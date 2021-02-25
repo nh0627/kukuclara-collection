@@ -1,5 +1,5 @@
-import filterData from "../data/filter.json";
-import { getColor } from "../common/util";
+import filterData from "../../data/filter.json";
+import { getColor } from "../../common/util";
 
 const filters = JSON.parse(JSON.stringify(filterData));
 const getFilterByName = (name) => filters[name];

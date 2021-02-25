@@ -1,6 +1,6 @@
 import React from "react";
 import { Segment, Container, List } from "semantic-ui-react";
-import DevNote from "./DevNote";
+import DevNote from "../DevNote";
 
 const Footer = () => {
 

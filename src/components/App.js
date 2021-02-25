@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from "react";
 import "semantic-ui-css/semantic.min.css";
-import MenuBar from "./UI/MenuBar";
-import Footer from "./UI/Footer";
-import Loader from "./UI/Loader";
-import Logo from "./UI/Logo";
+import MenuBar from "./Header/MenuBar";
+import Footer from "./Footer";
+import Loader from "./Loader";
+import Logo from "./Header/Logo";
 
 const App = () => {
   const DollList = lazy(() => import("./Doll/DollList"));

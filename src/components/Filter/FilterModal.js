@@ -4,10 +4,10 @@ import Pluralize from "pluralize";
 import { connect } from "react-redux";
 import { Field, reduxForm, change } from "redux-form";
 import { Button, Icon, Modal, Form } from "semantic-ui-react";
-import { filterDolls } from "../../actions";
+import { filterDolls } from "../../store/actions";
 import { START_YEAR as startYear, END_YEAR as endYear } from "../../common/util";
-import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkbox } from "../UI/Field";
-import DefaultModal from "../UI/DefaultModal";
+import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkbox } from "../Default/DefaultFields";
+import DefaultModal from "../Default/DefaultModal";
 
 let FilterModal = props => {
   const { trigger, filters, handleSubmit, change, open, setOpen } = props;

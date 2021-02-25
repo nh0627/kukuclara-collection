@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import DefaultModal from "./DefaultModal";
+import DefaultModal from "../Default/DefaultModal";
 import { Modal, Header } from "semantic-ui-react";
 import notes from "../../data/notes.json";
 

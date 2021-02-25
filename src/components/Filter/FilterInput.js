@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { Input } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { searchDolls } from "../../actions";
+import { searchDolls } from "../../store/actions";
 
 const FilterInput = props => {
 

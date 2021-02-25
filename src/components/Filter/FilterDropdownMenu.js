@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { filterDolls } from "../../actions";
+import { filterDolls } from "../../store/actions";
 import { Dropdown, Icon, Input } from "semantic-ui-react";
 
 let FilterDropdownMenu = (props) => {

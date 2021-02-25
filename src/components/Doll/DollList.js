@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { fetchDolls } from "../../actions";
+import { fetchDolls } from "../../store/actions";
 import DollCard from "./DollCard";
 import { Card, Label, Menu, Container, Visibility } from "semantic-ui-react";
 

@@ -5,9 +5,9 @@ import {
     FILTER_DOLLS,
     SORT_DOLLS
 } from "../actions/types";
-import data from "../data/kukuclara.json";
+import data from "../../data/kukuclara.json";
 import Pluralize from "pluralize";
-import { START_YEAR, END_YEAR } from "../common/util";
+import { START_YEAR, END_YEAR } from "../../common/util";
 
 const loadedData = JSON.parse(JSON.stringify(data));
 

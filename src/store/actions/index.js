@@ -3,7 +3,7 @@ import {
     SEARCH_DOLLS,
     FILTER_DOLLS,
     SORT_DOLLS
-} from "../actions/types";
+} from "./types";
 
 // Fetch list
 export const fetchDolls = () => {

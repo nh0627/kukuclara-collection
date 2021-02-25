@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { Header, Image, Modal, List, Label } from "semantic-ui-react";
-import DefaultModal from "../UI/DefaultModal";
+import DefaultModal from "../Default/DefaultModal";
 
 const DollDetailModal = ({ doll, trigger }) => {
 
