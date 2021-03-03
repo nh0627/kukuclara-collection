@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { fetchDolls } from "../../store/actions";
+import { initDolls } from "../../store/actions";
 import DollCard from "./DollCard";
 import { Card, Label, Menu, Container, Visibility } from "semantic-ui-react";
 
@@ -14,7 +14,7 @@ const DollList = props => {
 
     // When dolls in store are first set
     React.useEffect(() => {
-        props.fetchDolls();
+        props.initDolls();
         setDollsWithPagination();
     }, []);
 
@@ -118,7 +118,7 @@ const mapStateToProps = state => {
 
 DollList.propTypes = {
     dolls: PropTypes.array,
-    fetchDolls: PropTypes.func
+    initDolls: PropTypes.func
 };
 
-export default connect(mapStateToProps, { fetchDolls })(DollList);
+export default connect(mapStateToProps, { initDolls })(DollList);

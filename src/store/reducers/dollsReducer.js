@@ -1,7 +1,6 @@
 import {
-    FETCH_DOLLS,
+    INIT_DOLLS,
     SEARCH_DOLLS,
-    FETCH_DOLL,
     FILTER_DOLLS,
     SORT_DOLLS
 } from "../actions/types";
@@ -23,10 +22,10 @@ const searchDollWithTerm = (doll, term) => {
 
 export default (state = [], action) => {
     switch (action.type) {
-        case FETCH_DOLLS: {
+        case INIT_DOLLS: {
             const { dolls } = action.payload;
-            const fetchedDolls = parseObjWithKeys(dolls);
-            return { ...fetchedDolls };
+            const loadedDolls = parseObjWithKeys(dolls);
+            return { ...loadedDolls };
         }
         case SEARCH_DOLLS: {
             const { term, dolls } = action.payload;
@@ -97,8 +96,6 @@ export default (state = [], action) => {
             });
             return { ...parseObjWithKeys(sortedDolls) };
         }
-        case FETCH_DOLL:
-            return { ...state, [action.payload.id]: action.payload };
         default:
             return state;
     }

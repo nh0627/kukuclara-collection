@@ -90,33 +90,27 @@
     "skinTypes": [
         {
             "code": "N",
-            "name": "Normal",
-            "hex": "F0D6BC"
+            "name": "Normal"
         },
         {
             "code": "SP",
-            "name": "Sunny Peach",
-            "hex": "f3beaf"
+            "name": "Sunny Peach"
         },
         {
             "code": "CP",
-            "name": "Creamy Peach",
-            "hex": "faded6"
+            "name": "Creamy Peach"
         },
         {
             "code": "VN",
-            "name": "Vintage Normal",
-            "hex": "e7cf8a"
+            "name": "Vintage Normal"
         },
         {
             "code": "ST",
-            "name": "Sun Kissed Tan",
-            "hex": "#99713C"
+            "name": "Sun Kissed Tan"
         },
         {
             "code": "IW",
-            "name": "Ivory White",
-            "hex": "FFFFF0"
+            "name": "Ivory White"
         }
     ]
 }

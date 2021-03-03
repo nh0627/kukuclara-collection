@@ -10,9 +10,9 @@ const DevNote = ({ trigger }) => {
 
     const [open, setOpen] = React.useState(false);
 
-    const renderContent = (note) => {
+    const renderContent = (note, i) => {
         return (
-            <article>
+            <article key={i}>
                 <Header as='h3'>{note.header}</Header>
                 <p dangerouslySetInnerHTML={{ __html: note.content }}></p>
             </article>
@@ -26,7 +26,7 @@ const DevNote = ({ trigger }) => {
             open={open}
             setOpen={setOpen}>
             <Modal.Content>
-                {loadedNotes.map(note => renderContent(note))}
+                {loadedNotes.map((note, i) => renderContent(note, i))}
             </Modal.Content>
         </DefaultModal>
     );

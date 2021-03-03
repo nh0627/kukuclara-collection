@@ -1,45 +1,45 @@
 import spreadsheets from "../../apis/axios/spreadsheets";
 import { parseSpreadSheet } from "../../common/util";
 import {
-    FETCH_DOLLS,
+    INIT_DOLLS,
     SEARCH_DOLLS,
     FILTER_DOLLS,
     SORT_DOLLS
 } from "./types";
 
-// Fetch list
-export const fetchDolls = () => async dispatch => {
+let loadedDolls = [];
+const loadDolls = async () => {
     const response = await spreadsheets.get();
     const parsedDolls = parseSpreadSheet(response);
-    dispatch({ type: FETCH_DOLLS, payload: { dolls: parsedDolls } });
+    loadedDolls = parsedDolls;
+};
+
+// Init list
+export const initDolls = () => async dispatch => {
+    await loadDolls();
+    dispatch({ type: INIT_DOLLS, payload: { dolls: loadedDolls } });
 };
 
 // Search with keyword
 export const searchDolls = term => async dispatch => {
-    const response = await spreadsheets.get();
-    const parsedDolls = parseSpreadSheet(response);
     dispatch({
         type: SEARCH_DOLLS,
-        payload: { term, dolls: parsedDolls }
+        payload: { term, dolls: loadedDolls }
     });
 }
 
 // Filter
 export const filterDolls = submitData => async dispatch => {
-    const response = await spreadsheets.get();
-    const parsedDolls = parseSpreadSheet(response);
     dispatch({
         type: FILTER_DOLLS,
-        payload: { submitData, dolls: parsedDolls }
+        payload: { submitData, dolls: loadedDolls }
     });
 };
 
 // Sort
 export const sortDolls = condition => async dispatch => {
-    const response = await spreadsheets.get();
-    const parsedDolls = parseSpreadSheet(response);
     dispatch({
         type: SORT_DOLLS,
-        payload: { condition, dolls: parsedDolls }
+        payload: { condition, dolls: loadedDolls }
     });
 };
