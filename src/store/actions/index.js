@@ -1,3 +1,5 @@
+import spreadsheets from "../../apis/axios/spreadsheets";
+import { parseSpreadSheet } from "../../common/util";
 import {
     FETCH_DOLLS,
     SEARCH_DOLLS,
@@ -6,32 +8,38 @@ import {
 } from "./types";
 
 // Fetch list
-export const fetchDolls = () => {
-    return {
-        type: FETCH_DOLLS
-    };
+export const fetchDolls = () => async dispatch => {
+    const response = await spreadsheets.get();
+    const parsedDolls = parseSpreadSheet(response);
+    dispatch({ type: FETCH_DOLLS, payload: { dolls: parsedDolls } });
 };
 
 // Search with keyword
-export const searchDolls = payload => {
-    return {
+export const searchDolls = term => async dispatch => {
+    const response = await spreadsheets.get();
+    const parsedDolls = parseSpreadSheet(response);
+    dispatch({
         type: SEARCH_DOLLS,
-        payload
-    };
+        payload: { term, dolls: parsedDolls }
+    });
 }
 
 // Filter
-export const filterDolls = payload => {
-    return {
+export const filterDolls = submitData => async dispatch => {
+    const response = await spreadsheets.get();
+    const parsedDolls = parseSpreadSheet(response);
+    dispatch({
         type: FILTER_DOLLS,
-        payload
-    };
+        payload: { submitData, dolls: parsedDolls }
+    });
 };
 
 // Sort
-export const sortDolls = payload => {
-    return {
+export const sortDolls = condition => async dispatch => {
+    const response = await spreadsheets.get();
+    const parsedDolls = parseSpreadSheet(response);
+    dispatch({
         type: SORT_DOLLS,
-        payload
-    };
+        payload: { condition, dolls: parsedDolls }
+    });
 };

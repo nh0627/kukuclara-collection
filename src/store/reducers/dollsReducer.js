@@ -5,11 +5,8 @@ import {
     FILTER_DOLLS,
     SORT_DOLLS
 } from "../actions/types";
-import data from "../../data/kukuclara.json";
 import Pluralize from "pluralize";
 import { START_YEAR, END_YEAR } from "../../common/util";
-
-const loadedData = JSON.parse(JSON.stringify(data));
 
 // Function to set primary key(id) to OBJ key
 const parseObjWithKeys = (dolls) => {
@@ -27,17 +24,18 @@ const searchDollWithTerm = (doll, term) => {
 export default (state = [], action) => {
     switch (action.type) {
         case FETCH_DOLLS: {
-            const fetchedDolls = parseObjWithKeys(loadedData);
+            const { dolls } = action.payload;
+            const fetchedDolls = parseObjWithKeys(dolls);
             return { ...fetchedDolls };
         }
         case SEARCH_DOLLS: {
-            const { term } = action.payload;
-            if (typeof term === "undefined") return parseObjWithKeys(loadedData);
-            const foundDolls = loadedData.filter(doll => searchDollWithTerm(doll, term));
+            const { term, dolls } = action.payload;
+            if (typeof term === "undefined") return parseObjWithKeys(dolls);
+            const foundDolls = dolls.filter(doll => searchDollWithTerm(doll, term));
             return { ...parseObjWithKeys(foundDolls) };
         }
         case FILTER_DOLLS: {
-            const submitData = action.payload;
+            const { submitData, dolls } = action.payload;
             const { filterGroups } = submitData; // Get the name of "grouped" filters from submit data
             const selectedFilterGroups = []; // Data from grouped filters
             const selectcedFilters = []; // Data from normal(non-grouped) filters
@@ -51,7 +49,7 @@ export default (state = [], action) => {
             }
 
             // TODO: Make it less complecated(if possible😭)
-            const filteredDolls = loadedData.filter(doll => {
+            const filteredDolls = dolls.filter(doll => {
 
                 // Matched filter names(keys) from normal(non-grouped) filters
                 const matchedKeysFromFilters = [];
@@ -89,9 +87,8 @@ export default (state = [], action) => {
             return { ...parseObjWithKeys(filteredDolls) };
         }
         case SORT_DOLLS: {
-            const { condition } = action.payload;
-            const sortedDolls = [...loadedData];
-            sortedDolls.sort((a, b) => {
+            const { condition, dolls } = action.payload;
+            const sortedDolls = dolls.sort((a, b) => {
                 var nameA = (condition === "name") ? a[condition].toUpperCase() : a[condition];
                 var nameB = (condition === "name") ? b[condition].toUpperCase() : b[condition];
                 if (nameA < nameB) return -1;
