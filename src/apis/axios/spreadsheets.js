@@ -7,6 +7,7 @@ const createdAxios = axios.create({
     baseURL: `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/full?alt=json`
 });
 
+// Cashing
 export let loadedDolls = [];
 
 export const loadDolls = async () => {
