@@ -22,7 +22,7 @@ export const parseSpreadSheet = source => {
                 const newKey = key.replace(KEY_PREFIX, "");
                 const camelCaseIdx = lowercasedColumn.indexOf(newKey);
                 const data = row[key][VALUE_PREFIX];
-                if (camelCaseIdx > 0) obj[NON_CAMELCASE_COLUMNS[camelCaseIdx]] = data;
+                if (camelCaseIdx >= 0) obj[NON_CAMELCASE_COLUMNS[camelCaseIdx]] = data;
                 else if (camelCaseIdx === -1) obj[newKey] = data;
                 return obj;
             }, {}));
