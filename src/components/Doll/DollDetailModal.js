@@ -7,7 +7,6 @@ const DollDetailModal = ({ doll, trigger }) => {
 
   const [open, setOpen] = React.useState(false);
   const { releaseCode, img, name, type, series, date, eyeColor, eyeColorHexCode, hairColor, hairColorHexCode, skinTypeHexCode, skinType } = doll;
-  debugger;
   const colorLabel = (color) => <Label circular empty style={{ "backgroundColor": `#${color}`, "marginRight": "0.3rem" }} />;
 
   const header = (name === series) ? series : `${name} ${series}`;
