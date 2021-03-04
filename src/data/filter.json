@@ -41,10 +41,6 @@
             "name": "Brown"
         },
         {
-            "code": "GE",
-            "name": "Grey"
-        },
-        {
             "code": "PI",
             "name": "Pink"
         },
@@ -69,10 +65,6 @@
         {
             "code": "BL",
             "name": "Blue"
-        },
-        {
-            "code": "YE",
-            "name": "Yellow"
         },
         {
             "code": "PU",

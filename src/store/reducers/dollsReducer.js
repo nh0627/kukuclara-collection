@@ -10,7 +10,7 @@ import { START_YEAR, END_YEAR } from "../../common/util";
 // Function to set primary key(id) to OBJ key
 const parseObjWithKeys = (dolls) => {
     const dollObj = {};
-    dolls.forEach(doll => dollObj[doll.id] = doll);
+    if ( typeof dolls !== "undefined") dolls.forEach(doll => dollObj[doll.id] = doll);
     return dollObj;
 }
 
