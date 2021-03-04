@@ -1,4 +1,4 @@
-import { loadedDolls, loadDolls } from "../../apis/axios/spreadsheets";
+import { getDolls } from "../../apis/axios/spreadsheets";
 import {
     INIT_DOLLS,
     SEARCH_DOLLS,
@@ -8,30 +8,33 @@ import {
 
 // Init list
 export const initDolls = () => async dispatch => {
-    await loadDolls();
-    dispatch({ type: INIT_DOLLS, payload: { dolls: loadedDolls } });
+    const dolls = await getDolls();
+    dispatch({ type: INIT_DOLLS, payload: { dolls } });
 };
 
 // Search with keyword
-export const searchDolls = term => {
-    return {
+export const searchDolls = term => async dispatch => {
+    const dolls = await getDolls();
+    dispatch({
         type: SEARCH_DOLLS,
-        payload: { term, dolls: loadedDolls }
-    };
+        payload: { term, dolls }
+    });
 }
 
 // Filter
-export const filterDolls = submitData => {
-    return {
+export const filterDolls = submitData => async dispatch => {
+    const dolls = await getDolls();
+    dispatch({
         type: FILTER_DOLLS,
-        payload: { submitData, dolls: loadedDolls }
-    };
+        payload: { submitData, dolls }
+    });
 };
 
 // Sort
-export const sortDolls = condition => {
-    return {
+export const sortDolls = condition => async dispatch => {
+    const dolls = await getDolls();
+    dispatch({
         type: SORT_DOLLS,
-        payload: { condition, dolls: loadedDolls }
-    };
+        payload: { condition, dolls }
+    });
 };

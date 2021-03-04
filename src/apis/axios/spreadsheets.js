@@ -8,10 +8,13 @@ const createdAxios = axios.create({
 });
 
 // Cashing
-export let loadedDolls = [];
+let loadedDolls = [];
 
-export const loadDolls = async () => {
-    const response = await createdAxios.get();
-    const parsedDolls = parseSpreadSheet(response);
-    loadedDolls = parsedDolls;
+export const getDolls = async () => {
+    if (loadedDolls.length === 0) {
+        const response = await createdAxios.get();
+        const parsedDolls = parseSpreadSheet(response);
+        loadedDolls = parsedDolls;
+    } 
+    return loadedDolls;
 };
