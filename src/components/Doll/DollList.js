@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { initDolls } from "../../store/actions";
 import DollCard from "./DollCard";
-import { Card, Label, Menu, Container, Visibility } from "semantic-ui-react";
+import { Card, Label, Menu, Container, Visibility, Segment, Header, Icon } from "semantic-ui-react";
 
 const DollList = props => {
     const propDolls = props.dolls;
@@ -66,8 +66,29 @@ const DollList = props => {
     };
 
     const renderList = () => {
+
         const renderCard = (doll) => <DollCard doll={doll} key={doll.id} />;
-        return dolls.map(doll => renderCard(doll));
+
+        const renderCardGroup = () => (
+            <Card.Group itemsPerRow={6} doubling stackable className="customized">
+                {dolls.map(doll => renderCard(doll))}
+                <Visibility
+                    onBottomVisible={() => setDollsWithPagination(false)}
+                    once={false}
+                />
+            </Card.Group>
+        );
+
+        const renderNoResult = () => (
+            <Segment placeholder>
+                <Header icon>
+                    <Icon name='search' />
+                    We do not have any documents matching your query.
+            </Header>
+            </Segment>
+        )
+
+        return (dolls.length > 0) ? renderCardGroup() : renderNoResult();
     };
 
     const renderSecondaryButtons = () => {
@@ -100,13 +121,7 @@ const DollList = props => {
     return (
         <Container>
             {renderSecondaryButtons()}
-            <Card.Group itemsPerRow={6} doubling stackable className="customized">
-                {renderList()}
-                <Visibility
-                    onBottomVisible={() => setDollsWithPagination(false)}
-                    once={false}
-                />
-            </Card.Group>
+            {renderList()}
         </Container>
     );
 
