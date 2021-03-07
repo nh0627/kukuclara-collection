@@ -11,16 +11,19 @@ const DollList = props => {
     const [dolls, setDolls] = React.useState([]);
     const [pageIndex, setPageIndex] = React.useState(0);
     const [sortCondition, setSortCondition] = React.useState("date");
+    const [total, setTotal] = React.useState(0);
+    const [isInit, setIsInit] = React.useState(false);
 
-    // When dolls in store are first set
     React.useEffect(() => {
         props.initDolls();
         setDollsWithPagination();
     }, []);
 
-    // When dolls in store are changed
+    // When dolls in the store are changed
     React.useEffect(() => {
         setDollsWithPagination();
+        setTotal(propDolls.length);
+        if (total > 0 && !isInit) setIsInit(true);
     }, [propDolls]);
 
     // When sort condition is changed
@@ -66,7 +69,6 @@ const DollList = props => {
     };
 
     const renderList = () => {
-
         const renderCard = (doll) => <DollCard doll={doll} key={doll.id} />;
 
         const renderCardGroup = () => (
@@ -83,12 +85,12 @@ const DollList = props => {
             <Segment placeholder>
                 <Header icon>
                     <Icon name='search' />
-                    We do not have any documents matching your query.
-            </Header>
+                    We do not have any documents matching your query.
+                </Header>
             </Segment>
         )
 
-        return (dolls.length > 0) ? renderCardGroup() : renderNoResult();
+        return (total === 0 && isInit) ? renderNoResult() : renderCardGroup();
     };
 
     const renderSecondaryButtons = () => {
@@ -97,7 +99,7 @@ const DollList = props => {
                 <Menu.Item
                     name='home'
                     header>
-                    Total <Label basic circular>{propDolls.length}</Label>
+                    Total <Label basic circular>{total}</Label>
                 </Menu.Item>
                 <Menu.Menu position='right'>
                     <Menu.Item header>Sort By</Menu.Item>
