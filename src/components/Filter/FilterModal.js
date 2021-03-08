@@ -10,7 +10,7 @@ import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkb
 import DefaultModal from "../Default/DefaultModal";
 
 let FilterModal = props => {
-  const { trigger, filters, handleSubmit, change, open, setOpen } = props;
+  const { trigger, filters, handleSubmit, change, open, setOpen, reset } = props;
   const checkboxGroups = Object.keys(filters);
 
   const getYearOptions = () => {
@@ -94,6 +94,7 @@ let FilterModal = props => {
 
   const modalActions = (
     <Modal.Actions>
+      <Button onClick={() => reset()}> <Icon name="erase" />Clear</Button>
       <Button color="red" onClick={() => setOpen(false)}>
         <Icon name="remove" /> Close
       </Button>
@@ -148,7 +149,8 @@ FilterModal.propTypes = {
   filterDolls: PropTypes.func,
   change: PropTypes.func,
   open: PropTypes.bool,
-  setOpen: PropTypes.func
+  setOpen: PropTypes.func,
+  reset: PropTypes.func
 };
 
 export default FilterModal;
