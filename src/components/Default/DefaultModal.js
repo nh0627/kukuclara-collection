@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Header, Modal, Icon } from "semantic-ui-react";
 
 const DefaultModal = props => {
-  const { trigger, children, header: { icon, content }, actions, open, setOpen } = props;
+  const { trigger, children, header: { icon, content }, actions, open, setOpen, size } = props;
 
   const renderModalActions = () => {
     const defaultCloseButton = (
@@ -22,7 +22,7 @@ const DefaultModal = props => {
       onOpen={() => setOpen(true)}
       open={open}
       trigger={trigger}
-      size="small"
+      size={size || "small"}
       closeIcon
     >
       <Header icon={icon} content={content} />
@@ -38,7 +38,8 @@ DefaultModal.propTypes = {
   header: PropTypes.object,
   actions: PropTypes.object,
   open: PropTypes.bool,
-  setOpen: PropTypes.func
+  setOpen: PropTypes.func,
+  size: PropTypes.string
 };
 
 export default DefaultModal;
