@@ -35,7 +35,7 @@ export default (state = [], action) => {
         }
         case FILTER_DOLLS: {
             const { submitData, dolls } = action.payload;
-            const { filterGroups } = submitData; // Get the name of "grouped" filters from submit data
+            const { filterGroups = [] } = submitData; // Get the name of "grouped" filters from submit data
             const selectedFilterGroups = []; // Data from grouped filters
             const selectcedFilters = []; // Data from normal(non-grouped) filters
 

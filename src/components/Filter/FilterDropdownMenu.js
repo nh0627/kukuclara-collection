@@ -7,22 +7,32 @@ import { Dropdown, Icon, Input } from "semantic-ui-react";
 let FilterDropdownMenu = (props) => {
     const { types } = props;
     const [term, setTerm] = React.useState("");
-    const [activeTag, setActiveTag] = React.useState("");
+    const [activeTags, setActiveTags] = React.useState([]);
+    
+    const filterByTermAndTags = ({ keyword = "", code = "" }) => {
+        let returnObj = { term };
+        let types = activeTags;
 
-    const filterByTerm = (term) => {
-        setTerm(term);
-        const filterGroups = (activeTag === "") ? [] : ["types"];
-        const returnObj = { term, types: [activeTag], filterGroups };
+        const getNewActiveTags = (code) => {
+            const isCodeActive = activeTags.indexOf(code) > -1;
+            if (isCodeActive) return activeTags.filter(tag => tag !== code);
+            else return [...activeTags, code];
+        };
+
+        if (keyword.length > 0) {
+            returnObj.term = keyword;
+            setTerm(keyword);
+        }
+
+        if (code.length > 0) {
+            types = getNewActiveTags(code);
+            setActiveTags(types);
+        }
+
+        if (types.length > 0) returnObj = { ...returnObj, types, filterGroups: ["types"] };
+
         props.filterDolls(returnObj);
     }
-
-    const filterByTag = (code) => {
-        (activeTag !== code) ? setActiveTag(code) : setActiveTag("");
-        const searchTag = (code === activeTag) ? "" : code;
-        const filterGroups = (searchTag === "") ? [] : ["types"];
-        const returnObj = { term, types: [searchTag], filterGroups };
-        props.filterDolls(returnObj);
-    };
 
     const renderTypeTags = ({ code, name, color }) => {
         const options = { text: name, label: { color, empty: true, circular: true } };
@@ -30,9 +40,9 @@ let FilterDropdownMenu = (props) => {
             <Dropdown.Item
                 key={code}
                 {...options}
-                active={activeTag === code}
+                active={activeTags.indexOf(code) > -1}
                 onClick={() => {
-                    filterByTag(code);
+                    filterByTermAndTags({ code });
                 }} />
         );
     };
@@ -41,7 +51,7 @@ let FilterDropdownMenu = (props) => {
         <Dropdown item simple icon="search">
             <Dropdown.Menu style={{ "left": "-10rem" }}>
                 <div className="ui input icon" >
-                    <Input type="text" name="term" onChange={e => filterByTerm(e.target.value)} placeholder="Search..." />
+                    <Input type="text" name="term" onChange={e => { filterByTermAndTags({ keyword: e.target.value }); }} placeholder="Search..." />
                     <Icon aria-hidden="true" name="search" />
                 </div>
                 <Dropdown.Divider />
