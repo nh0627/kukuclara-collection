@@ -109,7 +109,8 @@ let FilterModal = props => {
       header={{ content: "Advanced filter", icon: "filter" }}
       trigger={trigger}
       actions={modalActions}
-      open={open} setOpen={setOpen}>
+      open={open} setOpen={setOpen}
+      size="large">
       <Modal.Content>
         <Form id="filterForm" onSubmit={handleSubmit(onSubmit)}>
           <Field component={Input} name="term" label="Search" placeholder="Search..." />
