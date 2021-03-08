@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from 'prop-types';
 import DefaultModal from "../Default/DefaultModal";
 import { Modal, Header } from "semantic-ui-react";
-import notes from "../../data/notes.json";
-
-const loadedNotes = JSON.parse(JSON.stringify(notes));
+import { getNotes } from "../../apis/axios/spreadsheets";
 
 const DevNote = ({ trigger }) => {
+    const [open, setOpen] = useState(false);
+    const [notes, setNotes] = useState([]);
 
-    const [open, setOpen] = React.useState(false);
+    const getLoadedNotes = useCallback(async () => {
+        let response = await getNotes();
+        setNotes(response)
+    }, []);
+
+    useEffect(() => {
+        getLoadedNotes()
+    }, [getLoadedNotes]);
 
     const renderContent = (note, i) => {
         return (
@@ -26,7 +33,7 @@ const DevNote = ({ trigger }) => {
             open={open}
             setOpen={setOpen}>
             <Modal.Content>
-                {loadedNotes.map((note, i) => renderContent(note, i))}
+                {notes.map((note, i) => renderContent(note, i))}
             </Modal.Content>
         </DefaultModal>
     );
