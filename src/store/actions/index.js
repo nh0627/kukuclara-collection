@@ -1,15 +1,22 @@
-import { getDolls } from "../../apis/axios/spreadsheets";
+import { getDolls, getFilters } from "../../apis/axios/spreadsheets";
 import {
     INIT_DOLLS,
+    INIT_FILTERS,
     SEARCH_DOLLS,
     FILTER_DOLLS,
     SORT_DOLLS
 } from "./types";
 
-// Init list
+// Init doll list
 export const initDolls = () => async dispatch => {
     const dolls = await getDolls();
     dispatch({ type: INIT_DOLLS, payload: { dolls } });
+};
+
+// Init filter list
+export const initFilters = () => async dispatch => {
+    const filters = await getFilters();
+    dispatch({ type: INIT_FILTERS, payload: { filters } });
 };
 
 // Search with keyword

@@ -4,12 +4,17 @@ import Pluralize from "pluralize";
 import { connect } from "react-redux";
 import { Field, reduxForm, change } from "redux-form";
 import { Button, Icon, Modal, Form } from "semantic-ui-react";
-import { filterDolls } from "../../store/actions";
+import { filterDolls, initFilters } from "../../store/actions";
 import { START_YEAR as startYear, END_YEAR as endYear } from "../../common/util";
 import { DropdownField as Dropdown, InputField as Input, CheckboxField as Checkbox } from "../Default/DefaultFields";
 import DefaultModal from "../Default/DefaultModal";
 
 let FilterModal = props => {
+
+  React.useEffect(() => {
+    props.initFilters();
+  }, []);
+
   const { trigger, filters, handleSubmit, change, open, setOpen, reset } = props;
   const checkboxGroups = Object.keys(filters);
 
@@ -141,13 +146,14 @@ const mapStateToProps = state => {
 
 FilterModal = reduxForm({ form: "filterForm" })(FilterModal);
 
-FilterModal = connect(mapStateToProps, { filterDolls, change })(FilterModal);
+FilterModal = connect(mapStateToProps, { filterDolls, initFilters, change })(FilterModal);
 
 FilterModal.propTypes = {
   trigger: PropTypes.object,
   filters: PropTypes.object,
   handleSubmit: PropTypes.func,
   filterDolls: PropTypes.func,
+  initFilters: PropTypes.func,
   change: PropTypes.func,
   open: PropTypes.bool,
   setOpen: PropTypes.func,

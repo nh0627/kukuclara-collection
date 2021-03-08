@@ -1,14 +1,14 @@
-import filterData from "../../data/filter.json";
-import { getColor } from "../../common/util";
+import {
+    INIT_FILTERS,
+} from "../actions/types";
 
-const filters = JSON.parse(JSON.stringify(filterData));
-
-export const typesReducer = (state = []) => {
-    if (state.length === 0) state = filters["types"];
-    return state.map((type, i) => { return { ...type, ...{ color: getColor(i) } } });
-};
-
-export const filtersReducer = (state = {}) => {
-    if (Object.keys(state).length === 0) state = filters;
-    return { ...state };
+export default (state = {}, action) => {
+    switch (action.type) {
+        case INIT_FILTERS: {
+            const { filters } = action.payload;
+            return { ...filters };
+        }
+        default:
+            return state;
+    }
 };

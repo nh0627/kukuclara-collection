@@ -1,14 +1,25 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { filterDolls } from "../../store/actions";
+import { filterDolls, initFilters } from "../../store/actions";
 import { Dropdown, Icon, Input } from "semantic-ui-react";
+import { getColor } from "../../common/util";
 
 let FilterDropdownMenu = (props) => {
-    const { types } = props;
+    const { filters } = props;
     const [term, setTerm] = React.useState("");
     const [activeTags, setActiveTags] = React.useState([]);
-    
+
+    React.useEffect(() => {
+        props.initFilters();
+    }, []);
+
+    const getTypesFromFilters = () => {
+        const { types } = filters;
+        if (typeof types === "undefined") return [];
+        else return types.map((type, i) => { return { ...type, ...{ color: getColor(i) } } });
+    };
+
     const filterByTermAndTags = ({ keyword = "", code = "" }) => {
         let returnObj = { term };
         let types = activeTags;
@@ -56,21 +67,23 @@ let FilterDropdownMenu = (props) => {
                 </div>
                 <Dropdown.Divider />
                 <Dropdown.Header>FILTER BY TYPE</Dropdown.Header>
-                {types.map((type) => renderTypeTags(type))}
+                {getTypesFromFilters().map((type) => renderTypeTags(type))
+                }
             </Dropdown.Menu>
         </Dropdown>
     );
 };
 
 const mapStateToProps = state => {
-    return { types: state.types };
+    return { filters: state.filters };
 };
 
-FilterDropdownMenu = connect(mapStateToProps, { filterDolls })(FilterDropdownMenu);
+FilterDropdownMenu = connect(mapStateToProps, { filterDolls, initFilters })(FilterDropdownMenu);
 
 FilterDropdownMenu.propTypes = {
-    types: PropTypes.object,
-    filterDolls: PropTypes.func
+    filters: PropTypes.object,
+    filterDolls: PropTypes.func,
+    initFilters: PropTypes.func
 };
 
 export default FilterDropdownMenu;
