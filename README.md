@@ -6,7 +6,7 @@ My Dear KukuClara💕
 [➡️ Visit the website](http://my-dear-kukuclara.netlify.com)
 
 This app is made with React.js/Redux to look up, filter and sort the overall series of KukuClara dolls.
-> As a KukuClara doll collector, I need a website where I can easily see the data on the collection. I hope that KukuClara fans like me can get help for their collection but also have fun around the collection with my app❤
+> As a KukuClara collector, I needed a website where I can easily see the data on the collection. I hope that KukuClara fans like me can get help for their collection but also have fun around it with my app❤
 
 ---
 
