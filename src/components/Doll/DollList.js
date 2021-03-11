@@ -69,7 +69,7 @@ const DollList = props => {
     };
 
     const renderList = () => {
-        const renderCard = (doll) => <DollCard doll={doll} key={doll.id} />;
+        const renderCard = doll => <DollCard doll={doll} key={doll.id} />;
 
         const renderCardGroup = () => (
             <Card.Group itemsPerRow={6} doubling stackable className="customized">
