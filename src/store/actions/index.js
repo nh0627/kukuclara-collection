@@ -2,7 +2,6 @@ import { getDolls, getFilters } from "../../apis/axios/spreadsheets";
 import {
     INIT_DOLLS,
     INIT_FILTERS,
-    SEARCH_DOLLS,
     FILTER_DOLLS,
     SORT_DOLLS
 } from "./types";
