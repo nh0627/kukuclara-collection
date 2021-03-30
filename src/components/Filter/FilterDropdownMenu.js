@@ -40,7 +40,7 @@ let FilterDropdownMenu = (props) => {
             setActiveTags(types);
         }
 
-        if (types.length > 0) returnObj = { ...returnObj, types, filterGroups: ["types"] };
+        if (types.length > 0) returnObj = { ...returnObj, types };
 
         props.filterDolls(returnObj);
     }

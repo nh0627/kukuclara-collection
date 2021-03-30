@@ -28,52 +28,49 @@ export default (state = [], action) => {
         }
         case FILTER_DOLLS: {
             const { submitData, dolls } = action.payload;
-            const { filterGroups = [] } = submitData; // Get the name of "grouped" filters from submit data
+            const selectedFilters = []; // Data from normal(non-grouped) filters
             const selectedFilterGroups = []; // Data from grouped filters
-            const selectcedFilters = []; // Data from normal(non-grouped) filters
 
+            // Divide filters if grouped or not
             for (const key in submitData) {
-                if (filterGroups.indexOf(key) > -1) {
+                if (Array.isArray(submitData[key])) {
                     selectedFilterGroups.push(key);
                 } else {
-                    selectcedFilters.push(key);
+                    selectedFilters.push(key);
                 }
             }
 
-            // TODO: Make it less complecated
+            // Filter logic starts
             const filteredDolls = dolls.filter(doll => {
 
-                // Matched filter names(keys) from normal(non-grouped) filters
+                // Get matched filter names(keys) from normal(non-grouped) filters
                 const matchedKeysFromFilters = [];
-
-                if (selectcedFilters.includes("term") && !searchDollWithTerm(doll, submitData.term)) matchedKeysFromFilters.push("term");
-
-                if (selectcedFilters.includes("yearFrom") || selectcedFilters.includes("yearTo")) {
+                if (selectedFilters.includes("term") && searchDollWithTerm(doll, submitData.term)) matchedKeysFromFilters.push("term");
+                if (selectedFilters.includes("yearFrom") || selectedFilters.includes("yearTo")) {
                     const { yearFrom = START_YEAR } = submitData;
                     const { yearTo = END_YEAR } = submitData;
-                    // Filter data by year
                     const { date } = doll;
+                    // Filter data by year
                     const releasedYear = parseInt(date);
-                    if (yearFrom > releasedYear || yearTo < releasedYear) {
+                    if (yearFrom <= releasedYear && yearTo >= releasedYear) {
                         matchedKeysFromFilters.push("yearFrom", "yearTo");
                     }
                 }
 
-                // Matched filter names(keys) from grouped filters
+                // Get matched filter names(keys) from grouped filters
                 const matchedKeysFromFilterGroups = selectedFilterGroups.filter(keyName => {
                     // Change filter property name format(e.g. types => typeCode)
                     const parsedKeyName = `${(Pluralize.isSingular(keyName)) ? keyName : Pluralize.singular(keyName)}Code`;
                     const codeFromLoadedData = doll[parsedKeyName];
                     const codesFromSubmitData = submitData[keyName];
-                    // For example, if one haircolor is matched in selected hair colors
+                    // For example, if one haircolor is matched in the selected hair colors
                     // then the "haircolor" filter name(key) is considered "matched"
                     return codesFromSubmitData.indexOf(codeFromLoadedData) > -1;
                 });
 
+                const selectedKeys = [...selectedFilters, ...selectedFilterGroups];
                 const matchedKeys = [...matchedKeysFromFilters, ...matchedKeysFromFilterGroups];
-                // For example, if "haircolor" and "eyecolor" are selected
-                // those filter names(keys) need to be included also in "matched" filter names
-                return matchedKeys.sort().join(",") === selectedFilterGroups.sort().join(",");
+                return matchedKeys.sort().join(",") === selectedKeys.sort().join(",");
             });
 
             return { ...parseObjWithKeys(filteredDolls) };

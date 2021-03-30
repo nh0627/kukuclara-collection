@@ -92,8 +92,6 @@ let FilterModal = props => {
       }
     });
 
-    returnObj.filterGroups = checkboxGroups;
-
     props.filterDolls(returnObj);
   }
 
