@@ -75,17 +75,6 @@ export default (state = [], action) => {
 
             return { ...parseObjWithKeys(filteredDolls) };
         }
-        case SORT_DOLLS: {
-            const { condition, dolls } = action.payload;
-            const sortedDolls = dolls.sort((a, b) => {
-                var nameA = (condition === "name") ? a[condition].toUpperCase() : a[condition];
-                var nameB = (condition === "name") ? b[condition].toUpperCase() : b[condition];
-                if (nameA < nameB) return -1;
-                if (nameA > nameB) return 1;
-                return 0;
-            });
-            return { ...parseObjWithKeys(sortedDolls) };
-        }
         default:
             return state;
     }

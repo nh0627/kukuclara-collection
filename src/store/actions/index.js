@@ -3,7 +3,6 @@ import {
     INIT_DOLLS,
     INIT_FILTERS,
     FILTER_DOLLS,
-    SORT_DOLLS
 } from "./types";
 
 // Init doll list
@@ -24,14 +23,5 @@ export const filterDolls = submitData => async dispatch => {
     dispatch({
         type: FILTER_DOLLS,
         payload: { submitData, dolls }
-    });
-};
-
-// Sort
-export const sortDolls = condition => async dispatch => {
-    const dolls = await getDolls();
-    dispatch({
-        type: SORT_DOLLS,
-        payload: { condition, dolls }
     });
 };
