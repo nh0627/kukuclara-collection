@@ -1,7 +1,6 @@
 import {
     INIT_DOLLS,
-    FILTER_DOLLS,
-    SORT_DOLLS
+    FILTER_DOLLS
 } from "../actions/types";
 import Pluralize from "pluralize";
 import { START_YEAR, END_YEAR } from "../../common/util";
