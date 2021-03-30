@@ -27,12 +27,6 @@ export default (state = [], action) => {
             const loadedDolls = parseObjWithKeys(dolls);
             return { ...loadedDolls };
         }
-        case SEARCH_DOLLS: {
-            const { term, dolls } = action.payload;
-            if (typeof term === "undefined") return parseObjWithKeys(dolls);
-            const foundDolls = dolls.filter(doll => searchDollWithTerm(doll, term));
-            return { ...parseObjWithKeys(foundDolls) };
-        }
         case FILTER_DOLLS: {
             const { submitData, dolls } = action.payload;
             const { filterGroups = [] } = submitData; // Get the name of "grouped" filters from submit data
@@ -47,7 +41,7 @@ export default (state = [], action) => {
                 }
             }
 
-            // TODO: Make it less complecated(if possible😭)
+            // TODO: Make it less complecated
             const filteredDolls = dolls.filter(doll => {
 
                 // Matched filter names(keys) from normal(non-grouped) filters

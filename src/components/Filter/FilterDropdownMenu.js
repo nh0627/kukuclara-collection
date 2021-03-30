@@ -52,9 +52,7 @@ let FilterDropdownMenu = (props) => {
                 key={code}
                 {...options}
                 active={activeTags.indexOf(code) > -1}
-                onClick={() => {
-                    filterByTermAndTags({ code });
-                }} />
+                onClick={() => filterByTermAndTags({ code })} />
         );
     };
 
@@ -62,13 +60,12 @@ let FilterDropdownMenu = (props) => {
         <Dropdown item simple icon="search">
             <Dropdown.Menu style={{ "left": "-10rem" }}>
                 <div className="ui input icon" >
-                    <Input type="text" name="term" onChange={e => { filterByTermAndTags({ keyword: e.target.value }); }} placeholder="Search..." />
+                    <Input type="text" name="term" onChange={e => filterByTermAndTags({ keyword: e.target.value })} placeholder="Search..." />
                     <Icon aria-hidden="true" name="search" />
                 </div>
                 <Dropdown.Divider />
                 <Dropdown.Header>FILTER BY TYPE</Dropdown.Header>
-                {getTypesFromFilters().map((type) => renderTypeTags(type))
-                }
+                {getTypesFromFilters().map((type) => renderTypeTags(type))}
             </Dropdown.Menu>
         </Dropdown>
     );

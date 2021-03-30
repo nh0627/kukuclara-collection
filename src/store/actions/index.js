@@ -19,15 +19,6 @@ export const initFilters = () => async dispatch => {
     dispatch({ type: INIT_FILTERS, payload: { filters } });
 };
 
-// Search with keyword
-export const searchDolls = term => async dispatch => {
-    const dolls = await getDolls();
-    dispatch({
-        type: SEARCH_DOLLS,
-        payload: { term, dolls }
-    });
-}
-
 // Filter
 export const filterDolls = submitData => async dispatch => {
     const dolls = await getDolls();
