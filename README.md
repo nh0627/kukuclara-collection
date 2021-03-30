@@ -12,10 +12,18 @@ This app is made with React.js/Redux to look up, filter and sort the overall ser
 
 ## Features
 - Retrieve all the collections of KukuClara
+- View details of each doll
 - Search the dolls with keyword
-- Filter the dolls by its various features(e.g. hair color, skin type)
+- Filter the dolls by their various features(e.g. hair color, skin type)
 - Sort the dolls by release date and name
+- Refresh the doll list
 - More features are coming up😊
+
+---
+
+## Setup
+Clone this repo and run `yarn install` on its root directory to install the required dependencies.
+To start this app, run `yarn start`. You can access it at localhost:3000🎈
 
 ---
 
@@ -23,9 +31,3 @@ This app is made with React.js/Redux to look up, filter and sort the overall ser
 - [KukuClara Website](http://kukuclara.com/) 
 - [Yvely (KukuClara Designer/Doll Maker)](http://instagram.com/kukuclara)
 - [Adimi Seoul's blog](http://blog.naver.com/a_lim23)
-
----
-
-## Setup
-Clone this repo and run `yarn install` on its root directory to install the required dependencies.
-To start this app, run `yarn start`. You can access it at localhost:3000🎈
