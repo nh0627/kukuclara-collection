@@ -1,6 +1,7 @@
 import React from "react";
 import FilterDropdownMenu from "../Filter/FilterDropdownMenu";
 import FilterModal from "../Filter/FilterModal";
+import FilterRefresh from "../Filter/FilterRefresh";
 import { Menu, Container, Icon } from "semantic-ui-react";
 
 const MenuBar = () => {
@@ -22,6 +23,7 @@ const MenuBar = () => {
                             >
                                 <Icon name="filter" />
                             </Menu.Item>} />
+                    <FilterRefresh />
                 </Menu.Menu>
             </Menu>
         </Container>
