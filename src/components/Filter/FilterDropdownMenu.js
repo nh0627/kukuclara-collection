@@ -8,7 +8,6 @@ import { getColor } from "../../common/util";
 let FilterDropdownMenu = (props) => {
     const { filters } = props;
     const [term, setTerm] = React.useState("");
-    const [activeTags, setActiveTags] = React.useState([]);
 
     React.useEffect(() => {
         props.initFilters();
@@ -22,24 +21,13 @@ let FilterDropdownMenu = (props) => {
 
     const filterByTermAndTags = ({ keyword = "", code = "" }) => {
         let returnObj = { term };
-        let types = activeTags;
-
-        const getNewActiveTags = (code) => {
-            const isCodeActive = activeTags.indexOf(code) > -1;
-            if (isCodeActive) return activeTags.filter(tag => tag !== code);
-            else return [...activeTags, code];
-        };
+        let types = (code.length > 0 )? [code] : [];
 
         if (keyword.length > 0) {
             returnObj.term = keyword;
             setTerm(keyword);
         }
-
-        if (code.length > 0) {
-            types = getNewActiveTags(code);
-            setActiveTags(types);
-        }
-
+        
         if (types.length > 0) returnObj = { ...returnObj, types };
 
         props.filterDolls(returnObj);
@@ -51,7 +39,6 @@ let FilterDropdownMenu = (props) => {
             <Dropdown.Item
                 key={code}
                 {...options}
-                active={activeTags.indexOf(code) > -1}
                 onClick={() => filterByTermAndTags({ code })} />
         );
     };
