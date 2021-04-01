@@ -10,8 +10,8 @@ let FilterRefresh = props => {
     }
 
     return (
-        <Menu.Item link>
-            <Icon name="refresh" onClick={refreshList}/>
+        <Menu.Item link onClick={refreshList}>
+            <Icon name="refresh" />
         </Menu.Item>
     )
 };
