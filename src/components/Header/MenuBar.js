@@ -9,7 +9,7 @@ const MenuBar = () => {
     const [filterModalOpen, setFilterModalOpen] = React.useState(false);
 
     return (
-        <Container style={{ marginBottom: "1rem" }}>
+        <Container style={{marginBottom: "1rem"}}>
             <Menu borderless>
                 <Menu.Menu position="right">
                     <FilterDropdownMenu />
