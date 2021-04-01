@@ -2,6 +2,7 @@ import React from "react";
 import FilterDropdownMenu from "../Filter/FilterDropdownMenu";
 import FilterModal from "../Filter/FilterModal";
 import FilterRefresh from "../Filter/FilterRefresh";
+import SignIn from "../Auth/SignIn";
 import { Menu, Container, Icon } from "semantic-ui-react";
 
 const MenuBar = () => {
@@ -24,6 +25,7 @@ const MenuBar = () => {
                                 <Icon name="filter" />
                             </Menu.Item>} />
                     <FilterRefresh />
+                    <SignIn />
                 </Menu.Menu>
             </Menu>
         </Container>

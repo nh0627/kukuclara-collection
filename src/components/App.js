@@ -28,6 +28,7 @@ const App = () => {
       <BrowserRouter>
         <div>
           <Route path="/" exact component={PageComponent(DollList)} />
+          <Route path="/signin" exact component={PageComponent()} />
         </div>
       </BrowserRouter>
     </div>
