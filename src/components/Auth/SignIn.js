@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 let SignIn = () => {
     return (
         <Menu.Item as={Link} to="/signin">
-            <Button size="mini">Sign in</Button>
+            <Button size="mini">Sign In</Button>
         </Menu.Item>
     )
 };
