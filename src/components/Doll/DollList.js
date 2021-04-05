@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { initDolls } from "../../store/actions";
 import DollCard from "./DollCard";
-import { Card, Label, Menu, Container, Visibility, Segment, Header, Icon } from "semantic-ui-react";
+import { Card, Container, Visibility, Segment, Header, Icon } from "semantic-ui-react";
+import DollListSecondaryMenu from "./DollListSecondaryMenu";
 
 const DollList = props => {
     const propDolls = props.dolls;
@@ -93,36 +94,9 @@ const DollList = props => {
         return (total === 0 && isInit) ? renderNoResult() : renderCardGroup();
     };
 
-    const renderSecondaryButtons = () => {
-        return (
-            <Menu secondary>
-                <Menu.Item
-                    name='home'
-                    header>
-                    Total <Label basic circular>{total}</Label>
-                </Menu.Item>
-                <Menu.Menu position='right'>
-                    <Menu.Item className="sortby" header><span>Sort By</span></Menu.Item>
-                    <Menu.Item
-                        name="Date"
-                        as="a"
-                        active={sortCondition === "date"}
-                        onClick={() => setSortCondition("date")}
-                    />
-                    <Menu.Item
-                        name="Name"
-                        as="a"
-                        active={sortCondition === "name"}
-                        onClick={() => setSortCondition("name")}
-                    />
-                </Menu.Menu>
-            </Menu>
-        );
-    };
-
     return (
         <Container>
-            {renderSecondaryButtons()}
+            <DollListSecondaryMenu setSortCondition={setSortCondition} sortCondition={sortCondition} total={total} />
             {renderList()}
         </Container>
     );
