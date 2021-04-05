@@ -102,7 +102,7 @@ const DollList = props => {
                     Total <Label basic circular>{total}</Label>
                 </Menu.Item>
                 <Menu.Menu position='right'>
-                    <Menu.Item header>Sort By</Menu.Item>
+                    <Menu.Item className="sortby" header><span>Sort By</span></Menu.Item>
                     <Menu.Item
                         name="Date"
                         as="a"

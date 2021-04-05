@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import "./App.css";
 import "semantic-ui-css/semantic.min.css";
 import MenuBar from "./Header/MenuBar";
 import Footer from "./Footer";
