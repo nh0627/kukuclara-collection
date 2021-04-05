@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import "semantic-ui-css/semantic.min.css";
+import "./App.css";
 import MenuBar from "./Header/MenuBar";
 import Footer from "./Footer";
 import Loader from "./Loader";

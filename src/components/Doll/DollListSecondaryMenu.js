@@ -12,8 +12,9 @@ let DollListSecondaryMenu = props => {
         <Menu secondary>
             <Menu.Item
                 name="total"
-                header>
-                Total <Label basic circular>{total}</Label>
+                header
+                className="total">
+                <span>Total</span> <Label basic circular>{total}</Label>
             </Menu.Item>
             <Menu.Menu position='right'>
                 <Dropdown item text='Sort by'>

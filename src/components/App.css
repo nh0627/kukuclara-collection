@@ -1,0 +1,10 @@
+@media only screen and (max-width: 355px) {
+    .total > span {
+        display: none;
+    }
+
+    .ui.menu .item.total > .label {
+        margin-left: 0;
+    }
+
+}

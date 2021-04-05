@@ -4,8 +4,10 @@ import DevNote from "../DevNote";
 
 const Footer = () => {
 
+    const footer = { margin: "4em 0em 0em", padding: "4em 0em" };
+
     return (
-        <Segment inverted style={{ margin: "4em 0em 0em", padding: "4em 0em" }} vertical>
+        <Segment inverted style={footer} vertical>
             <Container textAlign="center">
                 <List horizontal inverted divided link size="small">
                     <DevNote

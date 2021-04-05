@@ -5,10 +5,10 @@ import { Menu, Container } from "semantic-ui-react";
 
 const MenuBar = () => {
     return (
-        <Container style={{marginBottom: "1rem"}}>
+        <Container style={{ marginBottom: "1rem" }}>
             <Menu borderless>
                 <Menu.Menu position="right">
-                    <FilterDropdownMenu />
+                <FilterDropdownMenu />
                     <SignIn />
                 </Menu.Menu>
             </Menu>
