@@ -35,11 +35,19 @@ const DollList = props => {
     const sortDolls = () => {
         const sortedList = [...propDolls];
         sortedList.sort((a, b) => {
-            var nameA = (sortCondition === "name") ? a[sortCondition].toUpperCase() : a[sortCondition];
-            var nameB = (sortCondition === "name") ? b[sortCondition].toUpperCase() : b[sortCondition];
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1;
-            return 0;
+            let nameA = a[sortCondition];
+            let nameB = b[sortCondition];
+            if (sortCondition === "name") {
+                nameA = nameA.toUpperCase();
+                nameB = nameB.toUpperCase();
+                if (nameA < nameB) return -1;
+                if (nameA > nameB) return 1;
+                return 0;
+            } else {
+                if (nameA > nameB) return -1;
+                if (nameA < nameB) return 1;
+                return 0;
+            }
         });
         return sortedList;
     };
