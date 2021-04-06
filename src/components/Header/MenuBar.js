@@ -11,6 +11,7 @@ const MenuBar = () => {
         <Container style={{ marginBottom: "1rem" }}>
             <Menu borderless>
                 <Menu.Menu position="right">
+                    <FilterRefresh />
                     <FilterDropdownMenu />
                     <FilterModal
                         open={filterModalOpen}
@@ -23,7 +24,8 @@ const MenuBar = () => {
                             >
                                 <Icon name="filter" />
                             </Menu.Item>} />
-                    <FilterRefresh />
+
+
                 </Menu.Menu>
             </Menu>
         </Container>
