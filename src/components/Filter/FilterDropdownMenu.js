@@ -23,10 +23,9 @@ let FilterDropdownMenu = (props) => {
         let returnObj = { term };
         let types = (code.length > 0 )? [code] : [];
 
-        if (keyword.length > 0) {
-            returnObj.term = keyword;
-            setTerm(keyword);
-        }
+        setTerm(keyword);
+
+        if (keyword.length > 0) returnObj.term = keyword;
         
         if (types.length > 0) returnObj = { ...returnObj, types };
 
@@ -47,7 +46,7 @@ let FilterDropdownMenu = (props) => {
         <Dropdown item simple icon="search">
             <Dropdown.Menu style={{ "left": "-10rem" }}>
                 <div className="ui input icon" >
-                    <Input type="text" name="term" onChange={e => filterByTermAndTags({ keyword: e.target.value })} placeholder="Search..." />
+                    <Input type="text" value={term} onChange={e => filterByTermAndTags({ keyword: e.target.value })} placeholder="Search..." />
                     <Icon aria-hidden="true" name="search" />
                 </div>
                 <Dropdown.Divider />
