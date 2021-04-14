@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { Menu, Label } from "semantic-ui-react";
+import FilterRefresh from "../Filter/FilterRefresh";
 
 let DollListSecondaryMenu = props => {
 
@@ -11,7 +12,7 @@ let DollListSecondaryMenu = props => {
             <Menu.Item
                 name='home'
                 header>
-                Total <Label basic circular>{total}</Label>
+                <span className="total">Total </span><Label basic circular className="total">{total}</Label>
             </Menu.Item>
             <Menu.Menu position='right'>
                 <Menu.Item className="sortby" header><span>Sort By</span></Menu.Item>
@@ -27,6 +28,7 @@ let DollListSecondaryMenu = props => {
                     active={sortCondition === "name"}
                     onClick={() => setSortCondition("name")}
                 />
+                <FilterRefresh />
             </Menu.Menu>
         </Menu>
     );

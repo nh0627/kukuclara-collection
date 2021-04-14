@@ -1,5 +1,9 @@
-@media (max-width: 355px) {
-        .sortby > span {
+@media (max-width: 823px) {
+        .sortby > span,
+        span.total {
                 display: none !important;
+        }
+        .ui.menu .item>.label.total {
+                margin-left: 0;
         }
 }
